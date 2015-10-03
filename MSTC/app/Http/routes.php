@@ -10,6 +10,11 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
 //Posts Routes
 Route::resource('posts','PostsController');
 Route::get('posts/destroy/{id}','PostsController@destroy');
@@ -22,12 +27,13 @@ Route::get('tasks/update/{id}','TasksController@updatestatus');
 Route::get('tasks/destroy/{id}','TasksController@destroy');
 /*----------------------------------------------------------------------------------*/
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
+// News Routes
 Route::get('news', 'NewsController@index');
 Route::get('news/create', 'NewsController@create');
 Route::get('news/{id}', 'NewsController@show');
 Route::post('news', 'NewsController@store');
+/*----------------------------------------------------------------------------------*/
+
+// Subscribtions Routes
+Route::get('subscribtions', 'SubscribtionsController@index');
+Route::post('/', 'SubscribtionsController@store');

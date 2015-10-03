@@ -14,7 +14,6 @@
                 margin: 0;
                 padding: 0;
                 width: 100%;
-                display: table;
                 font-weight: 100;
                 font-family: 'Lato';
             }
@@ -38,8 +37,30 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Laravel 5</div>
+                <div class="title">Welcome to MSTC-Alex</div>
             </div>
+        </div>
+        <hr/>
+        <div class="container" width="100%">
+            {!! Form::open(['url' => '/']) !!}
+                <div class="form-group">
+                    {!! Form::label('email', 'Write Email Here:') !!}
+                    {!! Form::text('email', null, ['class'=>'form-control']) !!}
+                </div>
+                <div class = "form-group">
+                    {!! Form::submit('Subscribe', ['class' => 'btn btn-primary form-control']) !!}
+                </div>
+            {!! Form::close() !!}
+
+            @if ($errors->any())
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>
+                        {{ $error }}
+                    </li>
+                @endforeach
+            </ul>
+            @endif
         </div>
     </body>
 </html>
