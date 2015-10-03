@@ -10,6 +10,17 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+//Posts Routes
+Route::resource('posts','PostsController');
+Route::get('posts/destroy/{id}','PostsController@destroy');
+/*----------------------------------------------------------------------------------*/
+
+//Tasks Routes
+Route::get('tasks/finish','TasksController@finished');
+Route::resource('tasks','TasksController');
+Route::get('tasks/update/{id}','TasksController@updatestatus');
+Route::get('tasks/destroy/{id}','TasksController@destroy');
+/*----------------------------------------------------------------------------------*/
 
 Route::get('/', function () {
     return view('welcome');
