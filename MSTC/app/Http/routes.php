@@ -25,3 +25,9 @@ Route::get('tasks/destroy/{id}','TasksController@destroy');
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('news', 'NewsController@index');
+Route::get('news/create', 'NewsController@create');
+Route::get('news/{id}', 'NewsController@show');
+Route::post('news', 'NewsController@store');
