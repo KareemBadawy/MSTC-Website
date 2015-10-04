@@ -37,3 +37,9 @@ Route::post('news', 'NewsController@store');
 // Subscribtions Routes
 Route::get('subscribtions', 'SubscribtionsController@index');
 Route::post('/', 'SubscribtionsController@store');
+/*----------------------------------------------------------------------------------*/
+
+// Events Routes
+Route::resource('events', 'EventsController');
+Route::get('events/{id}/destroy', 'EventsController@destroy');
+/*----------------------------------------------------------------------------------*/
