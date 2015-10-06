@@ -25,7 +25,9 @@ class EventRequest extends Request
     {
         return [
             'title' => 'required',
-            'body'  => 'required'
+            'body'  => 'required',
+            'started_at' => 'required|date',
+            'ended_at'   => 'required|date'
         ];
     }
 }

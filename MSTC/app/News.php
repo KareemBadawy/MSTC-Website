@@ -20,7 +20,7 @@ class News extends Model
 		$query->where('published_at', '<=', Carbon::now());
 	}
 
-	public function scopeUnPublished($query)
+	public function scopeUnpublished($query)
 	{
 		$query->where('published_at', '>', Carbon::now());
 	}
