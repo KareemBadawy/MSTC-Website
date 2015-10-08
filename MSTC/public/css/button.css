@@ -1,0 +1,83 @@
+/**************************
+  DEFAULT BOOTSTRAP STYLES
+**************************/
+
+.btn1 {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: 10px 16px;
+}
+
+.btn1-lg1 {
+    font-size: 18px;
+    line-height: 1.33;
+    border-radius: 6px;
+}
+
+.btn1-primary1 {
+    color: #fff;
+    background-color: #fab133;
+    border-color: #fab133;
+}
+
+.btn1-primary1:hover,
+.btn1-primary1:focus,
+.btn1-primary1:active,
+.btn1-primary1.active,
+.open .dropdown-toggle.btn1-primary1 {
+    color: #fff;
+    background-color: #fab133;
+    border-color: #fab133;
+}
+
+/***********************
+  OUTLINE BUTTONS
+************************/
+
+.btn1.outline1 {
+    background: none;
+    padding: 12px 22px;
+}
+.btn1-primary1.outline1 {
+    border: 2px solid #fab133;
+    color: #fab133;
+}
+.btn1-primary1.outline1:hover, .btn1-primary1.outline1:focus, .btn1-primary1.outline:active, .btn1-primary1.outline.active, .open > .dropdown-toggle.btn1-primary {
+    color: #fab133;
+    border-color: #fab133;
+}
+.btn1-primary1.outline1:active, .btn1-primary1.outline1.active1 {
+    border-color: #fab133;
+    color: #fab133;
+    box-shadow: none;
+}
+
+/***********************
+  CUSTON BTN VALUES
+************************/
+
+.btn1 {
+    padding: 14px 24px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.btn1:focus, .btn1:active:focus, .btn1.active:focus {
+    outline: 0 none;
+}
