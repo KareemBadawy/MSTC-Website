@@ -209,7 +209,81 @@
 </div>
 
 <!--about-->
-<div class="container-fluid fill" style="background-color: #fab133">
+<div class="container-fluid fill" style="background: #fab133 url('{{ asset('image/about-bk.png') }}') left no-repeat;-webkit-background-size: contain;
+        -moz-background-size: contain;
+        -o-background-size: contain;
+        background-size: contain;">
+    <div class="container">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2" ></div>
+                <div class="col-md-2" style="text-align: center;font-size: 36px;padding-top: 40px;color:white">About</div>
+                <div class="col-md-8" ></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3" ></div>
+                <div class="col-md-9" style="text-align: left;font-size: 24px;padding-top: 40px;color:white">
+                    Microsoft Student Tech Club at Alexandria University is a student
+                    community program that promotes advanced technology through
+                    education, practice, and innovation. It also provides students with both
+                    technical and non-technical sessions needed which is packing their lives
+                    with high level of skills and supporting their careers with opportunities.
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3" ></div>
+                <div class="col-md-9" style="text-align: center;font-size: 24px;padding-top: 40px;color:white">
+                    The club is divided into 5 verticals
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2" ></div>
+                <div class="col-md-2" style="padding-top: 40px">
+                    <a href="default.asp">
+                        <img src="{{ asset('image/vr/tech.png') }}" style="display : block; margin : auto;">
+                    </a>
+                    <p style="text-align: center;font-size: 24px;padding-top: 40px;color:white">
+                        Technical
+                    </p>
+                </div>
+                <div class="col-md-2" style="padding-top: 40px">
+                    <a href="default.asp">
+                        <img src="{{ asset('image/vr/op.png') }}" style="display : block; margin : auto;">
+                    </a>
+                    <p style="text-align: center;font-size: 24px;padding-top: 40px;color:white">
+                        Projects
+                    </p>
+                </div>
+                <div class="col-md-2" style="padding-top: 40px">
+                    <a href="default.asp">
+                        <img src="{{ asset('image/vr/mm.png') }}" style="display : block; margin : auto;">
+                    </a>
+                    <p style="text-align: center;font-size: 24px;padding-top: 40px;color:white">
+                        Media and Marketing
+                    </p>
+                </div>
+                <div class="col-md-2" style="padding-top: 40px">
+                    <a href="default.asp">
+                        <img src="{{ asset('image/vr/pr.png') }}" style="display : block; margin : auto;">
+                    </a>
+                    <p style="text-align: center;font-size: 24px;padding-top: 40px;color:white">
+                        PR
+                    </p>
+                </div>
+                <div class="col-md-2" style="padding-top: 40px">
+                    <a href="default.asp">
+                        <img src="{{ asset('image/vr/hr.png') }}" style="display : block; margin : auto;">
+                    </a>
+                    <p style="text-align: center;font-size: 24px;padding-top: 40px;color:white">
+                        HR
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!--contact us-->
@@ -280,6 +354,8 @@
         </div>
     </div>
 </div>
+
+
 
 <!--footer-->
 <div class="container-fluid fill" style="background-color: #333">
