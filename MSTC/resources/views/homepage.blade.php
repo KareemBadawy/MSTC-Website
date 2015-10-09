@@ -393,6 +393,85 @@
 
 <!--footer-->
 <div class="container-fluid fill" style="height:85%;background-color: #333">
+    <div class="container">
+        <div class="container-fluid">
+            <div class="row">
+                <!--vision-->
+                <div class="col-md-1" >
+                    <div style="text-align: left;font-size: 18px;padding-top: 40px;color:white">Vision</div>
+                    <img src="{{ asset('image/mini-logo.png') }}" style="padding-top: 10px">
+                </div>
+
+                <div class="col-md-6" >
+                    <p style="text-align: left;font-size: 14px;padding-top: 70px;color:white">
+                        Microsoft Tech Club at Alexandria university has a clear mission to help the students in the campus and to be there for any kind of support needed whether it's technical or non-technical and to help them find their most suitable career.
+                    </p>
+                    <p style="text-align: left;font-size: 14px;padding-top: 40px;color:#fab133">
+                        Microsoft Student Tech Club - Alexandria University
+                        </br>
+                        www.mstcalex.com
+                    </p>
+                </div>
+
+                <div class="col-md-1" ></div>
+                <!--twitter-->
+                <div class="col-md-4" >
+                    <div style="text-align: left;font-size: 18px;padding-top: 40px;color:white">Latest Tweets</div>
+                    <a class="twitter-timeline"
+                       data-widget-id="652420821441490944"
+                       href="https://twitter.com/TwitterDev"
+                       data-chrome="nofooter noheader noborders"
+                       data-tweet-limit="3">
+                        Tweets by @TwitterDev
+                    </a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                </div>
+            </div>
+
+            <!--social media-->
+            <div class="row">
+                <div class="col-md-4" ></div>
+                <div class="col-md-1" >
+                    <a title="Follow MSTC on Facebook" href="https://www.facebook.com/AlexUTC">
+                        <img onmouseover="this.src='{{ asset('image/social/f-c.png') }}'"
+                             onmouseout="this.src='{{ asset('image/social/f.png') }}'"
+                             alt="Follow MSTC on Facebook"
+                             src="{{ asset('image/social/f.png') }}" /></a>
+                </div>
+                <div class="col-md-1" >
+                    <a title="Follow MSTC on Twitter" href="https://twitter.com/MSTCAlex">
+                        <img onmouseover="this.src='{{ asset('image/social/t-c.png') }}'"
+                             onmouseout="this.src='{{ asset('image/social/t.png') }}'"
+                             alt="Follow MSTC on Twitter"
+                             src="{{ asset('image/social/t.png') }}" /></a>
+                </div>
+                <div class="col-md-1" >
+                    <a title="Follow MSTC on YouTube" href="https://www.youtube.com/channel/UCJ6e8iFzj0d4loO12cD5qiA">
+                        <img onmouseover="this.src='{{ asset('image/social/y-c.png') }}'"
+                             onmouseout="this.src='{{ asset('image/social/y.png') }}'"
+                             alt="Follow MSTC on YouTube"
+                             src="{{ asset('image/social/y.png') }}" /></a>
+                </div>
+                <div class="col-md-1" >
+                    <a title="Follow MSTC on LinkedIn" href="https://www.linkedin.com/company/microsoft-student-tech-club---alexandria-university">
+                        <img onmouseover="this.src='{{ asset('image/social/in-c.png') }}'"
+                             onmouseout="this.src='{{ asset('image/social/in.png') }}'"
+                             alt="Follow MSTC on LinkedIn"
+                             src="{{ asset('image/social/in.png') }}" /></a>
+                </div>
+                <div class="col-md-4" ></div>
+            </div>
+
+            <!--copyrights-->
+            <div class="row">
+                <div class="col-md-3" ></div>
+                <div class="col-md-6">
+                    <p style="text-align: center;font-size: 12px;padding-top: 10px;color:white">© 2015 - All rights reserved <a href="#" >Microsoft Student Tech Club - Alexandria University</a></p>
+                </div>
+                <div class="col-md-3" ></div>
+            </div>
+        </div>
+    </div>
 </div>
 
 </body>
