@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <!-- Verify.js (with Notify.js included) -->
+    <script src="{{ asset('verify.notify.min.js') }}"></script>
     <link href="{{ asset('css/full-slider.css') }}" rel="stylesheet">
     <link href="{{ asset('css/button.css') }}" rel="stylesheet">
     <style>
@@ -30,7 +32,7 @@
             bottom: 0;
             left: 0;
             right:0;
-            z-index: 10;
+            z-index: 99999;
             pointer-events:none;
         }
         a {
@@ -63,6 +65,12 @@
         .uneditable-input:focus {
             border-color: #fab133;
 
+        }
+
+        .btn2-primary2 {
+            color: #fff;
+            background-color: #00a651;
+            border-color: #00a651;
         }
     </style>
 </head>
@@ -355,10 +363,36 @@
     </div>
 </div>
 
+<!--Subscribe-->
+<div class="container-fluid fill" style="border-top:solid #eeeeee;border-top-width:1px;height:15%;background-color: white;display:flex;justify-content:center;align-items:center;">
+    <div class="container">
+        <div class="container-fluid">
+            <p style="text-align: center;font-size: 16px;padding-top: 10px">
+                Please write your email here so you can get our latest news via email.
+            </p>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-6">
+            {!! Form::open(['url' => '/']) !!}
+                <div class="form-group">
+                    {!! Form::text('email', null, ['class'=>'form-control input','placeholder'=>'Email','data-validate'=>'required,email']) !!}
+                </div>
 
+        </div>
+        <div class="col-md-2">
+            <div class = "form-group">
+            {!! Form::submit('Subscribe', ['class' => 'btn btn2-primary2 form-control submit']) !!}
+            </div>
+            {!! Form::close() !!}
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+        </div>
+    </div>
+</div>
 
 <!--footer-->
-<div class="container-fluid fill" style="background-color: #333">
+<div class="container-fluid fill" style="height:85%;background-color: #333">
 </div>
 
 </body>
