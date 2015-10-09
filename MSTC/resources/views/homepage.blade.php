@@ -432,28 +432,28 @@
             <div class="row">
                 <div class="col-md-4" ></div>
                 <div class="col-md-1" >
-                    <a title="Follow MSTC on Facebook" href="https://www.facebook.com/AlexUTC">
+                    <a title="Follow MSTC on Facebook" href="https://www.facebook.com/AlexUTC" target="_blank">
                         <img onmouseover="this.src='{{ asset('image/social/f-c.png') }}'"
                              onmouseout="this.src='{{ asset('image/social/f.png') }}'"
                              alt="Follow MSTC on Facebook"
                              src="{{ asset('image/social/f.png') }}" /></a>
                 </div>
                 <div class="col-md-1" >
-                    <a title="Follow MSTC on Twitter" href="https://twitter.com/MSTCAlex">
+                    <a title="Follow MSTC on Twitter" href="https://twitter.com/MSTCAlex" target="_blank">
                         <img onmouseover="this.src='{{ asset('image/social/t-c.png') }}'"
                              onmouseout="this.src='{{ asset('image/social/t.png') }}'"
                              alt="Follow MSTC on Twitter"
                              src="{{ asset('image/social/t.png') }}" /></a>
                 </div>
                 <div class="col-md-1" >
-                    <a title="Follow MSTC on YouTube" href="https://www.youtube.com/channel/UCJ6e8iFzj0d4loO12cD5qiA">
+                    <a title="Follow MSTC on YouTube" href="https://www.youtube.com/channel/UCJ6e8iFzj0d4loO12cD5qiA" target="_blank">
                         <img onmouseover="this.src='{{ asset('image/social/y-c.png') }}'"
                              onmouseout="this.src='{{ asset('image/social/y.png') }}'"
                              alt="Follow MSTC on YouTube"
                              src="{{ asset('image/social/y.png') }}" /></a>
                 </div>
                 <div class="col-md-1" >
-                    <a title="Follow MSTC on LinkedIn" href="https://www.linkedin.com/company/microsoft-student-tech-club---alexandria-university">
+                    <a title="Follow MSTC on LinkedIn" href="https://www.linkedin.com/company/microsoft-student-tech-club---alexandria-university" target="_blank">
                         <img onmouseover="this.src='{{ asset('image/social/in-c.png') }}'"
                              onmouseout="this.src='{{ asset('image/social/in.png') }}'"
                              alt="Follow MSTC on LinkedIn"
