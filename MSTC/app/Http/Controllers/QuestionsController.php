@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Event;
+use App\Question ;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Http\Requests\EventRequest;
 use App\Http\Controllers\Controller;
 
-class EventsController extends Controller
+class QuestionsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +15,9 @@ class EventsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {  
-        $events = Event::all();
-        return view('events.index', compact('events'));
+    {
+        $questions = Question::all();
+        return view('VotingSystem.index')->with('questions' , $questions);
     }
 
     /**
@@ -28,7 +27,7 @@ class EventsController extends Controller
      */
     public function create()
     {
-        return view('events.create');
+        return view('VotingSystem.create');
     }
 
     /**
@@ -37,10 +36,9 @@ class EventsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(EventRequest $request)
+    public function store(Request $request)
     {
-        Event::create($request->all());
-        return redirect('events');
+        //
     }
 
     /**
@@ -51,8 +49,14 @@ class EventsController extends Controller
      */
     public function show($id)
     {
-        $event = Event::findOrFail($id);
-        return view('events.show', compact('event'));
+        $question = Question::findorfail($id);
+        $choices = $question->getChoices()->get();
+        if(is_null($choices))
+            return view('VotingSystem')->with('question',$question)
+                ->with('choices' , null);
+        else 
+        return view('VotingSystem/show')->with('question',$question)
+            ->with('choices' , $choices);
     }
 
     /**
@@ -63,8 +67,7 @@ class EventsController extends Controller
      */
     public function edit($id)
     {
-        $event = Event::findOrfail($id);
-        return view('events.edit',compact('event'));
+        //
     }
 
     /**
@@ -74,10 +77,9 @@ class EventsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EventRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        Event::findOrfail($id) -> update($request->all());
-        return redirect('events');
+        //
     }
 
     /**
@@ -88,7 +90,6 @@ class EventsController extends Controller
      */
     public function destroy($id)
     {
-        Event::findOrfail($id)->delete();
-        return redirect('events');
+        //
     }
 }

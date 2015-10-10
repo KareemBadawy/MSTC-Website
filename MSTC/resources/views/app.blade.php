@@ -13,6 +13,7 @@
 			    	@yield('header')
 				    <li><a href="{{action('TasksController@index')}}">Tasks</a></li>
 				    <li><a href="{{action('PostsController@index')}}">Posts</a></li>
+				    <li><a href="{{action('QuestionsController@index')}}">Questions</a></li> 
 			    </ul>
 			</nav>
 		</div>
