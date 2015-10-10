@@ -22,7 +22,7 @@ class Task extends Model
 
      public function scopeFinished($query)
     {
-        $query->where('status', '=', 1) ->where('deadline', '<', Carbon::now());
+        $query->where('deadline', '<', Carbon::now());
     }
 
     public function setDeadlineAttribute($date)
@@ -33,6 +33,11 @@ class Task extends Model
     public function setStatusAttribute()
     {
     	$this->attributes['status'] = false;
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\User');
     }
 
 
