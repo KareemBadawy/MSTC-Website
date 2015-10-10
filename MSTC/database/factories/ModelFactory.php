@@ -35,6 +35,6 @@ $factory->define(App\Question::class, function (Faker\Generator $faker) {
 $factory->define(App\Choice::class, function (Faker\Generator $faker) {
     return [
         'title' => $faker->name,
-        'question_id' => 1 ,
+        'question_id' => 7 ,
     ];
 });

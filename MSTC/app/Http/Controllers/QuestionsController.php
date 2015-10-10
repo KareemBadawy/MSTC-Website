@@ -38,7 +38,11 @@ class QuestionsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $input = Request::all();
+        $input = $request->all();
+        $input['creator_id'] = 1;
+        Question::create($input);
+        return redirect('questions');
     }
 
     /**
@@ -50,11 +54,7 @@ class QuestionsController extends Controller
     public function show($id)
     {
         $question = Question::findorfail($id);
-        $choices = $question->getChoices()->get();
-        if(is_null($choices))
-            return view('VotingSystem')->with('question',$question)
-                ->with('choices' , null);
-        else 
+        $choices = $question->getChoices()->get(); 
         return view('VotingSystem/show')->with('question',$question)
             ->with('choices' , $choices);
     }

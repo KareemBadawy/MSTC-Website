@@ -35,4 +35,9 @@ class Question extends Model
     	$query->where('deadline' ,'<' , Carbon::now());
     }
 
+    public function setCurrentUser()
+    {
+       // creator_id = 1 ;
+    }
+
  }

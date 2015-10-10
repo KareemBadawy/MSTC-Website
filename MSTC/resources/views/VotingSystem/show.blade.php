@@ -10,7 +10,7 @@
 	</p>
 
 	<h2>
-	@if(is_null($choices))
+	@if($choices->isEmpty())
 		No Choices Yet 
 	@else
 		Choices
