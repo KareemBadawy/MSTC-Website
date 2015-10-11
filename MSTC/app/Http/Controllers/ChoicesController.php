@@ -26,4 +26,11 @@ class ChoicesController extends Controller
     	Choice::create($choice);
     	return redirect(url('questions'));
     }
+
+    public function destroy($question , $choice)
+    {
+    	$choice = Choice::findorfail($choice);
+    	$choice->delete();
+    	return redirect('questions');
+    }
 }

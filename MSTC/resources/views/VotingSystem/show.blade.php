@@ -18,6 +18,9 @@
 			@foreach($choices as $choice)
 			<h3>
 				{{$choice->title}}
+				{!! Form::open(array('route' => array('questions.choices.destroy', $question->id , $choice->id), 'method' => 'delete')) !!}
+        			<button type="submit" class="btn btn-danger btn-mini">Delete</button>
+    			{!! Form::close() !!}
 			</h3>
 			@endforeach
 
