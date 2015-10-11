@@ -19,10 +19,31 @@ body {
     height: 100%;
 }
 
-
+.nav-tabs,
+.item,
+.active {
+    background-color: #f1f1f1;
+}
+.tab-pane,
+.item,
+.active {
+    background-color: white;
+}
 /* Background images are set within the HTML using inline CSS, not here */
 
 .fill {
+    min-height: 100%;
+    width: 100%;
+    height: auto;
+
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.fillo{
     width: 100%;
     height: 100%;
     background-position: center;

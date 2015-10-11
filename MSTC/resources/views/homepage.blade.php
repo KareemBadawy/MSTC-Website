@@ -33,7 +33,6 @@
             left: 0;
             right:0;
             z-index: 99999;
-            pointer-events:none;
         }
         a {
             color: #fab133;
@@ -165,17 +164,101 @@
 <div class="container-fluid fill" style="background-color: white">
     <div class="container">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-4" style="background-color: brown">hello</div>
-                <div class="col-md-4" style="background-color: black">ya</div>
-                <div class="col-md-4" style="background-color: blueviolet">bashar</div>
+
+            <ul class="nav nav-tabs nav-justified">
+                <li class="active"><a data-toggle="tab" href="#home">Upcomming</a></li>
+                <li><a data-toggle="tab" href="#menu1">Present</a></li>
+                <li><a data-toggle="tab" href="#menu2">Past</a></li>
+            </ul>
+            <div class="tab-content">
+                <!--upcomming-->
+                <div class="row tab-pane fade in active" id="home">
+                <div class="col-md-4 " style="padding-top: 40px" >
+                    <img src="{{ asset('image/slider/19%20-%20Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="200" height="200"style="display : block; margin : auto;">
+                    <p style="font-size: 18px;padding-top: 40px;text-align: center">Portfolio</p>
+                    <p style="font-size: 14px;padding: 40px;text-align: center">
+                        This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.
+                    </p>
+                    <button type="button" class="btn btn-default" style="display : block; margin : auto;background-color: #9a9c9f;color:white">Read More</button>
+                </div>
+                <div class="col-md-4" style="padding-top: 40px" >
+                    <img src="{{ asset('image/slider/19%20-%20Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="200" height="200"style="display : block; margin : auto;">
+                    <p style="font-size: 18px;padding-top: 40px;text-align: center">Portfolio</p>
+                    <p style="font-size: 14px;padding: 40px;text-align: center">
+                        This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.
+                    </p>
+                    <button type="button" class="btn btn-default" style="display : block; margin : auto;background-color: #9a9c9f;color:white">Read More</button>
+                </div>
+                <div class="col-md-4" style="padding-top: 40px" >
+                    <img src="{{ asset('image/slider/19%20-%20Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="200" height="200"style="display : block; margin : auto;">
+                    <p style="font-size: 18px;padding-top: 40px;text-align: center">Portfolio</p>
+                    <p style="font-size: 14px;padding: 40px;text-align: center">
+                        This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.
+                    </p>
+                    <button type="button" class="btn btn-default" style="display : block; margin : auto;background-color: #9a9c9f;color:white">Read More</button>
+                </div>
+            </div>
+                <!--present-->
+                <div class="row tab-pane fade" id="menu1">
+                <div class="col-md-4 " style="padding-top: 40px" >
+                    <img src="{{ asset('image/slider/19%20-%20Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="200" height="200"style="display : block; margin : auto;">
+                    <p style="font-size: 18px;padding-top: 40px;text-align: center">Po</p>
+                    <p style="font-size: 14px;padding: 40px;text-align: center">
+                        This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.
+                    </p>
+                    <button type="button" class="btn btn-default" style="display : block; margin : auto;background-color: #9a9c9f;color:white">Read More</button>
+                </div>
+                <div class="col-md-4" style="padding-top: 40px" >
+                    <img src="{{ asset('image/slider/19%20-%20Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="200" height="200"style="display : block; margin : auto;">
+                    <p style="font-size: 18px;padding-top: 40px;text-align: center">Po</p>
+                    <p style="font-size: 14px;padding: 40px;text-align: center">
+                        This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.
+                    </p>
+                    <button type="button" class="btn btn-default" style="display : block; margin : auto;background-color: #9a9c9f;color:white">Read More</button>
+                </div>
+                <div class="col-md-4" style="padding-top: 40px" >
+                    <img src="{{ asset('image/slider/19%20-%20Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="200" height="200"style="display : block; margin : auto;">
+                    <p style="font-size: 18px;padding-top: 40px;text-align: center">Po</p>
+                    <p style="font-size: 14px;padding: 40px;text-align: center">
+                        This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.
+                    </p>
+                    <button type="button" class="btn btn-default" style="display : block; margin : auto;background-color: #9a9c9f;color:white">Read More</button>
+                </div>
+            </div>
+                <!--past-->
+                <div class="row tab-pane fade" id="menu2">
+                    <div class="col-md-4 " style="padding-top: 40px" >
+                        <img src="{{ asset('image/slider/19%20-%20Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="200" height="200"style="display : block; margin : auto;">
+                        <p style="font-size: 18px;padding-top: 40px;text-align: center">folio</p>
+                        <p style="font-size: 14px;padding: 40px;text-align: center">
+                            This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.
+                        </p>
+                        <button type="button" class="btn btn-default" style="display : block; margin : auto;background-color: #9a9c9f;color:white">Read More</button>
+                    </div>
+                    <div class="col-md-4" style="padding-top: 40px" >
+                        <img src="{{ asset('image/slider/19%20-%20Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="200" height="200"style="display : block; margin : auto;">
+                        <p style="font-size: 18px;padding-top: 40px;text-align: center">folio</p>
+                        <p style="font-size: 14px;padding: 40px;text-align: center">
+                            This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.
+                        </p>
+                        <button type="button" class="btn btn-default" style="display : block; margin : auto;background-color: #9a9c9f;color:white">Read More</button>
+                    </div>
+                    <div class="col-md-4" style="padding-top: 40px" >
+                        <img src="{{ asset('image/slider/19%20-%20Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="200" height="200"style="display : block; margin : auto;">
+                        <p style="font-size: 18px;padding-top: 40px;text-align: center">folio</p>
+                        <p style="font-size: 14px;padding: 40px;text-align: center">
+                            This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.
+                        </p>
+                        <button type="button" class="btn btn-default" style="display : block; margin : auto;background-color: #9a9c9f;color:white">Read More</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 <!--news-->
-<div class="container-fluid fill" style="background-color: #f1f1f1">
+<div class="container-fluid fill" style="background-color: #f1f1f1;padding-bottom: 40px">
     <!--title-->
     <div class="container">
         <div class="container-fluid">
@@ -364,7 +447,7 @@
 </div>
 
 <!--Subscribe-->
-<div class="container-fluid fill" style="border-top:solid #eeeeee;border-top-width:1px;height:15%;background-color: white;display:flex;justify-content:center;align-items:center;">
+<div class="container-fluid" style="border-top:solid #eeeeee;border-top-width:1px;height:15%;background-color: white;display:flex;justify-content:center;align-items:center;">
     <div class="container">
         <div class="container-fluid">
             <p style="text-align: center;font-size: 16px;padding-top: 10px">
@@ -392,7 +475,7 @@
 </div>
 
 <!--footer-->
-<div class="container-fluid fill" style="height:85%;background-color: #333">
+<div class="container-fluid fillo" style="height:85%;background-color: #333">
     <div class="container">
         <div class="container-fluid">
             <div class="row">
