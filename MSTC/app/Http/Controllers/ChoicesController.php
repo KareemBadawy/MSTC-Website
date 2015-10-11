@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+//use Request ;
+//use Auth;
+use App\Question;
+use App\Choice;
 use App\Http\Requests;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class ChoicesController extends Controller
@@ -13,9 +17,13 @@ class ChoicesController extends Controller
     	return view('choice/create');
     }
 
-    public function store(Requests $request , $id)
+    public function store($question, Request $request)
     {
+    	//return 'hello' ;
+    	//dd($request->all());
     	$choice = $request->all();
-    	$choice['question_id'] = $id ;
+    	$choice['question_id'] = $question ;
+    	Choice::create($choice);
+    	return redirect(url('questions'));
     }
 }

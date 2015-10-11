@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Choice extends Model
 {
-	protected $fillable = ['title','question_id',];
+	protected $fillable = ['title','question_id'];
 
 
     public function getVotes()

@@ -27,6 +27,8 @@
 	{!! Form::open(array('route' => array('questions.choices.store', $question->id), 'method' => 'post')) !!}
 		{!! Form::label('title') !!}
 		{!! Form::text('title',null,['class' => 'form-control']) !!}
+
+		{!! Form::submit('Add Choice' , ['class' => 'btn-btn primary form-control']) !!}
 	{!! Form::close() !!}
 	</br>
 	

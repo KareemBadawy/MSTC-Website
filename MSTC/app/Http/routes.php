@@ -64,7 +64,8 @@ Route::resource('questions','QuestionsController');
 
 // Choices Routes 
 
-Route::resource('questions.choices', 'ChoicesController');
+//Route::resource('questions.choices', 'ChoicesController');
+Route::resource('questions.choices','ChoicesController');
 
 /*------------------------------------------------------------------------------*/
 
