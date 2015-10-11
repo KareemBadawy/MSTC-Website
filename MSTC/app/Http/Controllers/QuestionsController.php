@@ -67,7 +67,8 @@ class QuestionsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $q = Question::findorfail($id);
+        return view('VotingSystem.edit')->with('question' , $q);
     }
 
     /**
@@ -79,7 +80,8 @@ class QuestionsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Question::findorfail($id)->update($request->all());
+        return redirect('questions');
     }
 
     /**

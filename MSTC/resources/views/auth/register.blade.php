@@ -1,9 +1,12 @@
 <!-- resources/views/auth/register.blade.php -->
+@extends('app')
 
-<form method="POST" action="/auth/register">
+@section ('content')
+
+<form method="POST" action="auth/register" class="form-group">
     {!! csrf_field() !!}
 
-    <div>
+    <div class="form-control">
         Name
         <input type="text" name="username" value="{{ old('username') }}">
     </div>
@@ -12,7 +15,10 @@
         Email
         <input type="email" name="email" value="{{ old('email') }}">
     </div>
-
+    <div>
+        Vertical
+        <input type="text" name="vertical" value="{{ old('vertical') }}">
+    </div>
     <div>
         Password
         <input type="password" name="password">
@@ -24,6 +30,8 @@
     </div>
 
     <div>
-        <button type="submit">Register</button>
+        <input type="submit" value="Register Now">
     </div>
 </form>
+
+@stop
