@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Question ;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -27,7 +28,10 @@ class QuestionsController extends Controller
      */
     public function create()
     {
-        return view('VotingSystem.create');
+        if(Auth::check())
+            return view('VotingSystem.create');
+        else 
+            return redirect('auth/login');
     }
 
     /**
@@ -38,9 +42,12 @@ class QuestionsController extends Controller
      */
     public function store(Request $request)
     {
-        // $input = Request::all();
+        if(Auth::check())
+            $user = Auth::user();
+        else 
+            return redirect('auth/login');
         $input = $request->all();
-        $input['creator_id'] = 1;
+        $input['creator_id'] = $user->id ;
         Question::create($input);
         return redirect('questions');
     }
@@ -54,9 +61,10 @@ class QuestionsController extends Controller
     public function show($id)
     {
         $question = Question::findorfail($id);
-        $choices = $question->getChoices()->get(); 
+        $choices = $question->getChoices()->get();
+        $votes = $question->getVotes()->get(); 
         return view('VotingSystem/show')->with('question',$question)
-            ->with('choices' , $choices);
+            ->with('choices' , $choices)->with('votes' , $votes);
     }
 
     /**
@@ -92,6 +100,12 @@ class QuestionsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(Auth::check())
+        {
+            $question = Question::findorfail($id) ;
+            $question->delete();
+            return redirect('questions');
+        } 
+        else return redirect('auth/login');
     }
 }

@@ -44,20 +44,16 @@ Route::resource('events', 'EventsController');
 Route::get('events/{id}/destroy', 'EventsController@destroy');
 /*----------------------------------------------------------------------------------*/
 
-// Authentication routes...
+// User routes
+Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::post('auth/register', 'Auth\AuthController@postRegister');
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
-
-// Registration routes...
-Route::get('auth/register', 'Auth\AuthController@getRegister');
-Route::post('auth/register', 'Auth\AuthController@postRegister');
-
-
-// Password Controller
-Route::controllers([
-   'password' => 'Auth\PasswordController',
-]);
+Route::get('email', 'Auth\PasswordController@getEmail');
+Route::post('email', 'Auth\PasswordController@postEmail');
+Route::get('reset/{code}', 'Auth\PasswordController@getReset');
+Route::post('reset', 'Auth\PasswordController@postReset');
 
 /*------------------------------------------------------------------------------*/
 
@@ -66,5 +62,16 @@ Route::resource('questions','QuestionsController');
 
 /*----------------------------------------------------------------------------------*/
 
+// Choices Routes 
+
+Route::resource('questions.choices', 'ChoicesController');
+
+/*------------------------------------------------------------------------------*/
+
+// Votes Routes
+
+Route::resource('questions.choices.votes','VotesController');
+
+/*------------------------------------------------------------------------------*/
 
 

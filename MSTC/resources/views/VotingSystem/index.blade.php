@@ -7,6 +7,8 @@
 	<a href="{{ url('/questions', $question->id) }}">{{ $question->title }}</a>
 </h2>
 
+
+
 @endforeach
 
 @stop

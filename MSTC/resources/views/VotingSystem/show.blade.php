@@ -20,6 +20,20 @@
 				{{$choice->title}}
 			</h3>
 			@endforeach
+
+
 	@endif
+
+	{!! Form::open(array('route' => array('questions.choices.store', $question->id), 'method' => 'post')) !!}
+		{!! Form::label('title') !!}
+		{!! Form::text('title',null,['class' => 'form-control']) !!}
+	{!! Form::close() !!}
+	</br>
+	
+	</hr>
+	
+	{!! Form::open(array('route' => array('questions.destroy', $question->id), 'method' => 'delete')) !!}
+        <button type="submit" class="btn btn-danger btn-mini">Delete</button>
+    {!! Form::close() !!}
 
 @stop

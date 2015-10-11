@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Choice extends Model
 {
-	protected $fillable = ['title'];
+	protected $fillable = ['title','question_id',];
 
 
     public function getVotes()
@@ -18,6 +18,5 @@ class Choice extends Model
     {
     	return $this->belongsTo('App\Question');
     }
-
 
 }
