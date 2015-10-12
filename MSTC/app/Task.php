@@ -12,7 +12,8 @@ class Task extends Model
         'assign_to',
         'status',      
         'deadline',
-        'user_id'
+        'user_id',
+        'users'
     ];
 
     public function scopeUnfinished($query)
@@ -33,6 +34,11 @@ class Task extends Model
     public function setStatusAttribute()
     {
     	$this->attributes['status'] = false;
+    }
+
+    public function setUserIdAttribute()
+    {
+        $this->attributes['user_id'] = Auth::user()->id;
     }
 
     public function users()

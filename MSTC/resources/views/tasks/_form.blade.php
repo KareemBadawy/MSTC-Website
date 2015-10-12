@@ -14,5 +14,20 @@
 </div>
 
 <div class = "form-group">
+	{!! Form::label('users', 'users:') !!}
+	{!! Form::select('users[]', $users, null, ['id' => 'user_list', 'class' => 'form-control', 'multiple']) !!}
+</div>
+
+<div class = "form-group">
     {!! Form::submit($submitButton, ['class' => 'btn btn-primary form-control']) !!}
 </div>
+
+@section('footer')
+
+<script>
+    $('#user_list').select2({
+    	placeholder: 'Choose Members'
+    });
+</script>
+
+@stop
