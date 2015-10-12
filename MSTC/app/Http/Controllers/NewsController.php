@@ -21,6 +21,18 @@ class NewsController extends Controller
 		return redirect('news');
 	}
 
+	public function edit($id)
+	{
+		$news = News::findOrFail($id);
+		return view('news.edit', compact('news'));
+	}
+
+	public function update(CreateNewsRequest $request, $id)
+	{
+		News::findOrFail($id)->update($request->all());
+		return redirect('news');
+	}
+
 	public function index(){
 
 		$news = News::latest('published_at')->published()->get();
