@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Task;
 use App\User;
 use Illuminate\Http\Request;
@@ -51,7 +52,7 @@ class TasksController extends Controller
      */
     public function create()
     {
-        $users = User::lists('username','id');
+        $users = User::where('id','!=',Auth::user()->id)->lists('username','id');
         return view('tasks.create', compact('users'));
     }
 
@@ -63,8 +64,12 @@ class TasksController extends Controller
      */
     public function store(TaskRequest $request)
     {
-       
-        $task = Task::create($request->all());
+        $task = new Task;
+        $task->title = $request->input('title');
+        $task->body = $request->input('body');
+        $task->deadline = $request->input('deadline');
+        $task->user_id = Auth::user()->id; 
+        $task->save();
         $task->users()->attach($request->input('users'));
         return redirect('tasks');
     }

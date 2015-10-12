@@ -36,11 +36,6 @@ class Task extends Model
     	$this->attributes['status'] = false;
     }
 
-    public function setUserIdAttribute()
-    {
-        $this->attributes['user_id'] = Auth::user()->id;
-    }
-
     public function users()
     {
         return $this->belongsToMany('App\User');

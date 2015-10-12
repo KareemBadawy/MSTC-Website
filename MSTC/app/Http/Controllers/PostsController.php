@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Post;
+use Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\PostRequest;
@@ -9,6 +10,11 @@ use App\Http\Controllers\Controller;
 
 class PostsController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -38,7 +44,11 @@ class PostsController extends Controller
      */
     public function store(PostRequest $request)
     {
-        Post::create($request->all());
+        $post = new Post;
+        $post->title = $request->input('title');
+        $post->body = $request->input('body');
+        $post->user_id = Auth::user()->id; 
+        $post->save();
         return redirect('posts');
     }
 
