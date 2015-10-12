@@ -29,6 +29,7 @@ Route::get('tasks/destroy/{id}','TasksController@destroy');
 
 // News Routes
 Route::resource('news', 'NewsController');
+Route::get('news/{id}/destroy', 'NewsController@destroy');
 /*----------------------------------------------------------------------------------*/
 
 // Subscribtions Routes

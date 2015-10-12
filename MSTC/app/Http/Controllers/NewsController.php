@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\News;
+use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\CreateNewsRequest;
 use App\Http\Controllers\Controller;
@@ -46,5 +47,11 @@ class NewsController extends Controller
 		return view('news.show', compact('new'));
 
 	}
+
+	public function destroy($id)
+    {
+        News::findOrfail($id)->delete();
+        return redirect('news');
+    }
 
 }
