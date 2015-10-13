@@ -19,7 +19,10 @@
 			<h3>
 				{{$choice->title}}
 				{!! Form::open(array('route' => array('questions.choices.destroy', $question->id , $choice->id), 'method' => 'delete')) !!}
-        			<button type="submit" class="btn btn-danger btn-mini">Delete</button>
+        			<button type="submit" class="btn btn-danger btn-mini">Delete Choice</button>
+    			{!! Form::close() !!}
+    			{!! Form::open(array('route' => array('questions.choices.votes.store', $question->id , $choice->id), 'method' => 'post')) !!}
+        			<button type="submit" class="btn btn-danger btn-mini">Add Vote</button>
     			{!! Form::close() !!}
 			</h3>
 			@endforeach
@@ -38,7 +41,7 @@
 	</hr>
 	
 	{!! Form::open(array('route' => array('questions.destroy', $question->id), 'method' => 'delete')) !!}
-        <button type="submit" class="btn btn-danger btn-mini">Delete</button>
+        <button type="submit" class="btn btn-danger btn-mini">Delete Question</button>
     {!! Form::close() !!}
 
 @stop

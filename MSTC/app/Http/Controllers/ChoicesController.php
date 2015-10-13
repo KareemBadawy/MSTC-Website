@@ -19,18 +19,16 @@ class ChoicesController extends Controller
 
     public function store($question, Request $request)
     {
-    	//return 'hello' ;
-    	//dd($request->all());
     	$choice = $request->all();
     	$choice['question_id'] = $question ;
     	Choice::create($choice);
-    	return redirect(url('questions'));
+    	return back();
     }
 
-    public function destroy($question , $choice)
+    public function destroy($question,$choice)
     {
     	$choice = Choice::findorfail($choice);
     	$choice->delete();
-    	return redirect('questions');
+    	return back();
     }
 }
