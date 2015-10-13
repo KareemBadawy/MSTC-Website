@@ -29,7 +29,9 @@ class TaskRequest extends Request
             'body'     => 'required',
             //$table->integer('assign_to');
             //$table->boolean('status');
+            'users' => 'required',
             'deadline' => ['required','date']
+
             //$table->integer('user_id');
         ];
     }

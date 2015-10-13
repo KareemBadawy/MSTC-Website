@@ -12,7 +12,8 @@ class Task extends Model
         'assign_to',
         'status',      
         'deadline',
-        'user_id'
+        'user_id',
+        'users'
     ];
 
     public function scopeUnfinished($query)

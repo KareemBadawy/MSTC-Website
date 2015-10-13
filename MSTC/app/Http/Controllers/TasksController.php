@@ -2,14 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Task;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\TaskRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 
 class TasksController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -33,6 +40,11 @@ class TasksController extends Controller
         return view('tasks.index',compact('tasks'));
     }
 
+    public function getuserstasks($user_id)
+    {
+        $tasks = Task::where('user_id',$user_id);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -40,7 +52,8 @@ class TasksController extends Controller
      */
     public function create()
     {
-        return view('tasks.create');
+        $users = User::where('id','!=',Auth::user()->id)->lists('username','id');
+        return view('tasks.create', compact('users'));
     }
 
     /**
@@ -51,7 +64,13 @@ class TasksController extends Controller
      */
     public function store(TaskRequest $request)
     {
-        Task::create($request->all());
+        $task = new Task;
+        $task->title = $request->input('title');
+        $task->body = $request->input('body');
+        $task->deadline = $request->input('deadline');
+        $task->user_id = Auth::user()->id; 
+        $task->save();
+        $task->users()->attach($request->input('users'));
         return redirect('tasks');
     }
 
