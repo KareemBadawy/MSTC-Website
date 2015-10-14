@@ -20,6 +20,13 @@
         Vertical
         <input type="text" name="vertical" value="{{ old('vertical') }}">
     </div>
+
+    <div class = "form-control">
+        Membership Type:
+        <input type="radio" name="membershipType" value="President">President
+        <input type="radio" name="membershipType" value="Head">Head
+        <input type="radio" name="membershipType" value="Member" checked = "checked">Member
+    </div>
     <div class="form-control">
         Password
         <input type="password" name="password">
