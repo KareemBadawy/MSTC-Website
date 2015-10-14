@@ -11,6 +11,12 @@ use Carbon\Carbon;
 
 class NewsController extends Controller
 {
+
+	public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+
     
 	public function create(){
 		return view('news.create');
