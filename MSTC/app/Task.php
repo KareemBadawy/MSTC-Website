@@ -16,7 +16,7 @@ class Task extends Model
         'users'
     ];
 
-    public function scopeUnfinished($query)
+   /* public function scopeUnfinished($query)
     {
     	$query->where('status', '=', 0)->where('deadline', '>=', Carbon::now());
     }
@@ -25,7 +25,7 @@ class Task extends Model
     {
         $query->where('deadline', '<', Carbon::now());
     }
-
+    */
     public function setDeadlineAttribute($date)
     {
     	$this->attributes['deadline'] = Carbon::createFromFormat('Y-m-d',$date);
