@@ -5,7 +5,15 @@
 @stop
 
 @section('side')
-    @include('tasks.side')
+    <ul>
+        <li><a href="{{action('TasksController@index')}}">Tasks</a></li>
+        @if($currentuser->membershipType != 'Member')
+        <li><a href="{{ action('TasksController@create')}}">New Task</a></li>
+        @endif
+        @if($currentuser->membershipType == 'President')
+        <li><a href="{{ action('TasksController@createFhead')}}">New Task For heads</a></li>
+        @endif
+    </ul>
 @stop
 
 @section('content')
@@ -14,10 +22,13 @@
     	<h1>{{ $task->title }}</h1>
     	<div class = "body"> {{ $task->body }} </div>
     	<p>
+            @if($currentuser->id == $task->user_id)
     		<a href="{{ action('TasksController@destroy' , [$task->id]) }}"> Delete</a>|
     		<a href="{{URL::action('TasksController@edit', [$task->id])}}"> Edit</a>|
-            <a href="{{ action('TasksController@edit' , [$task->id]) }}"> Edit</a>
-
+            @endif
+            @if($currentuser->membershipType == 'Member')
+            <a href="{{ action('TasksController@updatestatus' , [$task->id]) }}"> Finished</a>
+            @endif
     	</p>
     </article>
 

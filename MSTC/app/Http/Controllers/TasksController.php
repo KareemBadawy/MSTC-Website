@@ -40,7 +40,7 @@ class TasksController extends Controller
     {
         $currentuser = Auth::user();
         //$tasks = collect(Task::finished()->get())->sortBy('deadline');
-        $tasks = User::findOrfail($currentuser->id)->tasks()->where('status', '=', 0)->orwhere('deadline', '<', Carbon::now())->orderBy('deadline','desc')->get();
+        $tasks = User::findOrfail($currentuser->id)->tasks()->where('status', '=', 1)->orwhere('deadline', '<', Carbon::now())->orderBy('deadline','desc')->get();
         return view('tasks.index',compact('tasks','currentuser'));
     }
 
@@ -55,7 +55,7 @@ class TasksController extends Controller
         if($currentuser->membershipType == "President")
             $users = User::where('id','!=',Auth::user()->id)->lists('username','id');
         else if($currentuser->membershipType == "Head")
-            $users = User::where('vertical', '=', $currentuser->vertical)->lists('username','id');
+            $users = User::where('id','!=',Auth::user()->id)->where('vertical', '=', $currentuser->vertical)->lists('username','id');
         return view('tasks.create', compact('users','currentuser'));
     }
 

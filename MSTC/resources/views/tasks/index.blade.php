@@ -5,7 +5,15 @@
 @stop
 
 @section('side')
-    @include('tasks.side')
+    <ul>
+        <li><a href="{{action('TasksController@index')}}">Tasks</a></li>
+        @if($currentuser->membershipType != 'Member')
+        <li><a href="{{ action('TasksController@create')}}">New Task</a></li>
+        @endif
+        @if($currentuser->membershipType == 'President')
+        <li><a href="{{ action('TasksController@createFhead')}}">New Task For heads</a></li>
+        @endif
+    </ul>
 @stop
 
 

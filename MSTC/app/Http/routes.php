@@ -23,6 +23,7 @@ Route::get('posts/destroy/{id}','PostsController@destroy');
 /*----------------------------------------------------------------------------------*/
 //Tasks Routes
 Route::get('tasks/finish','TasksController@finished');
+Route::get('tasks/head/create','TasksController@createFhead');
 Route::resource('tasks','TasksController');
 Route::get('tasks/update/{id}','TasksController@updatestatus');
 Route::get('tasks/destroy/{id}','TasksController@destroy');
