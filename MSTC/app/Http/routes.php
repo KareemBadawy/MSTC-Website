@@ -12,6 +12,11 @@
 Route::get('/', function () {
     return view('homepage');
 });
+Route::get('dashboard', [ 'middleware' => 'auth' , function(){
+	return view('dashboard');
+}]);
+
+
 //Posts Routes
 Route::resource('posts','PostsController');
 Route::get('posts/destroy/{id}','PostsController@destroy');
