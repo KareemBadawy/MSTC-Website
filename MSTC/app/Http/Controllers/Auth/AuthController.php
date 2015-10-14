@@ -65,6 +65,7 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'vertical' => str_random(10),
+            'membershipType' => $data['membershipType'],
         ]);
 
     }
