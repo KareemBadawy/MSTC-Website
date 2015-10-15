@@ -35,13 +35,17 @@ class CheckUserRole
      */
     public function handle($request, Closure $next)
     {
-        //dd($request->url());
-        //dd($request->is('news/create'));
+
+        try{
+            $next($request);
+        }
+        catch(Request $require){
+            return response(view('error.404'), 404);
+        }
         
         if($this->auth->check())
         {
             $role = $this->auth->user()->getRole();
-            //dd($role);
 
             switch ($role) {
                 case 'President':
@@ -69,7 +73,8 @@ class CheckUserRole
             }
         }
         if($request->is('/')||$request->is('news')||$request->is('news/{id}')
-            ||$request->is('events')||$request->is('events/{id}')||$request->is('auth/login')||$request->is('auth/logout')
+            ||$request->is('events')||$request->is('events/{id}')
+            ||$request->is('auth/login')||$request->is('auth/logout')
 
             /*Just for Debuging*/||$request->is('auth/register')){
 
