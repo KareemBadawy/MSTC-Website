@@ -17,15 +17,23 @@
         <input type="email" name="email" value="{{ old('email') }}">
     </div>
     <div class="form-control">
-        Vertical
-        <input type="text" name="vertical" value="{{ old('vertical') }}">
+        <div>
+        Vertical:
+            <input type="radio" name="vertical" value="Technical">Technical
+            <input type="radio" name="vertical" value="Media and Marketing">Media and Marketing
+            <input type="radio" name="vertical" value="H.R.">H.R.
+            <input type="radio" name="vertical" value="Operations">Operations
+        </div>
     </div>
 
     <div class = "form-control">
-        Membership Type:
-        <input type="radio" name="membershipType" value="President">President
-        <input type="radio" name="membershipType" value="Head">Head
-        <input type="radio" name="membershipType" value="Member" checked = "checked">Member
+        <div>
+            Role:
+            <input type="radio" name="role" value="President">President
+            <input type="radio" name="role" value="Head">Head
+            <input type="radio" name="role" value="ViceHead">Vice Head
+            <input type="radio" name="role" value="Member">Member
+        </div>
     </div>
     <div class="form-control">
         Password
