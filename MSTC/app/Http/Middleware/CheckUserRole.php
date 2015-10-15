@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use App\Http\Middleware\ShowRequest;
 
 class CheckUserRole
 {
@@ -39,7 +40,7 @@ class CheckUserRole
         try{
             $next($request);
         }
-        catch(Request $require){
+        catch(Request $request){
             return response(view('error.404'), 404);
         }
         
@@ -63,8 +64,8 @@ class CheckUserRole
                     }
                 case 'Member':
                     if($request->is('dashboard')||
-                        $request->is('posts/*')||
-                        $request->is('tasks')||$request->is('tasks/{id}')||
+                        $request->is('posts')||$request->is('posts/*')||
+                        $request->is('tasks')||ShowRequest::isShow('tasks', $request)||
                         $request->is('auth/logout')){
                         return $next($request);
                     }
@@ -72,8 +73,8 @@ class CheckUserRole
                     break;
             }
         }
-        if($request->is('/')||$request->is('news')||$request->is('news/{id}')
-            ||$request->is('events')||$request->is('events/{id}')
+        if($request->is('/')||$request->is('news')||ShowRequest::isShow('news', $request)
+            ||($request->is('events')||ShowRequest::isShow('events', $request))
             ||$request->is('auth/login')||$request->is('auth/logout')
 
             /*Just for Debuging*/||$request->is('auth/register')){
