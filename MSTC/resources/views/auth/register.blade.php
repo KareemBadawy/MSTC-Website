@@ -19,10 +19,10 @@
     <div class="form-control">
         <div>
         Vertical:
-            <input type="radio" name="vertical" value="Technical">Technical
-            <input type="radio" name="vertical" value="Media and Marketing">Media and Marketing
-            <input type="radio" name="vertical" value="H.R.">H.R.
-            <input type="radio" name="vertical" value="Operations">Operations
+            <input type="checkbox" name="verticals[]" value="1">Technical
+            <input type="checkbox" name="verticals[]" value="2">Media and Marketing
+            <input type="checkbox" name="verticals[]" value="3">H.R.
+            <input type="checkbox" name="verticals[]" value="4">Operations
         </div>
     </div>
 

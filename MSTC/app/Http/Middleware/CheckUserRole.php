@@ -38,7 +38,8 @@ class CheckUserRole
     {
 
         try{
-            $next($request);
+            if($request->ismethod('get'))
+                $next($request);
         }
         catch(Request $request){
             return response(view('error.404'), 404);

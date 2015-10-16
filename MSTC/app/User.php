@@ -28,7 +28,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['username', 'email', 'password', 'vertical', 'role'];
+    protected $fillable = ['username', 'email', 'password', 'role'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -54,6 +54,11 @@ class User extends Model implements AuthenticatableContract,
     public function tasks()
     {
         return $this->belongsToMany('App\Task')->withTimestamps();
+    }
+
+    public function verticals()
+    {
+        return $this->belongsToMany('App\Vertical')->withTimestamps();
     }
 
     public function getRole()
