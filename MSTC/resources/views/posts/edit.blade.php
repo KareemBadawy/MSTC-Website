@@ -9,6 +9,8 @@
 @stop
 
 @section('content')
+    @if($currentuser == $post->user_id)
+
     <h1>Edit : {!! $post-> title !!}</h1>
 
     {!! Form::model($post,['method'=>'PATCH', 'action'=>['PostsController@update',$post->id]]) !!}
@@ -16,4 +18,6 @@
     {!! Form::close() !!}
 
     @include('errors.list');
+    
+    @endif
 @stop

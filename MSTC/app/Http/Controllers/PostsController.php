@@ -24,15 +24,17 @@ class PostsController extends Controller
      */
     public function index()
     {
+        $currentverticals = Auth::user()->verticals;
         $posts = Post::latest('id')->get();   
-        return view('posts.index',compact('posts'));
+        return view('posts.index',compact('posts', 'currentverticals'));
     }
 
     public function post_vertical($vertical_id)
     {
+        $currentverticals = Auth::user()->verticals;
         $posts = Vertical::findOrfail($vertical_id)->posts;
 
-        return view('posts.index',compact('posts'));
+        return view('posts.index',compact('posts', 'currentverticals'));
     }
 
     /**
@@ -71,8 +73,9 @@ class PostsController extends Controller
      */
     public function show($id)
     {
+        $currentuser = Auth::user()->id;
         $post = Post::findOrfail($id);
-        return view('posts.show',compact('post'));
+        return view('posts.show',compact('post', 'currentuser'));
     }
 
     /**
@@ -83,8 +86,10 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
+        $currentuser = Auth::user()->id;
         $post = Post::findOrfail($id);
-        return view('posts.edit',compact('post'));
+        $verticals = User::findOrfail(Auth::user()->id)->verticals->lists('name','id');
+        return view('posts.edit',compact('post', 'verticals', 'currentuser'));
     }
 
     /**
@@ -96,7 +101,12 @@ class PostsController extends Controller
      */
     public function update(PostRequest $request, $id)
     {
-        Post::findOrfail($id) -> update($request->all());
+        $post = Post::findOrfail($id);
+        $post->title = $request->input('title');
+        $post->body = $request->input('body');
+        $post->user_id = Auth::user()->id;
+        $post->vertical_id = $request->input('vertical')['0']; 
+        $post->update();
         return redirect('posts');
     }
 
@@ -109,6 +119,6 @@ class PostsController extends Controller
     public function destroy($id)
     {
         Post::findOrfail($id)->delete();
-        return redirect('posts');
+        redirect('posts');
     }
 }
