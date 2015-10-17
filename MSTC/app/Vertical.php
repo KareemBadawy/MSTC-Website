@@ -18,4 +18,8 @@ class Vertical extends Model
     {
         return $this->belongsToMany('App\User');
     }
+    public function posts()
+    {
+    	return $this->hasMany('App\Post');
+    }
 }

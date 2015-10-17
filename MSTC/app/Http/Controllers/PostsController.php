@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Post;
+use App\User;
+use App\Vertical;
 use Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -22,7 +24,14 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest('id')->get();
+        $posts = Post::latest('id')->get();   
+        return view('posts.index',compact('posts'));
+    }
+
+    public function post_vertical($vertical_id)
+    {
+        $posts = Vertical::findOrfail($vertical_id)->posts;
+
         return view('posts.index',compact('posts'));
     }
 
@@ -33,7 +42,8 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $verticals = User::findOrfail(Auth::user()->id)->verticals->lists('name','id');
+        return view('posts.create', compact('verticals'));
     }
 
     /**
@@ -47,7 +57,8 @@ class PostsController extends Controller
         $post = new Post;
         $post->title = $request->input('title');
         $post->body = $request->input('body');
-        $post->user_id = Auth::user()->id; 
+        $post->user_id = Auth::user()->id;
+        $post->vertical_id = $request->input('vertical')['0']; 
         $post->save();
         return redirect('posts');
     }

@@ -20,6 +20,7 @@ Route::get('dashboard', function(){
 //Posts Routes
 Route::resource('posts','PostsController');
 Route::get('posts/destroy/{id}','PostsController@destroy');
+Route::get('posts/verticalPosts/{id}','PostsController@post_vertical');
 /*----------------------------------------------------------------------------------*/
 //Tasks Routes
 Route::get('tasks/finish','TasksController@finished');
