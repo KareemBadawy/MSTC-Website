@@ -50,14 +50,15 @@ class ScoresController extends Controller
 
     public function store(ScoreRequest $request, $id){
     	$score = new Score;
-    	$score->creativity    = $request->input('creativity');
-    	$score->time          = $request->input('time');
-    	$score->quality       = $request->input('quality');
-    	$score->numberofedits = $request->input('numberofedits');
-    	$score->bouns         = $request->input('bouns');
-    	$score->user_id       = $request->input('user_id');
-    	$score->task_id       = $id;
-    	$score->own_user_id   = Auth::user()->id;
+    	$score->creativity             = $request->input('creativity');
+    	$score->time                   = $request->input('time');
+    	$score->quality                = $request->input('quality');
+    	$score->numberofedits          = $request->input('numberofedits');
+    	$score->bouns                  = $request->input('bouns');
+    	$score->total_score_for_a_task = $request->input('creativity') + $request->input('time') + $request->input('quality') + $request->input('numberofedits') + $request->input('bouns');
+    	$score->user_id                = $request->input('user_id');
+    	$score->task_id                = $id;
+    	$score->own_user_id            = Auth::user()->id;
     	$score->save();
     	return redirect('tasks');
     }
