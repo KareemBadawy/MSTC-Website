@@ -24,21 +24,17 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('posts/{id}/destroy','PostsController@destroy');
 	Route::get('posts/{id}/verticalPosts','PostsController@post_vertical');
 //Posts Routes
-Route::resource('posts','PostsController');
-Route::get('posts/{id}/destroy','PostsController@destroy');
-Route::get('posts/verticalPosts/{id}','PostsController@post_vertical');
+	Route::resource('posts','PostsController');
+	Route::get('posts/{id}/destroy','PostsController@destroy');
+	Route::get('posts/verticalPosts/{id}','PostsController@post_vertical');
 /*----------------------------------------------------------------------------------*/
 //Tasks Routes
-Route::get('tasks/finish','TasksController@finished');
-Route::get('tasks/owntasks','TasksController@owntasks');
-Route::get('tasks/head/create','TasksController@createFhead');
-Route::resource('tasks','TasksController');
-Route::get('tasks/update/{id}','TasksController@updatestatus');
-Route::get('tasks/{id}/destroy','TasksController@destroy');
-<<<<<<< HEAD
-=======
-
->>>>>>> refs/remotes/origin/master
+	Route::get('tasks/finish','TasksController@finished');
+	Route::get('tasks/owntasks','TasksController@owntasks');
+	Route::get('tasks/head/create','TasksController@createFhead');
+	Route::resource('tasks','TasksController');
+	Route::get('tasks/update/{id}','TasksController@updatestatus');
+	Route::get('tasks/{id}/destroy','TasksController@destroy');
 /*----------------------------------------------------------------------------------*/
 // News Routes
 	Route::resource('news', 'NewsController');
