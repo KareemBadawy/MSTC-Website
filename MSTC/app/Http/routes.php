@@ -35,6 +35,10 @@ Route::get('tasks/head/create','TasksController@createFhead');
 Route::resource('tasks','TasksController');
 Route::get('tasks/update/{id}','TasksController@updatestatus');
 Route::get('tasks/{id}/destroy','TasksController@destroy');
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/master
 /*----------------------------------------------------------------------------------*/
 // News Routes
 	Route::resource('news', 'NewsController');
