@@ -24,12 +24,12 @@ class ScoreRequest extends Request
     public function rules()
     {
         return [
-            'creativity'    => 'required',
-            'time'    => 'required',
-            'quality'    => 'required',
-            'numberofedits'    => 'required',
-            'bouns'    => 'required',
-            'user_id' => 'required'
+            'creativity'    => ['required','integer','max:10'],
+            'time'    => ['required','integer','max:10'],
+            'quality'    => ['required','integer','max:10'],
+            'numberofedits'    => ['required','integer','max:10'],
+            'bouns'    => ['required','integer','max:10'],
+            'user_id' => ['required','integer']
         ];
     }
 }

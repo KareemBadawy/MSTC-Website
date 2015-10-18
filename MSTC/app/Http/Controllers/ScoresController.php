@@ -38,8 +38,9 @@ class ScoresController extends Controller
     }
 
     public function show($id){
-    	$score = Score::findorfail($id);
-    	return view('scores.show', compact('score'));
+    	$scores = Task::findorfail($id)->scores;
+    	//dd($scores);
+    	return view('scores.show', compact('scores'));
     }
 
     public function create($id){
