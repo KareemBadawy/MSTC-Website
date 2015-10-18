@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Task;
 use App\User;
+use App\Vertical;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -25,6 +26,7 @@ class TasksController extends Controller
      */
     public function index()
     {
+        //dd(Auth::user()->username);
         $currentuser = Auth::user();
         //$tasks = collect(Task::unfinished()->get())->sortBy('deadline');
         $tasks = User::findOrfail($currentuser->id)->tasks()->where('status', '=', 0)->where('deadline', '>=', Carbon::now())->orderBy('deadline','desc')->get();
@@ -44,6 +46,13 @@ class TasksController extends Controller
         return view('tasks.index',compact('tasks','currentuser'));
     }
 
+    public function owntasks()
+    {
+        $currentuser = Auth::user();
+        $tasks = Task::where('user_id', '=', Auth::user()->id)->get();
+        return view('tasks.index',compact('tasks','currentuser'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -52,17 +61,18 @@ class TasksController extends Controller
     public function create()
     {
         $currentuser = Auth::user();
-        if($currentuser->membershipType == "President")
+        //dd($currentuser);
+        if($currentuser->role == "President")
             $users = User::where('id','!=',Auth::user()->id)->lists('username','id');
-        else if($currentuser->membershipType == "Head")
-            $users = User::where('id','!=',Auth::user()->id)->where('vertical', '=', $currentuser->vertical)->lists('username','id');
+        else if($currentuser->role == "Head")
+            $users = Vertical::findOrfail($currentuser->verticals[0]->id)->users()->where('role','=','Member')->lists('username','id');
         return view('tasks.create', compact('users','currentuser'));
     }
 
     public function createFhead()
     {
         $currentuser = Auth::user();
-        $users = User::where('membershipType','=','Head')->lists('username','id');
+        $users = User::where('role','=','Head')->lists('username','id');
         return view('tasks.create', compact('users','currentuser'));
     }
 
@@ -107,7 +117,11 @@ class TasksController extends Controller
     {
         $currentuser = Auth::user();
         $task = Task::findOrfail($id);
-        return view('tasks.edit',compact('task','currentuser'));
+         if($currentuser->role == "President")
+            $users = User::where('id','!=',Auth::user()->id)->lists('username','id');
+        else if($currentuser->role == "Head")
+            $users = Vertical::findOrfail($currentuser->verticals[0]->id)->users()->where('role','=','Member')->lists('username','id');
+        return view('tasks.edit',compact('task','currentuser','users'));
     }
 
     /**
@@ -119,7 +133,13 @@ class TasksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Task::findOrfail($id)->update($request->all());
+        $task = Task::findOrfail($id);
+        $task->title = $request->input('title');
+        $task->body = $request->input('body');
+        $task->deadline = $request->input('deadline');
+        $task->user_id = Auth::user()->id; 
+        $task->update();
+        $task->users()->sync($request->input('users'), false);
         return redirect('tasks');
     }
 
