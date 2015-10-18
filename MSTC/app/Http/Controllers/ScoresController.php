@@ -25,7 +25,7 @@ class ScoresController extends Controller
     	} else if (Auth::user()->role != 'Member') {
     		$scores = Score::orderBy('id','desc')->take(40)->get();
     	}
-    	return view('scores.index', compact('socres'));
+    	return view('scores.index', compact('scores'));
     }
 
     public function getByuser($user_id){
@@ -34,7 +34,7 @@ class ScoresController extends Controller
     	} else if (Auth::user()->role != 'Member') {
     		$scores = User::findorfail($user_id)->scores()->orderBy('id', 'desc')->take(40)->get();
     	}
-    	return view('scores.index', compact('socres'));
+    	return view('scores.index', compact('scores'));
     }
 
     public function show($id){
@@ -62,5 +62,5 @@ class ScoresController extends Controller
     	$score->save();
     	return redirect('tasks');
     }
-    
+
 }
