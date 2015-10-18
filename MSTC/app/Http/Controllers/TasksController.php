@@ -104,7 +104,11 @@ class TasksController extends Controller
     {
         $currentuser = Auth::user();
         $task = Task::findOrfail($id);
-        return view('tasks.show',compact('task','currentuser'));
+        if(!is_null($task->users()->where('id','=',Auth::user()->id)) || $task->user_id == Auth::user()->id){
+            return view('tasks.show',compact('task','currentuser'));
+        }else{
+            return response(view('errors.404'), 404);
+        }
     }
 
     /**
@@ -117,11 +121,17 @@ class TasksController extends Controller
     {
         $currentuser = Auth::user();
         $task = Task::findOrfail($id);
-         if($currentuser->role == "President")
-            $users = User::where('id','!=',Auth::user()->id)->lists('username','id');
-        else if($currentuser->role == "Head")
-            $users = Vertical::findOrfail($currentuser->verticals[0]->id)->users()->where('role','=','Member')->lists('username','id');
-        return view('tasks.edit',compact('task','currentuser','users'));
+        if($currentuser->id == $task->user_id ){
+            if($currentuser->role == "President"){
+                $users = User::where('id','!=',Auth::user()->id)->lists('username','id');
+            }else if($currentuser->role == "Head"){
+                $users = Vertical::findOrfail($currentuser->verticals[0]->id)->users()->where('role','=','Member')->lists('username','id');
+            }
+            return view('tasks.edit',compact('task','currentuser','users'));
+        }else{
+            return response(view('errors.404'), 404);
+        }
+         
     }
 
     /**
@@ -156,7 +166,12 @@ class TasksController extends Controller
      */
     public function destroy($id)
     {
-        Task::findOrfail($id)->delete();
-        return redirect('tasks');
+        $task = Task::findOrfail($id);
+        if($task->user_id == Auth::user()->id){
+            $task->delete();
+            return redirect('tasks');
+        }else{
+            return response(view('errors.404'), 404);
+        } 
     }
 }

@@ -19,7 +19,7 @@ Route::get('dashboard', function(){
 
 //Posts Routes
 Route::resource('posts','PostsController');
-Route::get('posts/destroy/{id}','PostsController@destroy');
+Route::get('posts/{id}/destroy','PostsController@destroy');
 Route::get('posts/verticalPosts/{id}','PostsController@post_vertical');
 /*----------------------------------------------------------------------------------*/
 //Tasks Routes
@@ -28,7 +28,7 @@ Route::get('tasks/owntasks','TasksController@owntasks');
 Route::get('tasks/head/create','TasksController@createFhead');
 Route::resource('tasks','TasksController');
 Route::get('tasks/update/{id}','TasksController@updatestatus');
-Route::get('tasks/destroy/{id}','TasksController@destroy');
+Route::get('tasks/{id}/destroy','TasksController@destroy');
 
 /*----------------------------------------------------------------------------------*/
 // News Routes

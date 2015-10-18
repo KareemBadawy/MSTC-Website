@@ -75,7 +75,11 @@ class PostsController extends Controller
     {
         $currentuser = Auth::user()->id;
         $post = Post::findOrfail($id);
-        return view('posts.show',compact('post', 'currentuser'));
+        if(!is_null(Auth::user()->verticals()->where('id', '=', $post->vertical_id)) || $post->user_id == Auth::user()->id){
+            return view('posts.show',compact('post','currentuser'));
+        }else{
+            return response(view('errors.404'), 404);
+        }
     }
 
     /**
@@ -118,7 +122,12 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        Post::findOrfail($id)->delete();
-        redirect('posts');
+        $post = Post::findOrfail($id);
+        if($post->user_id == Auth::user()->id){
+            $post->delete();
+            return redirect('posts');
+        }else{
+             return response(view('errors.404'), 404);
+        }      
     }
 }
