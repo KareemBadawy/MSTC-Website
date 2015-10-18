@@ -7,17 +7,18 @@
 @section('side')
     <ul>
     	<li><a href="{{action('TasksController@index')}}">Tasks</a></li>
-    	@if($currentuser->membershipType != 'Member')
+    	@if($currentuser->role != 'Member')
         <li><a href="{{ action('TasksController@create')}}">New Task</a></li>
+        <li><a href="{{ action('TasksController@owntasks')}}">owntasks</a></li>
         @endif
-        @if($currentuser->membershipType == 'President')
+        @if($currentuser->role == 'President')
         <li><a href="{{ action('TasksController@createFhead')}}">New Task For heads</a></li>
         @endif
     </ul>
 @stop
 
 @section('content')
-    @if($currentuser->id != $task->user_id)
+    @if($currentuser->id == $task->user_id)
     <h1>Edit : {!! $task-> title !!}</h1>
 
     {!! Form::model($task,['method'=>'PATCH', 'action'=>['TasksController@update',$task->id]]) !!}
@@ -25,7 +26,7 @@
     {!! Form::close() !!}
     @include('errors.list');
 
-    @else if($currentuser->membershipType != 'Member')
+    @elseif($currentuser->role != 'Member')
         <h2>You don't own a task to edit it. </h2>
     @else
         <h2>this is not your own task.</h2>
