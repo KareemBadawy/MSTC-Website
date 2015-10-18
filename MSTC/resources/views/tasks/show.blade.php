@@ -25,7 +25,9 @@
     	<p>
             @if($currentuser->id == $task->user_id)
     		<a href="{{ action('TasksController@destroy' , [$task->id]) }}"> Delete</a>|
-    		<a href="{{URL::action('TasksController@edit', [$task->id])}}"> Edit</a>|
+            <a href="{{URL::action('TasksController@edit', [$task->id])}}"> Edit</a>|
+    		<a href="{{URL::action('ScoresController@create', [$task->id])}}"> Set Score</a>|
+
             @endif
             @if($currentuser->role == 'Member')
             <a href="{{ action('TasksController@updatestatus' , [$task->id]) }}"> Finished</a>

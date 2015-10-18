@@ -51,6 +51,10 @@ class User extends Model implements AuthenticatableContract,
     {
          return $this->hasMany('App\Post');
     }
+    public function scores()
+    {
+         return $this->hasMany('App\Score');
+    }
     public function tasks()
     {
         return $this->belongsToMany('App\Task')->withTimestamps();
