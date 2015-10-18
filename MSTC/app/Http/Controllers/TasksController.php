@@ -168,6 +168,9 @@ class TasksController extends Controller
     {
         $task = Task::findOrfail($id);
         if($task->user_id == Auth::user()->id){
+            foreach ($task->scores as $key => $score) {
+                $score->delete();
+            }
             $task->delete();
             return redirect('tasks');
         }else{

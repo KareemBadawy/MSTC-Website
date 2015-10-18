@@ -41,6 +41,11 @@ class Task extends Model
         return $this->belongsToMany('App\User');
     }
 
+    public function scores()
+    {
+        return $this->hasMany('App\Score');
+    }
+
 
 }
  
