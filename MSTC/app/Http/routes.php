@@ -36,12 +36,13 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('tasks/update/{id}','TasksController@updatestatus');
 	Route::get('tasks/{id}/destroy','TasksController@destroy');
 /*----------------------------------------------------------------------------------*/
-Route::get('scores', 'ScoresController@index');
-Route::get('scores/getByuser/{user_id}', 'ScoresController@getByuser');
-Route::get('scores/{id}/show', 'ScoresController@show');
-Route::get('scores/{task_id}/create', 'ScoresController@create');
-Route::get('scores', 'ScoresController@index');
-Route::post('scores/{task_id}', 'ScoresController@store');
+// Scores Routes
+	Route::get('scores', 'ScoresController@index');
+	Route::get('scores/getByuser/{user_id}', 'ScoresController@getByuser');
+	Route::get('scores/{id}/show', 'ScoresController@show');
+	Route::get('scores/{task_id}/create', 'ScoresController@create');
+	Route::get('scores', 'ScoresController@index');
+	Route::post('scores/{task_id}', 'ScoresController@store');
 /*----------------------------------------------------------------------------------*/
 // News Routes
 	Route::resource('news', 'NewsController');

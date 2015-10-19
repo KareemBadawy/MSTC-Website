@@ -14,7 +14,7 @@ class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
                                     CanResetPasswordContract
 {
-    use Authenticatable, Authorizable, CanResetPassword;
+    use Authenticatable, Authorizable, CanResetPassword, HasRoles;
 
     /**
      * The database table used by the model.
@@ -63,10 +63,5 @@ class User extends Model implements AuthenticatableContract,
     public function verticals()
     {
         return $this->belongsToMany('App\Vertical')->withTimestamps();
-    }
-
-    public function getRole()
-    {
-        return $this->role;
     }
 }
