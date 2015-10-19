@@ -32,7 +32,7 @@
             bottom: 0;
             left: 0;
             right:0;
-            z-index: 99999;
+            z-index: 999;
         }
         a {
             color: #fab133;
@@ -71,25 +71,78 @@
             background-color: #00a651;
             border-color: #00a651;
         }
+        .modal-dialog {
+            display: inline-block;
+            text-align: left;
+            vertical-align: middle;
+        }
+        .modal {
+            text-align: center;
+        }
+
+        @media screen and (min-width: 768px) {
+            .modal:before {
+                display: inline-block;
+                vertical-align: middle;
+                content: " ";
+                height: 100%;
+            }
+        }
+        body.modal-open .supreme-container{
+            -webkit-filter: blur(5px);
+            -moz-filter: blur(5px);
+            -o-filter: blur(5px);
+            -ms-filter: blur(5px);
+            filter: blur(5px);
+        }
     </style>
 </head>
 <body>
 
+<!-- Sign in -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title" style="text-align: center">Member Login</h3>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <form action="login.php" id="reg-form" method="post" autocomplete="off">
+
+                        <input class="form-control input-lg" value="" data-validate="required,alphanumeric" id="username" type="text" name="username" placeholder="User Name"><br>
+                        <input class="form-control input-lg" value="" data-validate="required,min(6)" id="password" type="password" name="password" placeholder="Password"><br>
+                        <input class="btn btn-lg btn-warning btn-group-justified" id="bo" type="submit" value="Login" style="display : block; margin : auto;">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 <!--header-->
-<div class="container ontopheader" style="display:flex;justify-content:center;align-items:center;">
+<div class="container ontopheader supreme-container" style="display:flex;justify-content:center;align-items:center;">
     <div class="row">
         <div class="col-md-3">
             <img class="img-responsive" src="{{ asset('image/logo-white.png') }}" alt="logo">
         </div>
         <div class="col-md-7"></div>
         <div class="col-md-2">
-            <a href="#" class="btn1 btn1-primary1 btn1-lg1 outline1" role="button">Sign in</a>
+            @if(Auth::check())
+                <button type="button" class="btn1 btn1-primary1 btn1-lg1 outline1" data-toggle="modal" data-target="#myModal">{{Auth::user()->username}}</button>
+            @else
+                <button type="button" class="btn1 btn1-primary1 btn1-lg1 outline1" data-toggle="modal" data-target="#myModal">Sign in</button>
+            @endif
         </div>
     </div>
 </div>
 
 <!--Slider-->
-<header id="myCarousel" class="carousel slide" data-ride="carousel">
+<header id="myCarousel supreme-container" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -161,7 +214,7 @@
 </header>
 
 <!--projects-->
-<div class="container-fluid fill" style="background-color: white">
+<div class="container-fluid fill supreme-container" style="background-color: white">
     <div class="container">
         <div class="container-fluid">
 
@@ -258,7 +311,7 @@
 </div>
 
 <!--news-->
-<div class="container-fluid fill" style="background-color: #f1f1f1;padding-bottom: 40px">
+<div class="container-fluid fill supreme-container" style="background-color: #f1f1f1;padding-bottom: 40px">
     <!--title-->
     <div class="container">
         <div class="container-fluid">
@@ -300,7 +353,7 @@
 </div>
 
 <!--about-->
-<div class="container-fluid fill" style="background: #fab133 url('{{ asset('image/about-bk.png') }}') left no-repeat;-webkit-background-size: contain;
+<div class="container-fluid fill supreme-container" style="background: #fab133 url('{{ asset('image/about-bk.png') }}') left no-repeat;-webkit-background-size: contain;
         -moz-background-size: contain;
         -o-background-size: contain;
         background-size: contain;">
@@ -378,7 +431,7 @@
 </div>
 
 <!--contact us-->
-<div class="container-fluid fill" style="background-color: white">
+<div class="container-fluid fill supreme-container" style="background-color: white">
     <div class="container">
         <div class="container-fluid">
             <div class="row">
@@ -447,7 +500,7 @@
 </div>
 
 <!--Subscribe-->
-<div class="container-fluid" style="border-top:solid #eeeeee;border-top-width:1px;height:15%;background-color: white;display:flex;justify-content:center;align-items:center;">
+<div class="container-fluid supreme-container" style="border-top:solid #eeeeee;border-top-width:1px;height:15%;background-color: white;display:flex;justify-content:center;align-items:center;">
     <div class="container">
         <div class="container-fluid">
             <p style="text-align: center;font-size: 16px;padding-top: 10px">
@@ -475,7 +528,7 @@
 </div>
 
 <!--footer-->
-<div class="container-fluid fillo" style="height:85%;background-color: #333">
+<div class="container-fluid fillo supreme-container" style="height:85%;background-color: #333">
     <div class="container">
         <div class="container-fluid">
             <div class="row">
