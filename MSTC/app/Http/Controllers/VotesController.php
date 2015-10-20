@@ -21,7 +21,6 @@ class VotesController extends Controller
     	->where('choice_id' , '=' , $choice_id )
     	->where('user_id' , '=' , $user_id)
     	->count() ;
-    	dd($query);
     	if($query == 0)
     		return false ;
     	else return true ;
@@ -44,11 +43,15 @@ class VotesController extends Controller
     	Vote::create($vote);
     	return back(); 
     	}
-    	else return redirect('auth.login');
+    	else 
+            return redirect('auth.login');
     }
-    public function destroy($question , $choice , $vote , Request $request)
+
+    public function destroy($question , $choice , $vote)
     {
-    	
+    	$vote = Vote::findorfail($vote);
+        $vote->delete();
+        return back();
     }
 
     

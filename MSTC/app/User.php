@@ -28,7 +28,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['username', 'email', 'password', 'role'];
+    protected $fillable = ['username', 'email', 'password'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -64,4 +64,8 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->belongsToMany('App\Vertical')->withTimestamps();
     }
+
+    // Creating User in Tinker 
+    // $y['username'] = value ; 
+    // User::create($y);
 }

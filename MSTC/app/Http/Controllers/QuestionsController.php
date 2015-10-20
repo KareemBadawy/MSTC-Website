@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Question ;
+use App\Vote ;
+use App\User ;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -60,11 +62,16 @@ class QuestionsController extends Controller
      */
     public function show($id)
     {
+        $userid = Auth::user()->id ;
+        //dd($userid);
         $question = Question::findorfail($id);
         $choices = $question->getChoices()->get();
-        $votes = $question->getVotes()->get(); 
-        return view('VotingSystem/show')->with('question',$question)
-            ->with('choices' , $choices)->with('votes' , $votes);
+        $votes = $question->getVotes()->get();
+        return view('VotingSystem/show')
+            ->with('question',$question)
+            ->with('choices' , $choices)
+            ->with('votes' , $votes)
+            ->with('userid' , $userid);
     }
 
     /**

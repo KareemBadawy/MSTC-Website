@@ -28,7 +28,7 @@ $factory->define(App\Question::class, function (Faker\Generator $faker) {
         'title' => $faker->name,
         'description' => str_random(20),
         'deadline' => Carbon::now(),
-        'creator_id' => 1 ,
+        'creator_id' => 3 ,
     ];
 });
 
