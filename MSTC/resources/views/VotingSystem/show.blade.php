@@ -18,6 +18,10 @@
 			@foreach($choices as $choice)
 			<h3>
 				{{$choice->title}}
+				@foreach($votes as $vote)
+				@if($vote->choice_id == $choice_id)
+					{{$vote->getUser()->username}}
+				@endif
 				{!! Form::open(array('route' => array('questions.choices.destroy', $question->id , $choice->id), 'method' => 'delete')) !!}
         			<button type="submit" class="btn btn-danger btn-mini">Delete Choice</button>
     			{!! Form::close() !!}

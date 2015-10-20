@@ -19,5 +19,10 @@ class Vote extends Model
     	return $this->belongsTo('App\Choice');
     }
 
+    public function getUser()
+    {
+        return $this->belongsTo('App\User');
+    }
+
     
 }
