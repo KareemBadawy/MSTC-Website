@@ -29,10 +29,10 @@
     <div class = "form-control">
         <div>
             Role:
-            <input type="radio" name="role" value="President">President
-            <input type="radio" name="role" value="Head">Head
-            <input type="radio" name="role" value="ViceHead">Vice Head
-            <input type="radio" name="role" value="Member">Member
+            <input type="radio" name="role" value="1">President
+            <input type="radio" name="role" value="2">Head
+            <input type="radio" name="role" value="3">Vice Head
+            <input type="radio" name="role" value="4">Member
         </div>
     </div>
     <div class="form-control">

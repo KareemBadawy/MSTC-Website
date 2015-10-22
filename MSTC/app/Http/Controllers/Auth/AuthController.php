@@ -49,7 +49,6 @@ class AuthController extends Controller
             'username' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
-            'role' => 'required',
         ]);
     }
 
@@ -65,10 +64,11 @@ class AuthController extends Controller
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'role' => $data['role'],
         ]);
 
         $user->verticals()->attach($data['verticals']);
+        $user->roles()->attach($data['role']);
+
 
         return $user;
 

@@ -19,20 +19,30 @@ class RoleTableSeeder extends Seeder
             array(
                 array('name' => 'President', 'label' => 'President'),
                 array('name' => 'Head', 'label' => 'Head'),
-                array('name' => 'ViceHead', 'label' => 'ViceHead'),
+                array('name' => 'Vice Head', 'label' => 'ViceHead'),
                 array('name' => 'Member', 'label' => 'Member'),
                 ));
 
         DB::table('permissions')->insert(
                 array(
                     array('name' => 'Create-Task', 'label' => 'Create-Task'),
-                    array('name' => 'Create-Vote', 'label' => 'Create-Vote'),
+                    array('name' => 'Create-Poll', 'label' => 'Create-Poll'),
                     array('name' => 'Create-Event', 'label' => 'Create-Event'),
                     array('name' => 'Create-News', 'label' => 'Create-News'),
                     array('name' => 'Show-Sub', 'label' => 'Show-Sub'),
                     array('name' => 'Create-User', 'label' => 'Create-User'),
                     array('name' => 'Edit-Roles', 'label' => 'Edit-Roles'),
                     ));
+
+        $id = DB::table('roles')->select('id')->where('label', 'President')->first()->id;
+        $role = Role::findorfail($id);
+        $role->permissions()->attach(['1','2','3','4','5','6','7']);
+        $id = DB::table('roles')->select('id')->where('label', 'Head')->first()->id;
+        $role = Role::findorfail($id);
+        $role->permissions()->attach(['1','2','3','4','5','6']);
+        $id = DB::table('roles')->select('id')->where('label', 'ViceHead')->first()->id;
+        $role = Role::findorfail($id);
+        $role->permissions()->attach(['1','2','3','4','5']);
 
         DB::table('users')->insert(
             array(
