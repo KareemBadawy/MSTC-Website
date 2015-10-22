@@ -1,6 +1,7 @@
 <?php
 
 use App\Role;
+use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -41,7 +42,10 @@ class RoleTableSeeder extends Seeder
                     'email' => 'mstc.alex.eng@outlook.com'
                     ),
                 ));
-        $admin = DB::table('users')->select('id')->where('username', 'MSTCAlex')->first()->id;
+        $id = DB::table('users')->select('id')->where('username', 'MSTCAlex')->first()->id;
+        $admin = User::findorfail($id);
+        $admin->verticals()->attach(['1','2','3','4']);
+        $admin->roles()->attach(['1']);
         Model::reguard();
     }
 }

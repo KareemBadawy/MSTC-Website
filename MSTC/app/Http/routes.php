@@ -19,22 +19,13 @@ Route::group(['middleware' => 'auth'], function(){
 		return view('dashboard');
 	});
 /*----------------------------------------------------------------------------------*/
-//Posts Routes
-	Route::resource('posts','PostsController');
-	Route::get('posts/{id}/destroy','PostsController@destroy');
-	Route::get('posts/{id}/verticalPosts','PostsController@post_vertical');
+//User Routes
+	Route::get('profile', 'UsersController@profile');
+/*----------------------------------------------------------------------------------*/
 //Posts Routes
 	Route::resource('posts','PostsController');
 	Route::get('posts/{id}/destroy','PostsController@destroy');
 	Route::get('posts/verticalPosts/{id}','PostsController@post_vertical');
-/*----------------------------------------------------------------------------------*/
-//Tasks Routes
-	Route::get('tasks/finish','TasksController@finished');
-	Route::get('tasks/owntasks','TasksController@owntasks');
-	Route::get('tasks/head/create','TasksController@createFhead');
-	Route::resource('tasks','TasksController');
-	Route::get('tasks/update/{id}','TasksController@updatestatus');
-	Route::get('tasks/{id}/destroy','TasksController@destroy');
 /*----------------------------------------------------------------------------------*/
 // Scores Routes
 	Route::get('scores', 'ScoresController@index');
@@ -74,7 +65,7 @@ Route::group([],function(){
 	    return view('homepage');
 	});
 /*----------------------------------------------------------------------------------*/
-// Show News Routes
+// News Routes
 	Route::get('news', 'NewsController@index');
 	Route::get('news/{news}', 'NewsController@show');
 /*----------------------------------------------------------------------------------*/
