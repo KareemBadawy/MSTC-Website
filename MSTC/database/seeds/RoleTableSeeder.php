@@ -36,10 +36,10 @@ class RoleTableSeeder extends Seeder
 
         $id = DB::table('roles')->select('id')->where('label', 'President')->first()->id;
         $role = Role::findorfail($id);
-        $role->permissions()->attach(['1','2','3','4','5','6','7']);
+        $role->permissions()->attach(['7']);
         $id = DB::table('roles')->select('id')->where('label', 'Head')->first()->id;
         $role = Role::findorfail($id);
-        $role->permissions()->attach(['1','2','3','4','5','6']);
+        $role->permissions()->attach(['6']);
         $id = DB::table('roles')->select('id')->where('label', 'ViceHead')->first()->id;
         $role = Role::findorfail($id);
         $role->permissions()->attach(['1','2','3','4','5']);
@@ -55,7 +55,7 @@ class RoleTableSeeder extends Seeder
         $id = DB::table('users')->select('id')->where('username', 'MSTCAlex')->first()->id;
         $admin = User::findorfail($id);
         $admin->verticals()->attach(['1','2','3','4']);
-        $admin->roles()->attach(['1']);
+        $admin->roles()->attach(['1','2','3','4']);
         Model::reguard();
     }
 }

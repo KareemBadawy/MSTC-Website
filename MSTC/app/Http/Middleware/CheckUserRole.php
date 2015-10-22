@@ -34,55 +34,11 @@ class CheckUserRole
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $RequiredRole)
     {
-
-        try{
-            if($request->ismethod('get'))
-                $next($request);
-        }
-        catch(Request $request){
-            return response(view('error.404'), 404);
-        }
-        
-        if($this->auth->check())
-        {
-            $role = $this->auth->user()->getRole();
-
-            switch ($role) {
-                case 'President':
-                    #
-                case 'Head':
-                    if($request->is('auth/*')){
-                        return $next($request);
-                    }
-                case 'ViceHead':
-                    if($request->is('tasks/*')||
-                        $request->is('events/*')||
-                        $request->is('news/*')||
-                        $request->is('subscribtions')){
-                       return $next($request); 
-                    }
-                case 'Member':
-                    if($request->is('dashboard')||
-                        $request->is('posts')||$request->is('posts/*')||
-                        $request->is('tasks')||ShowRequest::isShow('tasks', $request)||
-                        $request->is('auth/logout')){
-                        return $next($request);
-                    }
-                default:
-                    break;
-            }
-        }
-        if($request->is('/')||$request->is('news')||ShowRequest::isShow('news', $request)
-            ||($request->is('events')||ShowRequest::isShow('events', $request))
-            ||$request->is('auth/login')||$request->is('auth/logout')
-
-            /*Just for Debuging*/||$request->is('auth/register')){
-
+        if(auth()->check() && auth()->user()->hasRole($RequiredRole)){
             return $next($request);
         }
-
-        return redirect('auth/login');
+        return redirect('/dashboard');
     }
 }

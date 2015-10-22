@@ -67,7 +67,10 @@ class AuthController extends Controller
         ]);
 
         $user->verticals()->attach($data['verticals']);
-        $user->roles()->attach($data['role']);
+        if ($data['role']=='1')$user->roles()->attach(['1','2','3','4']);
+        elseif ($data['role']=='2')$user->roles()->attach(['2','3','4']);
+        elseif ($data['role']=='3')$user->roles()->attach(['3','4']);
+        else $user->roles()->attach(['4']);
 
 
         return $user;
