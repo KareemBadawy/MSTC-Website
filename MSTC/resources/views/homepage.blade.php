@@ -100,29 +100,7 @@
 <body>
 
 <!-- Sign in -->
-<div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 class="modal-title" style="text-align: center">Member Login</h3>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <form action="login.php" id="reg-form" method="post" autocomplete="off">
-
-                        <input class="form-control input-lg" value="" data-validate="required,alphanumeric" id="username" type="text" name="username" placeholder="User Name"><br>
-                        <input class="form-control input-lg" value="" data-validate="required,min(6)" id="password" type="password" name="password" placeholder="Password"><br>
-                        <input class="btn btn-lg btn-warning btn-group-justified" id="bo" type="submit" value="Login" style="display : block; margin : auto;">
-                    </form>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div>
+@include('/auth/login')
 
 <!--header-->
 <div class="container ontopheader supreme-container" style="display:flex;justify-content:center;align-items:center;">
