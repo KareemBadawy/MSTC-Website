@@ -1,4 +1,4 @@
 @extends('app')
-@section('side')
+@section('content')
 	<h1>Hrll</h1>
 @stop

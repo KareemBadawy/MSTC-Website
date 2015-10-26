@@ -63,20 +63,22 @@
 		<ul class="sidebar-nav nav-pills nav-stacked" id="menu">
 
 			<li class="active">
-				<a href="#" style="border-radius: 0;background-color: #fab133"><span class="fa-stack fa-lg pull-left"><i class="fa fa-dashboard fa-stack-1x "></i></span> Dashboard</a>
+				<a href="/dashboard" style="border-radius: 0;background-color: #fab133"><span class="fa-stack fa-lg pull-left"><i class="fa fa-dashboard fa-stack-1x "></i></span> Dashboard</a>
 			</li>
+			<?php
+			$icon = array("Technical"=>"fa fa-wrench fa-stack-1x","Operations"=>"fa fa-cogs fa-stack-1x","Media & Marketing"=>"fa fa-youtube-play fa-stack-1x","H.R."=>"fa fa-server fa-stack-1x","P.R."=>"fa fa-print fa-stack-1x") ?>
 			<li>
 				<a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-flag fa-stack-1x "></i></span> Vertical</a>
 				<ul class="nav-pills nav-stacked" style="list-style-type:none;">
-					<li><a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-wrench fa-stack-1x "></i></span>Technical</a></li>
-					<li><a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-cogs fa-stack-1x "></i></span>Operations</a></li>
-					<li><a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-youtube-play fa-stack-1x "></i></span>Media & Marketing</a></li>
-					<li><a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-server fa-stack-1x "></i></span>HR</a></li>
-					<li><a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-print fa-stack-1x "></i></span>PR</a></li>
+				@if(Auth::check())
+				@foreach(Auth::user()->verticals as $vertical)
+					<li><a href="{{ action('PostsController@post_vertical' , [$vertical->id]) }}"><span class="fa-stack fa-lg pull-left"><i class="{{ $icon[$vertical->name] }}"></i></span>{{ $vertical->name }}</a></li>
+				@endforeach
+				@endif
 				</ul>
 			</li>
 			<li>
-				<a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa  fa-tasks fa-stack-1x "></i></span>Tasks</a>
+				<a href="{{ action('TasksController@index') }}"><span class="fa-stack fa-lg pull-left"><i class="fa  fa-tasks fa-stack-1x "></i></span>Tasks</a>
 			</li>
 			<li>
 				<a href="#"> <span class="fa-stack fa-lg pull-left"><i class="fa fa-pie-chart fa-stack-1x "></i></span>Polls</a>
@@ -84,11 +86,11 @@
 			<li>
 				<a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-plus-square fa-stack-1x "></i></span>Create</a>
 				<ul class="nav-pills nav-stacked" style="list-style-type:none;">
-					<li><a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-pencil-square fa-stack-1x "></i></span>Post</a></li>
+					<li><a href="/posts/create"><span class="fa-stack fa-lg pull-left"><i class="fa fa-pencil-square fa-stack-1x "></i></span>Post</a></li>
 					<li><a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-tasks fa-stack-1x "></i></span>Task</a></li>
 					<li><a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-bar-chart fa-stack-1x "></i></span>Poll</a></li>
-					<li><a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-newspaper-o fa-stack-1x "></i></span>News</a></li>
-					<li><a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-ticket fa-stack-1x "></i></span>Event</a></li>
+					<li><a href="/news/create"><span class="fa-stack fa-lg pull-left"><i class="fa fa-newspaper-o fa-stack-1x "></i></span>News</a></li>
+					<li><a href="/events/create"><span class="fa-stack fa-lg pull-left"><i class="fa fa-ticket fa-stack-1x "></i></span>Event</a></li>
 					<li><a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-picture-o fa-stack-1x "></i></span>Ads</a></li>
 					<li><a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-user fa-stack-1x "></i></span>User</a></li>
 				</ul>
@@ -100,7 +102,7 @@
 		<div class="container-fluid xyz">
 			<div class="row">
 				<div class="col-lg-12">
-					@yield('side');
+					@yield('content')
 				</div>
 			</div>
 		</div>
