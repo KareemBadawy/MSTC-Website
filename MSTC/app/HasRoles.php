@@ -27,4 +27,17 @@ trait HasRoles
         return !! $role->intersect($this->roles)->count();
     }
 
+
+    /* Get Array of users with the sent Role */
+    public static function WithMainRole($role)
+    {
+        $users = array();
+        foreach (User::all() as $user) {
+            if($user->roles->first()->name == $role)
+                $users[] = $user->username;
+        }
+
+        return $users;
+    }
+
 }

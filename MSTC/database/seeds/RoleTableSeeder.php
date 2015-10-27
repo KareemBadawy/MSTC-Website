@@ -48,7 +48,7 @@ class RoleTableSeeder extends Seeder
             array(
                 array(
                     'username' => 'MSTCAlex',
-                    'password' => Hash::make('test'),
+                    'password' => Hash::make('tester'),
                     'email' => 'mstc.alex.eng@outlook.com'
                     ),
                 ));

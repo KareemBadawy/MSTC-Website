@@ -1,7 +1,7 @@
 @extends('app')
 
-@section('header')
-    <li><h5>Events</h5></li>
+@section('title')
+    <title>New Event</title>
 @stop
 
 @section('side')
@@ -14,9 +14,9 @@
     <hr/>
 
     {!! Form::open(['url'=>'events']) !!}
-        @include('events/_form',['submitButton'=>'Add New Event']);
+        @include('events/_form',['submitButton'=>'Add New Event'])
     {!! Form::close() !!}
     
-    @include('errors.list');
+    @include('errors.list')
 
 @stop

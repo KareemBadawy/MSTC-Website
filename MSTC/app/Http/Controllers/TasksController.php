@@ -61,11 +61,11 @@ class TasksController extends Controller
     public function create()
     {
         $currentuser = Auth::user();
-        //dd($currentuser);
-        if($currentuser->role == "President")
+        if($currentuser->hasRole('President'))
             $users = User::where('id','!=',Auth::user()->id)->lists('username','id');
-        else if($currentuser->role == "Head")
-            $users = Vertical::findOrfail($currentuser->verticals[0]->id)->users()->where('role','=','Member')->lists('username','id');
+        else if($currentuser->hasRole('Head')){
+            $users = Vertical::findOrfail($currentuser->verticals[0]->id)->users()->whereIn('username', User::WithMainRole('Member'))->lists('username','id');
+        }
         return view('tasks.create', compact('users','currentuser'));
     }
 

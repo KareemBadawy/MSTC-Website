@@ -11,7 +11,7 @@
     <hr/>
 
     {!! Form::open(['url'=>'tasks']) !!}
-        @include('tasks._form',['submitButton'=>'Add New Task']);
+        @include('tasks._form',['submitButton'=>'Add New Task'])
     {!! Form::close() !!}
     @include('errors.list')
 
