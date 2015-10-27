@@ -9,7 +9,7 @@
 </div>
 
 <div class = "form-group">
-	{!! Form::label('verticals', 'verticals:') !!}
+	{!! Form::label('verticals', 'Vertical:') !!}
 	{!! Form::select('vertical[]', $verticals, null, ['class' => 'form-control']) !!}
 </div>
 

@@ -1,35 +1,18 @@
-<h1>Write a new News</h1>
-<hr/>
+@extends('app')
 
-{!! Form::open(['url' => 'news']) !!}
-	
-	<div class="form-group">
-		{!! Form::label('title', 'Title:') !!}
-		{!! Form::text('title') !!}
-	</div>
+@section('title')
+	<title>New News</title>
+@stop
 
-	<div class="form-group">
-		{!! Form::label('body', 'Body:') !!}
-		{!! Form::textarea('body', null, ['class' => 'form-control']) !!}
-	</div>
+@section('content')
 
-	<div class="form-group">
-		{!! Form::label('published_at', 'Publish On:') !!}
-		{!! Form::input('date', 'published_at', date('Y-m-d')) !!}
-	</div>
+    <h1>Write a New News</h1>
+    <hr/>
 
-	<div class="form-group">
-		{!! Form::submit('Add News') !!}
-	</div>
+    {!! Form::open(['url'=>'news']) !!}
+        @include('news/_form',['submitButton'=>'Add New News'])
+    {!! Form::close() !!}
+    
+    @include('errors.list')
 
-{!! Form::close() !!}
-
-@if ($errors->any())
-	<ul>
-		@foreach ($errors->all() as $error)
-			<li>
-				{{ $error }}
-			</li>
-		@endforeach
-	</ul>
-@endif
+@stop

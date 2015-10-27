@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Dashboard</title>
+	@yield('title')
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -47,9 +47,9 @@
 			<li style="padding-top: 3px;padding-right: 10px">
 				<img data-toggle="dropdown" src="{{ asset('image/slider/19%20-%20Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="50" height="50"style="display : block; margin : auto;">
 				<ul class="dropdown-menu">
-					<li><a href="#">Profile</a></li>
+					<li><a href="/profile">Profile</a></li>
 					<li role="separator" class="divider"></li>
-					<li><a href="#">Logout</a></li>
+					<li><a href="/auth/logout">Logout</a></li>
 				</ul>
 			</li>
 		</ul>

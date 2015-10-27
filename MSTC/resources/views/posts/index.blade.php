@@ -1,5 +1,9 @@
 @extends('app')
 
+@section('title')
+	<title>Vertical</title>
+@stop
+
 @section('content')
 
     @foreach($posts as $post)
