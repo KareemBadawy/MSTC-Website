@@ -6,7 +6,7 @@
 
 
 @section('content')
-    @if($currentuser->role != 'Member')
+    @if($currentuser->hasRole('Vice Head'))
     <h1>Write a New Task</h1>
     <hr/>
 

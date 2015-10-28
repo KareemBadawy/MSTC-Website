@@ -30,7 +30,7 @@ Route::group(['middleware' => 'auth'], function(){
 		Route::get('tasks/owntasks','TasksController@owntasks');
 		Route::get('tasks/head/create','TasksController@createFhead');
 		Route::resource('tasks','TasksController');
-		Route::get('tasks/{id}/update','TasksController@updatestatus');
+		Route::get('tasks/{id}/updatestatus','TasksController@updatestatus');
 		Route::get('tasks/{id}/destroy','TasksController@destroy');
 /*----------------------------------------------------------------------------------*/
 	// Subscribtions Routes
@@ -74,6 +74,8 @@ Route::group(['middleware' => 'auth'], function(){
 	// Tasks Routes
 		Route::get('tasks', 'TasksController@index');
 		Route::get('tasks/{tasks}', 'TasksController@show');
+		Route::get('tasks/finish','TasksController@finished');
+		Route::get('tasks/{id}/updatestatus','TasksController@updatestatus');
 /*----------------------------------------------------------------------------------*/
 	}); // End of Member Access Group
 

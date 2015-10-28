@@ -61,9 +61,9 @@ class TasksController extends Controller
     public function create()
     {
         $currentuser = Auth::user();
-        if($currentuser->hasRole('President'))
+        if($currentuser->hasRole('President')){
             $users = User::where('id','!=',Auth::user()->id)->lists('username','id');
-        else if($currentuser->hasRole('Head')){
+        }else if($currentuser->hasRole('Head') && !$currentuser->hasRole('President')){
             $users = Vertical::findOrfail($currentuser->verticals[0]->id)->users()->whereIn('username', User::WithMainRole('Member'))->lists('username','id');
         }
         return view('tasks.create', compact('users','currentuser'));
@@ -72,7 +72,7 @@ class TasksController extends Controller
     public function createFhead()
     {
         $currentuser = Auth::user();
-        $users = User::where('role','=','Head')->lists('username','id');
+        $users = User::whereIn('username', User::WithMainRole('Head'))->lists('username','id');
         return view('tasks.create', compact('users','currentuser'));
     }
 
@@ -122,10 +122,10 @@ class TasksController extends Controller
         $currentuser = Auth::user();
         $task = Task::findOrfail($id);
         if($currentuser->id == $task->user_id ){
-            if($currentuser->role == "President"){
+            if($currentuser->hasRole('President')){
                 $users = User::where('id','!=',Auth::user()->id)->lists('username','id');
-            }else if($currentuser->role == "Head"){
-                $users = Vertical::findOrfail($currentuser->verticals[0]->id)->users()->where('role','=','Member')->lists('username','id');
+            }else if($currentuser->hasRole('Head') && !$currentuser->hasRole('President')){
+                $users = Vertical::findOrfail($currentuser->verticals[0]->id)->users()->whereIn('username', User::WithMainRole('Member'))->lists('username','id');
             }
             return view('tasks.edit',compact('task','currentuser','users'));
         }else{
@@ -154,7 +154,8 @@ class TasksController extends Controller
     }
 
     public function updatestatus($id){
-        Task::where('id',$id)->update(array('status'=>1));
+        $task =Task::where('id',$id)->update(array('status'=>1));
+        //dd($task);
         return redirect('tasks');
     }
 

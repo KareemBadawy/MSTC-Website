@@ -20,18 +20,18 @@ class ScoresController extends Controller
 
 
     public function index(){
-    	if(Auth::user()->role == 'ViceHead' ){
+    	if(Auth::user()->hasRole('Vice Head') && !Auth::user()->hasRole('Head') ){
     		$scores = Score::where('own_user_id', '=', Auth::user()->id)->orderBy('id', 'desc')->take(20)->get();
-    	} else if (Auth::user()->role != 'Member') {
+    	} else if (Auth::user()->hasRole('Head')) {
     		$scores = Score::orderBy('id','desc')->take(40)->get();
     	}
     	return view('scores.index', compact('scores'));
     }
 
     public function getByuser($user_id){
-    	if(Auth::user()->role == 'ViceHead' ){
+    	if(Auth::user()->hasRole('Vice Head') && !Auth::user()->hasRole('Head') ){
     		$scores = User::findorfail($user_id)->scores()->where('own_user_id', '=', Auth::user()->id)->orderBy('id', 'desc')->take(20)->get();
-    	} else if (Auth::user()->role != 'Member') {
+    	} else if (Auth::user()->hasRole('Head')) {
     		$scores = User::findorfail($user_id)->scores()->orderBy('id', 'desc')->take(40)->get();
     	}
     	return view('scores.index', compact('scores'));
@@ -39,7 +39,7 @@ class ScoresController extends Controller
 
     public function show($id){
     	$scores = Task::findorfail($id)->scores;
-    	//dd($scores);
+    	//dd(count($scores));
     	return view('scores.show', compact('scores'));
     }
 

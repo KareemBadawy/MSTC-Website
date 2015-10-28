@@ -9,6 +9,8 @@
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	<link href="{{ asset('font-awesome-4.4.0/css/font-awesome.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/simple-sidebar.css') }}" rel="stylesheet">
+	<link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet"/>
+
 	<style>
 		.brand {height:40px;
 			margin-bottom: -7px;
@@ -112,7 +114,11 @@
 </div>
 <!-- /#wrapper -->
 <!-- jQuery -->
+
 <script src="{{ asset('sidebar_menu.js') }}"></script>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+@yield('footer')
 </body>
 
 </html>

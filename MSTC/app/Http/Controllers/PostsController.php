@@ -24,9 +24,8 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $currentverticals = Auth::user()->verticals;
-        $posts = Post::latest('id')->get();   
-        return view('posts.index',compact('posts', 'currentverticals'));
+        $currentverticals = Auth::user()->verticals;  
+        return view('posts.index',compact('currentverticals'));
     }
 
     public function post_vertical($vertical_id)

@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-    @if($scores != null)
+    @if(count($scores))
     @foreach($scores as $score)
         <article>
         <h1>Score of the {{ App\Task::findorfail($score->task_id)->title}} for {{App\User::findorfail($score->user_id)->username}}</h1>
@@ -16,7 +16,7 @@
         </article>
         <hr>
         <hr>
-        
+        <h2>There is no previous  Scores for this task</h2>
     @endforeach
     @else
         <h2>There is no previous  Scores for this task</h2>
