@@ -92,12 +92,25 @@
             -ms-filter: blur(5px);
             filter: blur(5px);
         }
+        @media screen and (max-width: 990px) {
+            #about {
+                background: #fab133;
+            }
+        }
+        @media (min-width: 990px) {
+        #about{
+            background: #fab133 url('{{ asset('image/about-bk.png') }}') left no-repeat;-webkit-background-size: contain;
+            -moz-background-size: contain;
+            -o-background-size: contain;
+            background-size: contain;
+        }
+        }
     </style>
 </head>
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" data-offset="60">
 
 <!--navbar-->
-<nav class="navbar navbar-default navbar-fixed-top supreme-container" role="navigation" style="margin-bottom: 60px">
+<nav class="navbar navbar-default navbar-fixed-top supreme-container" role="navigation">
     <div class="container">
         <div class="navbar-header page-scroll">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -374,10 +387,7 @@
 </div>
 
 <!--about-->
-<div id="about" class="container-fluid fill supreme-container" style="background: #fab133 url('{{ asset('image/about-bk.png') }}') left no-repeat;-webkit-background-size: contain;
-        -moz-background-size: contain;
-        -o-background-size: contain;
-        background-size: contain;">
+<div id="about" class="container-fluid fill supreme-container">
     <div class="container">
         <div class="container-fluid" style="padding-bottom: 40px">
             <div class="row">
