@@ -461,104 +461,11 @@
     </div>
 </div>
 
-<!--contact us-->
-<div id="contact" class="container-fluid fill supreme-container" style="background-color: white">
-    <div class="container">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-3 wow animated fadeInDown"style="text-align: center;font-size: 36px;padding-top: 40px">Contact Us</div>
-                <div class="col-md-9"></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="container-fluid" style="padding-top: 40px;padding-bottom: 40px">
-
-            <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-5">
-                    <form role="form">
-                        <div class="form-group wow animated fadeInLeft">
-                            <input type="text" class="form-control input-lg" id="name" placeholder="Name">
-                        </div>
-                    </form>
-                </div>
-                <div class="col-md-1"></div>
-                <div class="col-md-5">
-                    <form role="form">
-                        <div class="form-group wow fadeInRight">
-                            <input type="email" class="form-control input-lg" id="email" placeholder="Email">
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <div class="row"style="padding-top: 30px">
-                <div class="col-md-1"></div>
-                <div class="col-md-11">
-                    <form role="form">
-                        <div class="form-group wow fadeInUpBig">
-                            <input type="text" class="form-control input-lg" id="pwd" placeholder="Title">
-                        </div>
-
-                    </form>
-                </div>
-            </div>
-
-            <div class="row"style="padding-top: 30px">
-                <div class="col-md-1"></div>
-                <div class="col-md-11">
-                    <form role="form">
-                        <div class="form-group wow zoomIn">
-                            <textarea  class="form-control input-lg" rows="10" id="comment" placeholder="Message"></textarea>
-                        </div>
-
-                    </form>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-5"></div>
-                <div class="col-md-2">
-                    <a href="#"  class="btn btn-warning btn-lg wow rotateInUpLeft" role="button" style="color: white">Submit</a>
-                </div>
-                <div class="col-md-5"></div>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<div id="subscribe" class="fill" style="background-color: #333">
+<!--Contact us-->
+@include('/contactus')
 
 <!--Subscribe-->
-<div class="container-fluid supreme-container" style="border-top:solid #eeeeee;border-top-width:1px;height:15%;background-color: white;display:flex;justify-content:center;align-items:center;">
-    <div class="container">
-        <div class="container-fluid">
-            <p style="text-align: center;font-size: 16px;padding-top: 10px">
-                Please write your email here so you can get our latest news via email.
-            </p>
-    <div class="row wow slideInDown">
-        <div class="col-md-2"></div>
-        <div class="col-md-6">
-            {!! Form::open(['url' => '/']) !!}
-                <div class="form-group">
-                    {!! Form::text('email', null, ['class'=>'form-control input','placeholder'=>'Email','data-validate'=>'required,email']) !!}
-                </div>
-
-        </div>
-        <div class="col-md-2">
-            <div class = "form-group">
-            {!! Form::submit('Subscribe', ['class' => 'btn btn2-primary2 form-control submit']) !!}
-            </div>
-            {!! Form::close() !!}
-        </div>
-        <div class="col-md-2"></div>
-    </div>
-        </div>
-    </div>
-</div>
+@include('/subscribtions/subscribe')
 
 <!--footer-->
 <div class="container-fluid fillo supreme-container" style="height:85%;background-color: #333">

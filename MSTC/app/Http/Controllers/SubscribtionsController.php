@@ -29,6 +29,6 @@ class SubscribtionsController extends Controller
     public function store(SubscribtionRequest $request)
     {
         Subscribtion::create($request->all());
-        return redirect('/');
+        return redirect('/#subscribe');
     }
 }

@@ -99,11 +99,16 @@ Route::group([],function(){
 	Route::get('events/{events}', 'EventsController@show');
 /*----------------------------------------------------------------------------------*/
 // Submit Subscribtions Routes
-	Route::post('/', 'SubscribtionsController@store');
+	Route::post('subscribe', 'SubscribtionsController@store');
+	Route::get('subscribe', function(){});
 /*----------------------------------------------------------------------------------*/
 // User Routes
 	Route::get('auth/login', 'Auth\AuthController@getLogin');
 	Route::post('auth/login', 'Auth\AuthController@postLogin');
+/*----------------------------------------------------------------------------------*/
+// Contact Us Routes
+	Route::post('contactus', 'ContactUsController@getContactUs');
+	Route::get('contactus', function(){});
 /*----------------------------------------------------------------------------------*/
 }); // End of Public Access Group
 
