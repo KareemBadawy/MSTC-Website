@@ -94,8 +94,50 @@
         }
     </style>
 </head>
-<body>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" data-offset="60">
 
+<!--navbar-->
+<nav class="navbar navbar-default navbar-fixed-top supreme-container" role="navigation" style="margin-bottom: 60px">
+    <div class="container">
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" href="#page-top">
+                <img class="img" src="{{ asset('image/logo.png') }}" alt="logo" style="max-width: 100px">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a class="page-scroll" href="#page-top">Home</a></li>
+                <li><a class="page-scroll" href="#projects">Projects</a></li>
+                <li><a class="page-scroll" href="#news">News</a></li>
+                <li><a class="page-scroll" href="#about">About</a></li>
+                <li><a class="page-scroll" href="#contact">Contact Us</a></li>
+                <li><a class="page-scroll" href="#subscribe">Subscribe</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li style="padding-top: 3px;padding-right: 10px">
+                    @if(Auth::check())
+                    <img data-toggle="dropdown" src="{{ asset('image/slider/19%20-%20Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="48" height="48"style="display : block; margin : auto;">
+                    <ul class="dropdown-menu">
+                        <li><a href="/profile">Profile</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/auth/logout">Logout</a></li>
+                    </ul>
+                    @else
+                        <ul class="nav">
+                            <li><a href="#subscribe" data-toggle="modal" data-target="#myModal">Sign in</a></li>
+                        </ul>
+                    @endif
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 <!-- Sign in -->
 @include('/auth/login')
 
@@ -107,7 +149,12 @@
         </div>
         <div class="col-md-2 col-md-offset-7">
             @if(Auth::check())
-                <button type="button" class="btn1 btn1-primary1 btn1-lg1 outline1" data-toggle="modal" data-target="#myModal">{{Auth::user()->username}}</button>
+                <img data-toggle="dropdown" src="{{ asset('image/slider/19%20-%20Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="50" height="50"style="display : block; margin : auto;">
+                <ul class="dropdown-menu">
+                    <li><a href="/profile">Profile</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="/auth/logout">Logout</a></li>
+                </ul>
             @else
                 <button type="button" class="btn1 btn1-primary1 btn1-lg1 outline1" data-toggle="modal" data-target="#myModal">Sign in</button>
             @endif
@@ -188,7 +235,7 @@
 </header>
 
 <!--projects-->
-<div class="container-fluid fill supreme-container" style="background-color: white">
+<div id="projects" class="container-fluid fill supreme-container" style="background-color: white">
     <div class="container">
         <div class="container-fluid" style="padding-bottom: 40px">
 
@@ -285,7 +332,7 @@
 </div>
 
 <!--news-->
-<div class="container-fluid fill supreme-container" style="background-color: #f1f1f1;padding-bottom: 40px">
+<div id="news" class="container-fluid fill supreme-container" style="background-color: #f1f1f1;padding-bottom: 40px">
     <!--title-->
     <div class="container">
         <div class="container-fluid">
@@ -327,7 +374,7 @@
 </div>
 
 <!--about-->
-<div class="container-fluid fill supreme-container" style="background: #fab133 url('{{ asset('image/about-bk.png') }}') left no-repeat;-webkit-background-size: contain;
+<div id="about" class="container-fluid fill supreme-container" style="background: #fab133 url('{{ asset('image/about-bk.png') }}') left no-repeat;-webkit-background-size: contain;
         -moz-background-size: contain;
         -o-background-size: contain;
         background-size: contain;">
@@ -405,7 +452,7 @@
 </div>
 
 <!--contact us-->
-<div class="container-fluid fill supreme-container" style="background-color: white">
+<div id="contact" class="container-fluid fill supreme-container" style="background-color: white">
     <div class="container">
         <div class="container-fluid">
             <div class="row">
@@ -473,7 +520,7 @@
     </div>
 </div>
 
-<div class="fill" style="background-color: #333">
+<div id="subscribe" class="fill" style="background-color: #333">
 
 <!--Subscribe-->
 <div class="container-fluid supreme-container" style="border-top:solid #eeeeee;border-top-width:1px;height:15%;background-color: white;display:flex;justify-content:center;align-items:center;">
@@ -482,7 +529,7 @@
             <p style="text-align: center;font-size: 16px;padding-top: 10px">
                 Please write your email here so you can get our latest news via email.
             </p>
-    <div class="row">
+    <div class="row wow slideInDown">
         <div class="col-md-2"></div>
         <div class="col-md-6">
             {!! Form::open(['url' => '/']) !!}
@@ -593,8 +640,32 @@
 <!-- Verify.js (with Notify.js included) -->
 <script src="{{ asset('js/verify.notify.min.js') }}"></script>
 <script src="{{ asset('js/wow.min.js') }}"></script>
+<script src="{{ asset('js/jquery.easing.min.js') }}"></script>
+<script src="{{ asset('js/scrolling-nav.js') }}"></script>
 <script>
     new WOW().init();
+    (function ($) {
+        $(document).ready(function(){
+
+            // hide .navbar first
+            $(".navbar").hide();
+
+            // fade in .navbar
+            $(function () {
+                $(window).scroll(function () {
+                    // set distance user needs to scroll before we fadeIn navbar
+                    if ($(this).scrollTop() > 60) {
+                        $('.navbar').fadeIn();
+                    } else {
+                        $('.navbar').fadeOut();
+                    }
+                });
+
+
+            });
+
+        });
+    }(jQuery));
 </script>
 </body>
 </html>
