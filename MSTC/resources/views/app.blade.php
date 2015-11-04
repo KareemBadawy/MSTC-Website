@@ -115,7 +115,7 @@
 <!-- /#wrapper -->
 <!-- jQuery -->
 
-<script src="{{ asset('sidebar_menu.js') }}"></script>
+<script src="{{ asset('js/sidebar_menu.js') }}"></script>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
 @yield('footer')

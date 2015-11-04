@@ -5,12 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <!-- Verify.js (with Notify.js included) -->
-    <script src="{{ asset('verify.notify.min.js') }}"></script>
     <link href="{{ asset('css/full-slider.css') }}" rel="stylesheet">
     <link href="{{ asset('css/button.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
     <style>
         @font-face{
             font-family: "Thonburi-Bold";
@@ -103,13 +100,12 @@
 @include('/auth/login')
 
 <!--header-->
-<div class="container ontopheader supreme-container" style="display:flex;justify-content:center;align-items:center;">
+<div class="container ontopheader supreme-container" style="justify-content:center;align-items:center;margin-top: 20px">
     <div class="row">
-        <div class="col-md-3">
-            <img class="img-responsive" src="{{ asset('image/logo-white.png') }}" alt="logo">
+        <div class="col-md-3" style="margin-bottom: 20px">
+            <img class="img animated fadeInDown" src="{{ asset('image/logo-white.png') }}" alt="logo" style="max-width: 250px">
         </div>
-        <div class="col-md-7"></div>
-        <div class="col-md-2">
+        <div class="col-md-2 col-md-offset-7">
             @if(Auth::check())
                 <button type="button" class="btn1 btn1-primary1 btn1-lg1 outline1" data-toggle="modal" data-target="#myModal">{{Auth::user()->username}}</button>
             @else
@@ -194,7 +190,7 @@
 <!--projects-->
 <div class="container-fluid fill supreme-container" style="background-color: white">
     <div class="container">
-        <div class="container-fluid">
+        <div class="container-fluid" style="padding-bottom: 40px">
 
             <ul class="nav nav-tabs nav-justified">
                 <li class="active"><a data-toggle="tab" href="#home">Upcomming</a></li>
@@ -294,14 +290,14 @@
     <div class="container">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-3"style="text-align: center;font-size: 36px;padding-top: 40px">News</div>
+                <div class="col-md-3 wow animated fadeInDown"style="text-align: center;font-size: 36px;padding-top: 40px">News</div>
                 <div class="col-md-9"></div>
             </div>
         </div>
     </div>
 
     <div class="container">
-        <div class="container-fluid">
+        <div class="container-fluid" style="padding-bottom: 40px">
             <div class="row">
                 <div class="col-md-3"style="padding-top: 40px">
                     <img src="{{ asset('image/slider/19%20-%20Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="200" height="200"style="display : block; margin : auto;">
@@ -336,7 +332,7 @@
         -o-background-size: contain;
         background-size: contain;">
     <div class="container">
-        <div class="container-fluid">
+        <div class="container-fluid" style="padding-bottom: 40px">
             <div class="row">
                 <div class="col-md-2" ></div>
                 <div class="col-md-2" style="text-align: center;font-size: 36px;padding-top: 40px;color:white">About</div>
@@ -413,20 +409,20 @@
     <div class="container">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-3"style="text-align: center;font-size: 36px;padding-top: 40px">Contact Us</div>
+                <div class="col-md-3 wow animated fadeInDown"style="text-align: center;font-size: 36px;padding-top: 40px">Contact Us</div>
                 <div class="col-md-9"></div>
             </div>
         </div>
     </div>
 
     <div class="container">
-        <div class="container-fluid" style="padding-top: 40px">
+        <div class="container-fluid" style="padding-top: 40px;padding-bottom: 40px">
 
             <div class="row">
                 <div class="col-md-1"></div>
                 <div class="col-md-5">
                     <form role="form">
-                        <div class="form-group">
+                        <div class="form-group wow animated fadeInLeft">
                             <input type="text" class="form-control input-lg" id="name" placeholder="Name">
                         </div>
                     </form>
@@ -434,7 +430,7 @@
                 <div class="col-md-1"></div>
                 <div class="col-md-5">
                     <form role="form">
-                        <div class="form-group">
+                        <div class="form-group wow fadeInRight">
                             <input type="email" class="form-control input-lg" id="email" placeholder="Email">
                         </div>
                     </form>
@@ -445,7 +441,7 @@
                 <div class="col-md-1"></div>
                 <div class="col-md-11">
                     <form role="form">
-                        <div class="form-group">
+                        <div class="form-group wow fadeInUpBig">
                             <input type="text" class="form-control input-lg" id="pwd" placeholder="Title">
                         </div>
 
@@ -457,7 +453,7 @@
                 <div class="col-md-1"></div>
                 <div class="col-md-11">
                     <form role="form">
-                        <div class="form-group">
+                        <div class="form-group wow zoomIn">
                             <textarea  class="form-control input-lg" rows="10" id="comment" placeholder="Message"></textarea>
                         </div>
 
@@ -468,7 +464,7 @@
             <div class="row">
                 <div class="col-md-5"></div>
                 <div class="col-md-2">
-                    <a href="#"  class="btn btn-warning btn-lg" role="button" style="color: white">Submit</a>
+                    <a href="#"  class="btn btn-warning btn-lg wow rotateInUpLeft" role="button" style="color: white">Submit</a>
                 </div>
                 <div class="col-md-5"></div>
             </div>
@@ -476,6 +472,8 @@
         </div>
     </div>
 </div>
+
+<div class="fill" style="background-color: #333">
 
 <!--Subscribe-->
 <div class="container-fluid supreme-container" style="border-top:solid #eeeeee;border-top-width:1px;height:15%;background-color: white;display:flex;justify-content:center;align-items:center;">
@@ -588,5 +586,15 @@
     </div>
 </div>
 
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<!-- Verify.js (with Notify.js included) -->
+<script src="{{ asset('js/verify.notify.min.js') }}"></script>
+<script src="{{ asset('js/wow.min.js') }}"></script>
+<script>
+    new WOW().init();
+</script>
 </body>
 </html>
