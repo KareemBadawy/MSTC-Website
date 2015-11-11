@@ -4,9 +4,9 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
- /* Toggle Styles */
+/* Toggle Styles */
 
- #wrapper {
+#wrapper {
     padding-left: 0;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
@@ -22,7 +22,8 @@
 
 #sidebar-wrapper {
     z-index: 1000;
-    position: absolute; 
+    position:fixed;
+    margin-top:55px;
     left: 250px;
     width: 0;
     height: 100%;
@@ -42,15 +43,17 @@
 #page-content-wrapper {
     position: absolute;
     padding: 15px;
-    width: 100%;  
-    overflow-x: hidden; 
+    width: 100%;
+    overflow-x: hidden;
+
 }
 .xyz{
     min-width: 360px;
+    margin-top:40px;
 }
 #wrapper.toggled #page-content-wrapper {
     position: relative;
-    margin-right: 0px; 
+    margin-right: 0px;
 }
 .fixed-brand{
     width: auto;

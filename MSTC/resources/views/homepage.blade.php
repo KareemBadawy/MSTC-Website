@@ -5,9 +5,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="shortcut icon" src=icon.ico" />
     <link href="{{ asset('css/full-slider.css') }}" rel="stylesheet">
     <link href="{{ asset('css/button.css') }}" rel="stylesheet">
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/verify.notify.min.js') }}"></script>
+    <script src="{{ asset('js/wow.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('js/scrolling-nav.js') }}"></script>
     <style>
         @font-face{
             font-family: "Thonburi-Bold";
@@ -18,6 +25,12 @@
             font-family: Thonburi-Bold;
         }
 
+        .form-control:focus {
+            border-color: #fab133;
+            outline: 0;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+        }
         .carousel-control.left, .carousel-control.right {
             background-image: none;
             z-index:7;
@@ -137,13 +150,14 @@
                     @if(Auth::check())
                     <img data-toggle="dropdown" src="{{ asset('image/slider/19%20-%20Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="48" height="48"style="display : block; margin : auto;">
                     <ul class="dropdown-menu">
+                        <li><a href="/dashboard">Dashboard</a></li>
                         <li><a href="/profile">Profile</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="/auth/logout">Logout</a></li>
                     </ul>
                     @else
                         <ul class="nav">
-                            <li><a href="#subscribe" data-toggle="modal" data-target="#myModal">Sign in</a></li>
+                            <li><a href="#subscribe" data-toggle="modal" style="background:none;" data-target="#myModal">Sign in</a></li>
                         </ul>
                     @endif
                 </li>
@@ -164,6 +178,7 @@
             @if(Auth::check())
                 <img data-toggle="dropdown" src="{{ asset('image/slider/19%20-%20Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="50" height="50"style="display : block; margin : auto;">
                 <ul class="dropdown-menu">
+                    <li><a href="/dashboard">Dashboard</a></li>
                     <li><a href="/profile">Profile</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="/auth/logout">Logout</a></li>
@@ -178,7 +193,7 @@
 <!--Slider-->
 <header id="myCarousel supreme-container" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
-    <ol class="carousel-indicators">
+    <ol class="carousel-indicators supreme-container">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
@@ -186,7 +201,7 @@
     </ol>
 
     <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
+    <div class="carousel-inner supreme-container" role="listbox">
         <div class="item active">
             <div class="filll" style="background-color: black; opacity: 0.6"></div>
             <div class="fill" style="background-image:url('{{ asset('image/slider/1.jpg') }}');"></div>
@@ -237,11 +252,11 @@
     </div>
 
     <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+    <a class="left carousel-control supreme-container" href="#myCarousel" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
     </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+    <a class="right carousel-control supreme-container" href="#myCarousel" role="button" data-slide="next">
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </a>
@@ -506,43 +521,43 @@
 
             <!--social media-->
             <div class="row">
-                <div class="col-md-4" ></div>
-                <div class="col-md-1" >
+                <div class="col-xs-0 col-md-4" ></div>
+                <div class="col-xs-1" style="margin:20px;padding-left:-10px;" >
                     <a title="Follow MSTC on Facebook" href="https://www.facebook.com/AlexUTC" target="_blank">
                         <img onmouseover="this.src='{{ asset('image/social/f-c.png') }}'"
                              onmouseout="this.src='{{ asset('image/social/f.png') }}'"
                              alt="Follow MSTC on Facebook"
                              src="{{ asset('image/social/f.png') }}" /></a>
                 </div>
-                <div class="col-md-1" >
+                <div class="col-xs-1" style="margin:20px;padding-left:-10px;" >
                     <a title="Follow MSTC on Twitter" href="https://twitter.com/MSTCAlex" target="_blank">
                         <img onmouseover="this.src='{{ asset('image/social/t-c.png') }}'"
                              onmouseout="this.src='{{ asset('image/social/t.png') }}'"
                              alt="Follow MSTC on Twitter"
                              src="{{ asset('image/social/t.png') }}" /></a>
                 </div>
-                <div class="col-md-1" >
+                <div class="col-xs-1" style="margin:20px;padding-left:-10px" >
                     <a title="Follow MSTC on YouTube" href="https://www.youtube.com/channel/UCJ6e8iFzj0d4loO12cD5qiA" target="_blank">
                         <img onmouseover="this.src='{{ asset('image/social/y-c.png') }}'"
                              onmouseout="this.src='{{ asset('image/social/y.png') }}'"
                              alt="Follow MSTC on YouTube"
                              src="{{ asset('image/social/y.png') }}" /></a>
                 </div>
-                <div class="col-md-1" >
+                <div class="col-xs-1" style="margin:20px;padding-left:-10px;">
                     <a title="Follow MSTC on LinkedIn" href="https://www.linkedin.com/company/microsoft-student-tech-club---alexandria-university" target="_blank">
                         <img onmouseover="this.src='{{ asset('image/social/in-c.png') }}'"
                              onmouseout="this.src='{{ asset('image/social/in.png') }}'"
                              alt="Follow MSTC on LinkedIn"
                              src="{{ asset('image/social/in.png') }}" /></a>
                 </div>
-                <div class="col-md-4" ></div>
+                <div class="col-xs-4" ></div>
             </div>
 
             <!--copyrights-->
             <div class="row">
                 <div class="col-md-3" ></div>
                 <div class="col-md-6">
-                    <p style="text-align: center;font-size: 12px;padding-top: 10px;color:white">© 2015 - All rights reserved <a href="#" >Microsoft Student Tech Club - Alexandria University</a></p>
+                    <p style="text-align: center;font-size: 12px;padding-top: 10px;color:white">&copy 2015 - All rights reserved <a href="#" >Microsoft Student Tech Club - Alexandria University</a></p>
                 </div>
                 <div class="col-md-3" ></div>
             </div>
@@ -552,13 +567,7 @@
 
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<!-- Verify.js (with Notify.js included) -->
-<script src="{{ asset('js/verify.notify.min.js') }}"></script>
-<script src="{{ asset('js/wow.min.js') }}"></script>
-<script src="{{ asset('js/jquery.easing.min.js') }}"></script>
-<script src="{{ asset('js/scrolling-nav.js') }}"></script>
+
 <script>
     new WOW().init();
     (function ($) {

@@ -18,14 +18,14 @@
 	</style>
 </head>
 <body>
-<nav class="navbar navbar-default no-margin">
+<nav class="navbar navbar-default no-margin navbar-fixed-top">
 	<!-- Brand and toggle get grouped for better mobile display -->
 	<div class="navbar-header fixed-brand">
 		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"  id="menu-toggle">
 			<span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
 		</button>
 		<div  style="padding: 10px">
-			<a href="MSTC-Website">
+			<a href="/">
 			<img class="brand" src="{{ asset('image/logo.png') }}" alt="logo" >
 			</a>
 		</div>
@@ -48,9 +48,10 @@
 					<span class="fa fa-bell" aria-hidden="true"></span>
 				</button>
 			</li>
-			<li style="padding-top: 3px;padding-right: 10px">
+			<li style="padding-top: 3px;padding-right: 25px">
 				<img data-toggle="dropdown" src="{{ asset('image/slider/19%20-%20Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="50" height="50"style="display : block; margin : auto;">
 				<ul class="dropdown-menu">
+
 					<li><a href="/profile">Profile</a></li>
 					<li role="separator" class="divider"></li>
 					<li><a href="/auth/logout">Logout</a></li>
