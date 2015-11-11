@@ -25,7 +25,9 @@
 			<span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
 		</button>
 		<div  style="padding: 10px">
+			<a href="MSTC-Website">
 			<img class="brand" src="{{ asset('image/logo.png') }}" alt="logo" >
+			</a>
 		</div>
 
 	</div>

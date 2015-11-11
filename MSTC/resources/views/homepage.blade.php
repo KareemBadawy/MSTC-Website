@@ -463,7 +463,7 @@
 
 <!--Contact us-->
 @include('/contactus')
-
+<div id="subscribe" class="fill" style="background-color: #333">
 <!--Subscribe-->
 @include('/subscribtions/subscribe')
 

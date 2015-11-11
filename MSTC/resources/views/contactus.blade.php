@@ -57,5 +57,3 @@
         </div>
     </div>
 </div>
-
-<div id="subscribe" class="fill" style="background-color: #333">
