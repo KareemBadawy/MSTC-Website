@@ -1,10 +1,10 @@
-@extends('app')
 
-@section('title')
+
+
 	<title>New Post</title>
-@stop
 
-@section('content')
+
+
 
     <h1>Write a New Post</h1>
     <hr/>
@@ -15,4 +15,3 @@
     
     @include('errors.list')
 
-@stop

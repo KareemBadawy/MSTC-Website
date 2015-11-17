@@ -1,14 +1,9 @@
-@extends('app')
 
-@section('title')
+
     <title>New Event</title>
-@stop
 
-@section('side')
-    
-@stop
 
-@section('content')
+
 
     <h1>Write a New Event</h1>
     <hr/>
@@ -18,5 +13,3 @@
     {!! Form::close() !!}
     
     @include('errors.list')
-
-@stop
