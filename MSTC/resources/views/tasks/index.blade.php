@@ -6,9 +6,11 @@
 
 @section('content')
      <ul>
+        @if($currentuser->hasrole('Member') && !$currentuser->hasrole('Vice Head'))
         <li><a href="{{action('TasksController@index')}}">Tasks</a></li>
         <li><a href="{{action('TasksController@index')}}">Not Finished</a></li>
         <li><a href="{{ action('TasksController@finished')}}">Finished</a></li>
+        @endif
         @if($currentuser->hasrole('Vice Head'))
         <li><a href="{{ action('TasksController@create')}}">New Task</a></li>
         <li><a href="{{ action('TasksController@owntasks')}}">owntasks</a></li>

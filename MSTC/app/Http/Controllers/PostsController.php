@@ -30,10 +30,9 @@ class PostsController extends Controller
 
     public function post_vertical($vertical_id)
     {
-        $currentverticals = Auth::user()->verticals;
+        $vertical = Vertical::findOrfail($vertical_id);
         $posts = Vertical::findOrfail($vertical_id)->posts;
-
-        return view('posts.index',compact('posts', 'currentverticals'));
+        return view('posts.Postsforeachvertical',compact('posts', 'vertical'));
     }
 
     /**
