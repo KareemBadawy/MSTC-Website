@@ -112,7 +112,7 @@
         }
         @media (min-width: 990px) {
         #about{
-            background: #fab133 url('{{ asset('image/about-bk.png') }}') left no-repeat;-webkit-background-size: contain;
+            background: #fab133 url('{{ asset('image/about-bk.png') }}') left no-repeat fixed;-webkit-background-size: contain;
             -moz-background-size: contain;
             -o-background-size: contain;
             background-size: contain;
@@ -120,6 +120,7 @@
         }
     </style>
 </head>
+
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" data-offset="60">
 
 <!--navbar-->
@@ -165,6 +166,7 @@
         </div>
     </div>
 </nav>
+
 <!-- Sign in -->
 @include('/auth/login')
 
@@ -593,5 +595,6 @@
         });
     }(jQuery));
 </script>
+
 </body>
 </html>

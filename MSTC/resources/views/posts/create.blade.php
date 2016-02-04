@@ -1,6 +1,6 @@
+@extends('app')
 
-
-
+@section('content')
 	<title>New Post</title>
 
 
@@ -15,3 +15,4 @@
     
     @include('errors.list')
 
+@stop

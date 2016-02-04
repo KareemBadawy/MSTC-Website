@@ -63,7 +63,6 @@
 </nav>
 
 <div id="wrapper">
-	<!-- Sidebar -->
 	<div id="sidebar-wrapper">
 		<ul class="sidebar-nav nav-pills nav-stacked" id="menu">
 			<li class="activable active">
@@ -74,24 +73,24 @@
 			<li>
 				<a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-flag fa-stack-1x "></i></span> Vertical</a>
 				<ul class="nav-pills nav-stacked" style="list-style-type:none;">
-				@if(Auth::check())
-				@foreach(Auth::user()->verticals as $vertical)
-					<li class="activable"><a class="colorable" href="{{ action('PostsController@post_vertical' , [$vertical->id]) }}"><span class="fa-stack fa-lg pull-left"><i class="{{ $icon[$vertical->name] }}"></i></span>{{ $vertical->name }}</a></li>
-				@endforeach
-				@endif
+					@if(Auth::check())
+						@foreach(Auth::user()->verticals as $vertical)
+							<li class="activable"><a class="colorable" href="{{ action('PostsController@post_vertical' , [$vertical->id]) }}"><span class="fa-stack fa-lg pull-left"><i class="{{ $icon[$vertical->name] }}"></i></span>{{ $vertical->name }}</a></li>
+						@endforeach
+					@endif
 				</ul>
 			</li>
 			<li class="activable">
 				<a class="colorable" href="{{ action('TasksController@index') }}"><span class="fa-stack fa-lg pull-left"><i class="fa  fa-tasks fa-stack-1x "></i></span>Tasks</a>
 			</li>
 			<li class="activable">
-				<a href="#"> <span class="fa-stack fa-lg pull-left"><i class="fa fa-pie-chart fa-stack-1x "></i></span>Polls</a>
+				<a href="#" class="colorable"> <span class="fa-stack fa-lg pull-left"><i class="fa fa-pie-chart fa-stack-1x "></i></span>Polls</a>
 			</li>
 			<li>
 				<a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-plus-square fa-stack-1x "></i></span>Create</a>
 				<ul class="nav-pills nav-stacked" style="list-style-type:none;">
 					<li  class="activable"><a  class="colorable" href="/posts/create" ><span class="fa-stack fa-lg pull-left"><i class="fa fa-pencil-square fa-stack-1x "></i></span>Post</a></li>
-					<li class="activable"><a class="colorable" href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-tasks fa-stack-1x "></i></span>Task</a></li>
+					<li class="activable"><a class="colorable" href="/tasks/create"><span class="fa-stack fa-lg pull-left"><i class="fa fa-tasks fa-stack-1x "></i></span>Task</a></li>
 					<li class="activable"><a class="colorable" href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-bar-chart fa-stack-1x "></i></span>Poll</a></li>
 					<li class="activable"><a class="colorable" href="/news/create"><span class="fa-stack fa-lg pull-left"><i class="fa fa-newspaper-o fa-stack-1x "></i></span>News</a></li>
 					<li class="activable"><a class="colorable" href="/events/create" ><span class="fa-stack fa-lg pull-left"><i class="fa fa-ticket fa-stack-1x "></i></span>Event</a></li>
@@ -101,7 +100,7 @@
 			</li>
 		</ul>
 	</div><!-- /#sidebar-wrapper -->
-	<!-- Page Content -->
+
 	<div id="page-content-wrapper">
 		<div class="container-fluid xyz">
 			<div class="row">
@@ -112,7 +111,9 @@
 		</div>
 	</div>
 	<!-- /#page-content-wrapper -->
+	<!-- Sidebar -->
 
+	<!-- Page Content -->
 </div>
 <!-- /#wrapper -->
 <!-- jQuery -->
@@ -123,6 +124,14 @@
 <script src="{{ asset('js/jquery.pjax.js') }}"></script>
 <script>
 	$(document).pjax('a', '#pjax-container')
+	$(document).ready(function(){
+
+		// does current browser support PJAX
+		if ($.support.pjax) {
+			$.pjax.defaults.timeout = 1000; // time in milliseconds
+		}
+
+	});
 	$('.activable').click(function(){
 		$('.activable').removeClass('active');
 		$(this).addClass('active');
