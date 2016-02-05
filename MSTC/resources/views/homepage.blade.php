@@ -26,7 +26,7 @@
         }
 
         .form-control:focus {
-            border-color: #fab133;
+            border-color: #01a4f1;
             outline: 0;
             -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
             box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
@@ -45,16 +45,16 @@
             z-index: 999;
         }
         a {
-            color: #fab133;
+            color: #01a4f1;
         }
         a:link {
-            color: #fab133;
+            color: #01a4f1;
         }
         a:visited {
-            color: #fab133;
+            color: #01a4f1;
         }
         a:hover {
-            color: #fab133;
+            color: #01a4f1;
         }
         textarea:focus,
         input[type="text"]:focus,
@@ -72,7 +72,7 @@
         input[type="tel"]:focus,
         input[type="color"]:focus,
         .uneditable-input:focus {
-            border-color: #fab133;
+            border-color: #01a4f1;
 
         }
 
@@ -107,16 +107,19 @@
         }
         @media screen and (max-width: 990px) {
             #about {
-                background: #fab133;
+                background: #01a4f1;
             }
         }
         @media (min-width: 990px) {
         #about{
-            background: #fab133 url('{{ asset('image/about-bk.png') }}') left no-repeat fixed;-webkit-background-size: contain;
+            background: #01a4f1 url('{{ asset('image/about-bk.png') }}') left no-repeat fixed;-webkit-background-size: contain;
             -moz-background-size: contain;
             -o-background-size: contain;
             background-size: contain;
         }
+        }
+        .brand {height:40px;
+            margin-bottom: -7px;
         }
     </style>
 </head>
@@ -126,16 +129,20 @@
 <!--navbar-->
 <nav class="navbar navbar-default navbar-fixed-top supreme-container" role="navigation">
     <div class="container">
-        <div class="navbar-header page-scroll">
+        <div class="navbar-header fixed-brand page-scroll">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand page-scroll" href="#page-top">
-                <img class="img" src="{{ asset('image/logo.png') }}" alt="logo" style="max-width: 100px">
-            </a>
+
+                <div style="padding: 10px">
+                    <a class="page-scroll" href="#page-top">
+                        <img class="brand" src="{{ asset('image/logo.png') }}" alt="logo" >
+                    </a>
+                </div>
+
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
@@ -186,7 +193,7 @@
                     <li><a href="/auth/logout">Logout</a></li>
                 </ul>
             @else
-                <button type="button" class="btn1 btn1-primary1 btn1-lg1 outline1" data-toggle="modal" data-target="#myModal">Sign in</button>
+                <button type="button" class="btn1 btn1-primary1 btn1-lg1 outline1" data-toggle="modal" data-target="#myModal">Sign In</button>
             @endif
         </div>
     </div>
@@ -211,7 +218,7 @@
                 <h1>End of summer courses</h1>
                 <h4>Web development , character design and windows phone.</h4>
                 <br>
-                <a href="#" class="btn btn-warning" role="button" style="color: white">Learn More</a>
+                <a href="#" class="btn btn-primary" role="button" style="color: white">Learn More</a>
                 <br>  <br>  <br>
             </div>
         </div>
@@ -223,7 +230,7 @@
                 <h1>End of summer courses</h1>
                 <h4>Web development , character design and windows phone.</h4>
                 <br>
-                <a href="#" class="btn btn-warning" role="button" style="color: white">Learn More</a>
+                <a href="#" class="btn btn-primary" role="button" style="color: white">Learn More</a>
                 <br>  <br>  <br>
             </div>
         </div>
@@ -235,7 +242,7 @@
                 <h1>End of summer courses</h1>
                 <h4>Web development , character design and windows phone.</h4>
                 <br>
-                <a href="#" class="btn btn-warning" role="button" style="color: white">Learn More</a>
+                <a href="#" class="btn btn-primary" role="button" style="color: white">Learn More</a>
                 <br>  <br>  <br>
             </div>
         </div>
@@ -247,7 +254,7 @@
                 <h1>End of summer courses</h1>
                 <h4>Web development , character design and windows phone.</h4>
                 <br>
-                <a href="#" class="btn btn-warning" role="button" style="color: white">Learn More</a>
+                <a href="#" class="btn btn-primary" role="button" style="color: white">Learn More</a>
                 <br>  <br>  <br>
             </div>
         </div>
@@ -499,7 +506,7 @@
                     <p style="text-align: left;font-size: 14px;padding-top: 70px;color:white">
                         Microsoft Tech Club at Alexandria university has a clear mission to help the students in the campus and to be there for any kind of support needed whether it's technical or non-technical and to help them find their most suitable career.
                     </p>
-                    <p style="text-align: left;font-size: 14px;padding-top: 40px;color:#fab133">
+                    <p style="text-align: left;font-size: 14px;padding-top: 40px;color:#01a4f1">
                         Microsoft Student Tech Club - Alexandria University
                         </br>
                         www.mstcalex.com

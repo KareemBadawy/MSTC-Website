@@ -49,7 +49,7 @@
             <div class="row">
                 <div class="col-md-5"></div>
                 <div class="col-md-2">
-                    {!! Form::submit('Submit', ['class' => 'btn btn-warning btn-lg wow rotateInUpLeft', 'style' => 'color: white']) !!}
+                    {!! Form::submit('Submit', ['class' => 'btn btn-primary btn-lg wow rotateInUpLeft', 'style' => 'color: white']) !!}
                 </div>
                 <div class="col-md-5"></div>
             </div>

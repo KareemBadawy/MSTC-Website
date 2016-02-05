@@ -16,7 +16,7 @@
 
                         <input class="form-control input-lg" value="{{ old('email') }}" data-validate="required" id="email" type="email" name="email" placeholder="Email"><br>
                         <input class="form-control input-lg" value="" data-validate="required,min(6)" id="password" type="password" name="password" placeholder="Password"><br>
-                        <input class="btn btn-lg btn-warning btn-group-justified" id="bo" type="submit" value="Login" style="display : block; margin : auto;">
+                        <input class="btn btn-lg btn-primary btn-group-justified" id="bo" type="submit" value="Login" style="display : block; margin : auto;">
                     {!! Form::close() !!}
                 </div>
             </div>

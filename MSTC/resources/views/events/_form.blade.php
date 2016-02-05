@@ -19,5 +19,5 @@
 </div>
 
 <div class = "form-group">
-    {!! Form::submit($submitButton, ['class' => 'btn btn-warning form-control']) !!}
+    {!! Form::submit($submitButton, ['class' => 'btn btn-primary form-control']) !!}
 </div>

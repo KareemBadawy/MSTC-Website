@@ -66,7 +66,7 @@
 	<div id="sidebar-wrapper">
 		<ul class="sidebar-nav nav-pills nav-stacked" id="menu">
 			<li class="activable active">
-				<a href="/dashboard" class="colorable" style="border-radius: 0;background-color: #fab133"><span class="fa-stack fa-lg pull-left"><i class="fa fa-dashboard fa-stack-1x "></i></span> Dashboard</a>
+				<a href="/dashboard" class="colorable" style="border-radius: 0;background-color: #01a4f1"><span class="fa-stack fa-lg pull-left"><i class="fa fa-dashboard fa-stack-1x "></i></span> Dashboard</a>
 			</li>
 			<?php
 			$icon = array("Technical"=>"fa fa-wrench fa-stack-1x","Operations"=>"fa fa-cogs fa-stack-1x","Media & Marketing"=>"fa fa-youtube-play fa-stack-1x","H.R."=>"fa fa-server fa-stack-1x","P.R."=>"fa fa-print fa-stack-1x") ?>
@@ -138,7 +138,7 @@
 	});
 	$('.colorable').click(function(){
 		$('.colorable').css({"border-radius": "", "background-color": ""});
-		$(this).css({"border-radius": "0", "background-color": "#fab133"});
+		$(this).css({"border-radius": "0", "background-color": "#01a4f1"});
 	});
 </script>
 @yield('footer')
