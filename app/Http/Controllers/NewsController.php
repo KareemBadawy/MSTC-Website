@@ -8,7 +8,8 @@ use App\Http\Requests;
 use App\Http\Requests\CreateNewsRequest;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
-
+use Image;
+use File;
 class NewsController extends Controller
 {
 
@@ -25,6 +26,11 @@ class NewsController extends Controller
 	public function store(CreateNewsRequest $request)
 	{
 		News::create($request->all());
+		if (File::exists($request->file('image')))
+		{$file = Image::make($request->file('image'));
+		$new = News::where('title', '=', $request->input('title'))->first();
+		$filename = $request->input('title') . '-new-' . $new->id. '.jpg';
+		$file->save('image/News/'.$filename);}
 		return redirect('news');
 	}
 
@@ -53,6 +59,7 @@ class NewsController extends Controller
 		return view('news.show', compact('new'));
 
 	}
+	
 
 	public function destroy($id)
     {

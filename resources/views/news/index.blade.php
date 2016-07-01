@@ -76,11 +76,18 @@
 
 			<div class="col-sm-6 col-md-4">
 				<div class="thumbnail">
-					<div style=" width: 100%;
-  height: 10em;
-  overflow: hidden;"><img src="{{ asset('image/slider/19 - Copy.jpg') }}" width="400px" style=" min-width: 100%;
-  min-height: 100%;" alt="..."></div>
-					<div class="caption">
+					@if(File::exists('image/News/'.$new->title . '-new-' .$new->id. '.jpg'))
+						<div style=" width: 100%; height: 10em;overflow: hidden;">
+							<img src="{{asset('image/News/'.$new->title . '-new-' .$new->id. '.jpg' ) }}" width="400px" style=" min-width: 100%;
+  min-height: 100%;" alt="...">
+						</div>
+					@else
+						<div style=" width: 100%; height: 10em;overflow: hidden;">
+							<img src="{{ asset('image/slider/19 - Copy.jpg') }}" width="400px" style=" min-width: 100%;
+  min-height: 100%;" alt="...">
+						</div>
+					@endif
+						<div class="caption">
 						<h2>
 							<a href="{{ url('/news', $new->id) }}">{{ $new->title }}</a>
 						</h2>
