@@ -49,8 +49,12 @@
 				</button>
 			</li>
 			<li style="padding-top: 3px;padding-right: 25px">
-				<img data-toggle="dropdown" src="{{ asset('image/slider/19%20-%20Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="50" height="50"style="display : block; margin : auto;">
-				<ul class="dropdown-menu">
+				@if(Storage::disk('local')->has(Auth::user()->username . '-profile-picture-' . Auth::user()->id. '.jpg'))
+					<img data-toggle="dropdown" src="{{ route('profile.image', ['filename' => Auth::user()->username . '-profile-picture-' . Auth::user()->id. '.jpg']) }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="50" height="50"style="display : block; margin : auto;">
+				@else
+					<img data-toggle="dropdown" src="{{ asset('image/slider/19%20-%20Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="50" height="50"style="display : block; margin : auto;">
+				@endif
+					<ul class="dropdown-menu">
 
 					<li><a href="/profile">Profile</a></li>
 					<li role="separator" class="divider"></li>

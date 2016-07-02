@@ -65,6 +65,8 @@ Route::group(['middleware' => 'auth'], function(){
 /*----------------------------------------------------------------------------------*/
 	//User Routes
 		Route::get('profile', 'UsersController@profile');
+		Route::post('/profile/picture', 'UsersController@Profile_upload');
+		Route::get('/profileimage/{filename}', ['uses' => 'UsersController@getprofileImage', 'as' => 'profile.image']);
 /*----------------------------------------------------------------------------------*/
 	//Posts Routes
 		Route::resource('posts','PostsController');
