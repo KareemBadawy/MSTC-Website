@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\EventRequest;
 use App\Http\Controllers\Controller;
+use Image;
+use File;
 
 class EventsController extends Controller
 {
@@ -47,6 +49,11 @@ class EventsController extends Controller
     public function store(EventRequest $request)
     {
         Event::create($request->all());
+        if (File::exists($request->file('image')))
+        { $event = Event::where('title', '=', $request->input('title'))->first();
+        $filename = $request->input('title') . '-' . $event->id. '.jpg';
+        $file =Image::make( $request->file('image'));
+        $file->save('image/Events/'.$filename) ;}
         return redirect('events');
     }
 

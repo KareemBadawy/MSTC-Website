@@ -71,11 +71,16 @@
 </nav>
 <div class="container">
 	<div class="row">
-		<div style=" width: 100%;
-  height: 30em;
-  overflow: hidden;"><img src="{{ asset('image/slider/19 - Copy.jpg') }}" width="400px" style=" min-width: 100%;
+		@if(File::exists('image/Events/'.$event->title . '-' . $event->id . '.jpg'))
+			<div style=" width: 100%; height: 10em;overflow: hidden;">
+				<img src="{{ asset( 'image/Events/'.$event->title . '-' .$event->id. '.jpg') }}" width="400px" style=" min-width: 100%;
+  min-height: 100%;" alt="...">
+			</div>
+		@else
+			<div style=" width: 100%;height: 30em;overflow: hidden;"><img src="{{ asset('image/slider/19 - Copy.jpg') }}" width="400px" style=" min-width: 100%;
   min-height: 100%;" alt="..."></div>
-		<h1>{{ $event->title }}</h1>
+		@endif
+            <h1>{{ $event->title }}</h1>
 
 		<h3>{{ $event->body }}</h3>
 

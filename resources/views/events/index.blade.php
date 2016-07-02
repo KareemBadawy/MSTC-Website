@@ -76,13 +76,20 @@
 
             <div class="col-sm-6 col-md-4">
                 <div class="thumbnail">
-                    <div style=" width: 100%;
-  height: 10em;
-  overflow: hidden;"><img src="{{ asset('image/slider/19 - Copy.jpg') }}" width="400px" style=" min-width: 100%;
-  min-height: 100%;" alt="..."></div>
-                    <div class="caption">
+                    @if(File::exists('image/Events/'.$event->title . '-' . $event->id . '.jpg'))
+                        <div style=" width: 100%; height: 10em;overflow: hidden;">
+                            <img src="{{ asset( 'image/Events/'.$event->title . '-' .$event->id. '.jpg') }}" width="400px" style=" min-width: 100%;
+  min-height: 100%;" alt="...">
+                        </div>
+                    @else
+                        <div style=" width: 100%; height: 10em;overflow: hidden;">
+                            <img src="{{ asset('image/slider/19 - Copy.jpg') }}" width="400px" style=" min-width: 100%;
+  min-height: 100%;" alt="...">
+                        </div>
+                    @endif
+                        <div class="caption">
                         <h2>
-                            <a href="{{ url('/news', $event->id) }}">{{ $event->title }}</a>
+                            <a href="{{ url('/events', $event->id) }}">{{ $event->title }}</a>
                         </h2>
                         <div class="body"><h4>{{ $event->body }}</h4></div>
                         <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>

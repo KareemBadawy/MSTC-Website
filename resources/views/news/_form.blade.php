@@ -9,7 +9,7 @@
 </div>
 
 <div class= "form-group">
-    {!! Form::label('Event_photo', 'Upload event photo:') !!}
+    {!! Form::label('News_photo', 'Upload photo:') !!}
     {!! Form::input('file', 'image', null , ['class'=>'form-control','id'=>'image']) !!}
 </div>
 

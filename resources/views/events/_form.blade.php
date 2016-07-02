@@ -9,6 +9,11 @@
 </div>
 
 <div class= "form-group">
+    {!! Form::label('Event_photo', 'Upload photo:') !!}
+    {!! Form::input('file', 'image', null , ['class'=>'form-control','id'=>'image']) !!}
+</div>
+
+<div class= "form-group">
 	{!! Form::label('started_at', 'Start On:') !!}
     {!! Form::input('datetime-local', 'started_at', date('Y-m-d'), ['class'=>'form-control']) !!}
 </div>
