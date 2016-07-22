@@ -9,7 +9,8 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+use App\Event;
+use App\News;
 
 
 // All Routes Requires Authentication
@@ -24,6 +25,12 @@ Route::group(['middleware' => 'auth'], function(){
 	// Events Routes
 		Route::resource('events', 'EventsController');
 		Route::get('events/{id}/destroy', 'EventsController@destroy');
+		Route::get('events/{id}/images/{name}/destroy', 'EventsController@delete_agallery_photo');
+		Route::get('events/{id}/images/{name}/cover', 'EventsController@change_cover');
+		/*----------------------------------------------------------------------------------*/
+     // announcment Routes
+		//Route::resource('announcment', 'AnnouncmentController');
+		//Route::get('announcment/{id}/destroy', 'AnnouncmentController@destroy');
 /*----------------------------------------------------------------------------------*/
 	//Tasks Routes
 		Route::get('tasks/finish','TasksController@finished');
@@ -60,7 +67,9 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::group([],function(){
 	// Dashboard Route
 		Route::get('dashboard', function(){
-			return view('dashboard');
+			$posts = \App\Post::whereIn('vertical_id',Auth::User()->Verticals()->lists('id'))->get();
+			$tasks = \App\Post::whereIn('vertical_id',Auth::User()->Verticals()->lists('id'))->get();
+			return view('dashboard',['posts'=>$posts],['tasks'=>$tasks]);
 		});
 /*----------------------------------------------------------------------------------*/
 	//User Routes
@@ -84,12 +93,14 @@ Route::group(['middleware' => 'auth'], function(){
 }); // End of Auth Group
 
 
-
 // All Public Routes
 Route::group([],function(){
 // Homepage Route
 	Route::get('/', function () {
-	    return view('homepage');
+		$News=News::orderBy('created_at','desc')->get()->take(2);
+		//Event::where('ended_at', '<', Carbon\Carbon::now())->where('status', '!=',2)->update(['status' => 2]);
+		$events=Event::orderby('status','desc')->orderby('created_at','desc')->where('ended_at', '>=', Carbon\Carbon::now());
+		return view('homepage',['events'=>$events],['News'=>$News]);
 	});
 /*----------------------------------------------------------------------------------*/
 // News Routes
@@ -98,8 +109,10 @@ Route::group([],function(){
 /*----------------------------------------------------------------------------------*/
 // Events Routes
 	Route::get('events', 'EventsController@index');
+	Route::get('{state}', 'EventsController@index_state');
 	Route::get('events/{events}', 'EventsController@show');
-/*----------------------------------------------------------------------------------*/
+	//Route::get('events/{id}/images', 'EventsController@show_images');
+	/*----------------------------------------------------------------------------------*/
 // Submit Subscribtions Routes
 	Route::post('subscribe', 'SubscribtionsController@store');
 	Route::get('subscribe', function(){});

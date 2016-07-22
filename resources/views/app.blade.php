@@ -65,7 +65,6 @@
 	</div>
 	<!-- bs-example-navbar-collapse-1 -->
 </nav>
-
 <div id="wrapper">
 	<div id="sidebar-wrapper">
 		<ul class="sidebar-nav nav-pills nav-stacked" id="menu">
@@ -96,6 +95,7 @@
 					<li  class="activable"><a  class="colorable" href="/posts/create" ><span class="fa-stack fa-lg pull-left"><i class="fa fa-pencil-square fa-stack-1x "></i></span>Post</a></li>
 					<li class="activable"><a class="colorable" href="/tasks/create"><span class="fa-stack fa-lg pull-left"><i class="fa fa-tasks fa-stack-1x "></i></span>Task</a></li>
 					<li class="activable"><a class="colorable" href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-bar-chart fa-stack-1x "></i></span>Poll</a></li>
+					<li  class="activable"><a  class="colorable" href="/announcment/create" ><span class="fa-stack fa-lg pull-left"><i class="fa fa-pencil-square fa-stack-1x "></i></span>announcment</a></li>
 					<li class="activable"><a class="colorable" href="/news/create"><span class="fa-stack fa-lg pull-left"><i class="fa fa-newspaper-o fa-stack-1x "></i></span>News</a></li>
 					<li class="activable"><a class="colorable" href="/events/create" ><span class="fa-stack fa-lg pull-left"><i class="fa fa-ticket fa-stack-1x "></i></span>Event</a></li>
 					<li class="activable"><a class="colorable" href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-picture-o fa-stack-1x "></i></span>Ads</a></li>

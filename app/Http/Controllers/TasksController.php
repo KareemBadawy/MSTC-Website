@@ -88,7 +88,7 @@ class TasksController extends Controller
         $task->title = $request->input('title');
         $task->body = $request->input('body');
         $task->deadline = $request->input('deadline');
-        $task->user_id = Auth::user()->id; 
+        $task->user_id = Auth::user()->id;
         $task->save();
         $task->users()->attach($request->input('users'));
         return redirect('tasks');

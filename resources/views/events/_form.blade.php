@@ -9,8 +9,8 @@
 </div>
 
 <div class= "form-group">
-    {!! Form::label('Event_photo', 'Upload photo:') !!}
-    {!! Form::input('file', 'image', null , ['class'=>'form-control','id'=>'image']) !!}
+    {!! Form::label('image', 'Add Cover photo:') !!}
+    {!! Form::File( 'image' , ['class'=>'field','id'=>'image','accept'=>"image/*"]) !!}
 </div>
 
 <div class= "form-group">
@@ -23,6 +23,15 @@
     {!! Form::input('datetime-local', 'ended_at', date('Y-m-d'), ['class'=>'form-control']) !!}
 </div>
 
-<div class = "form-group">
-    {!! Form::submit($submitButton, ['class' => 'btn btn-primary form-control']) !!}
+<div class="form-group">
+    {!! Form::label('Present_Event', 'Upcoming Event:') !!}
+    {!! Form::input('hidden', 'status', 0 ) !!}
+    {!! Form::checkbox('status', 1) !!}
 </div>
+
+<div class= "form-group">
+        {!! Form::label('gallery', 'Add photos to event gallery:') !!}
+        {!! Form::File( 'gallery[]' , ['class'=>'field','id'=>'gallery','multiple'=>"1" ,'accept'=>"image/*"]) !!}
+</div>
+
+

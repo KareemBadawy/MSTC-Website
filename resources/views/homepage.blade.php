@@ -236,7 +236,7 @@
                         </div>
                     </div>
                     <div class="col-md-8">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dolore eveniet fuga laboriosam modi tempora! Dicta dolorum illo in magni, nemo qui ratione recusandae rerum sapiente sint sit tempore voluptatem?
+                        test
                     </div>
                 </div>
             </div>
@@ -296,7 +296,6 @@
                 <br>  <br>  <br>
             </div>
         </div>
-
         <div class="item">
             <div class="filll" style="background-color: black; opacity: 0.6"></div>
             <div class="fill" style="background-image:url('{{ asset('image/slider/9.jpg') }}');"></div>
@@ -358,98 +357,70 @@
             <div class="tab-content">
                 <!--upcomming-->
                 <div class="row tab-pane fade in active" id="home">
-                <div class="col-md-4 " style="padding-top: 40px" >
-                    <img src="{{ asset('image/slider/19%20-%20Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="200" height="200"style="display : block; margin : auto;">
-                    <p style="font-size: 18px;padding-top: 40px;text-align: center">Portfolio</p>
+
+                    @foreach ($events->take(3)->get() as $event)
+                   @if($event['status']==1)
+                    <div class="col-md-4 " style="padding-top: 40px" >
+                        @if(File::exists('image/Events/'.$event->title . '-' . $event->id . '.jpg'))
+                            <img src="{{ asset( 'image/Events/'.$event->title . '-' .$event->id. '.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="200" height="200"style="display : block; margin : auto;">
+                        @else
+                            <img src="{{ asset('image/slider/19 - Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="200" height="200"style="display : block; margin : auto;">
+                        @endif
+                    <p style="font-size: 18px;padding-top: 40px;text-align: center">{{$event->title}}</p>
                     <p style="font-size: 14px;padding: 40px;text-align: center">
-                        This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.
-                    </p>
-                    <button type="button" class="btn btn-default" style="display : block; margin : auto;background-color: #9a9c9f;color:white">Read More</button>
-                </div>
-                <div class="col-md-4" style="padding-top: 40px" >
-                    <img src="{{ asset('image/slider/19%20-%20Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="200" height="200"style="display : block; margin : auto;">
-                    <p style="font-size: 18px;padding-top: 40px;text-align: center">hi</p>
-                    <p style="font-size: 14px;padding: 40px;text-align: center">
-                        This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.
-                    </p>
-                    <button type="button" class="btn btn-default" style="display : block; margin : auto;background-color: #9a9c9f;color:white">Read More</button>
-                </div>
-                <div class="col-md-4" style="padding-top: 40px" >
-                    <img src="{{ asset('image/slider/19%20-%20Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="200" height="200"style="display : block; margin : auto;">
-                    <p style="font-size: 18px;padding-top: 40px;text-align: center">lol</p>
-                    <p style="font-size: 14px;padding: 40px;text-align: center">
-                        This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.
+                        {{$event->body}}
                     </p>
                     <button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg" style="display : block; margin : auto;background-color: #9a9c9f;color:white">Read More</button>
-
-                </div>
+                    </div>
+                        @endif
+                    @endforeach
                     <div class="row">
                         <div class="col-md-2 col-md-offset-5">
-                            <a style="color: white;display: block;margin: auto" class="btn btn-primary" href="/events">See More Events</a>
+                            <a style="color: white;display: block;margin: auto" class="btn btn-primary" href="{{ url('/','upcomming') }}">See More Events</a>
                         </div>
                     </div>
             </div>
                 <!--present-->
                 <div class="row tab-pane fade" id="menu1">
-                <div class="col-md-4 " style="padding-top: 40px" >
-                    <img src="{{ asset('image/slider/19%20-%20Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="200" height="200"style="display : block; margin : auto;">
-                    <p style="font-size: 18px;padding-top: 40px;text-align: center">Po</p>
+                    @foreach ($events->where('status','==',0)->take(3)->get() as $event)
+                    <div class="col-md-4" style="padding-top: 40px" >
+                        @if(File::exists('image/Events/'.$event->title . '-' . $event->id . '.jpg'))
+                    <img src="{{ asset( 'image/Events/'.$event->title . '-' .$event->id. '.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="200" height="200"style="display : block; margin : auto;">
+                        @else
+                            <img src="{{ asset('image/slider/19 - Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="200" height="200"style="display : block; margin : auto;">
+                        @endif
+                            <p style="font-size: 18px;padding-top: 40px;text-align: center">{{$event->title}}</p>
                     <p style="font-size: 14px;padding: 40px;text-align: center">
-                        This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.
-                    </p>
+                        {{$event->body}}</p>
                     <button type="button" class="btn btn-default" style="display : block; margin : auto;background-color: #9a9c9f;color:white">Read More</button>
-                </div>
-                <div class="col-md-4" style="padding-top: 40px" >
-                    <img src="{{ asset('image/slider/19%20-%20Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="200" height="200"style="display : block; margin : auto;">
-                    <p style="font-size: 18px;padding-top: 40px;text-align: center">Po</p>
-                    <p style="font-size: 14px;padding: 40px;text-align: center">
-                        This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.
-                    </p>
-                    <button type="button" class="btn btn-default" style="display : block; margin : auto;background-color: #9a9c9f;color:white">Read More</button>
-                </div>
-                <div class="col-md-4" style="padding-top: 40px" >
-                    <img src="{{ asset('image/slider/19%20-%20Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="200" height="200"style="display : block; margin : auto;">
-                    <p style="font-size: 18px;padding-top: 40px;text-align: center">Po</p>
-                    <p style="font-size: 14px;padding: 40px;text-align: center">
-                        This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.
-                    </p>
-                    <button type="button" class="btn btn-default" style="display : block; margin : auto;background-color: #9a9c9f;color:white">Read More</button>
-                </div>
+                    </div>
+                    @endforeach
                     <div class="row">
                         <div class="col-md-2 col-md-offset-5">
-                            <a style="color: white;display: block;margin: auto" class="btn btn-primary" href="/events">See More Events</a>
+                            <a style="color: white;display: block;margin: auto" class="btn btn-primary" href="{{ url('/','present') }}">See More Events</a>
                         </div>
                     </div>
             </div>
                 <!--past-->
                 <div class="row tab-pane fade" id="menu2">
+
+                    @foreach (App\Event::orderBy('ended_at','desc')->where('ended_at', '<', Carbon\Carbon::now())->take(3)->get() as $event)
                     <div class="col-md-4 " style="padding-top: 40px" >
-                        <img src="{{ asset('image/slider/19%20-%20Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="200" height="200"style="display : block; margin : auto;">
-                        <p style="font-size: 18px;padding-top: 40px;text-align: center">folio</p>
+                        @if(File::exists('image/Events/'.$event->title . '-' . $event->id . '.jpg'))
+                            <img src="{{ asset( 'image/Events/'.$event->title . '-' .$event->id. '.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="200" height="200"style="display : block; margin : auto;">
+                        @else
+                            <img src="{{ asset('image/slider/19 - Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="200" height="200"style="display : block; margin : auto;">
+                        @endif
+                            <p style="font-size: 18px;padding-top: 40px;text-align: center">{{$event->title}}</p>
                         <p style="font-size: 14px;padding: 40px;text-align: center">
-                            This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.
+                            {{$event->body}}
                         </p>
                         <button type="button" class="btn btn-default" style="display : block; margin : auto;background-color: #9a9c9f;color:white">Read More</button>
                     </div>
-                    <div class="col-md-4" style="padding-top: 40px" >
-                        <img src="{{ asset('image/slider/19%20-%20Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="200" height="200"style="display : block; margin : auto;">
-                        <p style="font-size: 18px;padding-top: 40px;text-align: center">folio</p>
-                        <p style="font-size: 14px;padding: 40px;text-align: center">
-                            This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.
-                        </p>
-                        <button type="button" class="btn btn-default" style="display : block; margin : auto;background-color: #9a9c9f;color:white">Read More</button>
-                    </div>
-                    <div class="col-md-4" style="padding-top: 40px" >
-                        <img src="{{ asset('image/slider/19%20-%20Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="200" height="200"style="display : block; margin : auto;">
-                        <p style="font-size: 18px;padding-top: 40px;text-align: center">folio</p>
-                        <p style="font-size: 14px;padding: 40px;text-align: center">
-                            This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.
-                        </p>
-                        <button type="button" class="btn btn-default" style="display : block; margin : auto;background-color: #9a9c9f;color:white">Read More</button>
-                    </div>
+                    @endforeach
                     <div class="row">
                         <div class="col-md-2 col-md-offset-5">
-                            <a style="color: white;display: block;margin: auto" class="btn btn-primary" href="/events">See More Events</a>
+                            <a style="color: white;display: block;margin: auto" class="btn btn-primary"  href="{{ url('/','past') }}">See More Events</a>
                         </div>
                     </div>
                 </div>
@@ -472,30 +443,20 @@
 
     <div class="container">
         <div class="container-fluid" style="padding-bottom: 40px">
+            @foreach ($News as $news)
             <div class="row">
                 <div class="col-md-3"style="padding-top: 40px">
                     <img src="{{ asset('image/slider/19%20-%20Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="200" height="200"style="display : block; margin : auto;">
                 </div>
                 <div class="col-md-9" style="padding-top: 40px">
-                    <p style="font-size: 18px">Portfolio</p>
+                    <p style="font-size: 18px">{{$news->title}}</p>
                     <p style="font-size: 14px">
-                        This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.
+                     {{$news->body}}
                     </p>
-                    <a href="/news/1" style="right: 0px;position: absolute;padding: 10px;">Read more</a>
+                    <a href="/news/{{$news->id}}}" style="right: 0px;position: absolute;padding: 10px;">Read more</a>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-3"style="padding-top: 40px">
-                    <img src="{{ asset('image/slider/19%20-%20Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="200" height="200"style="display : block; margin : auto;">
-                </div>
-                <div class="col-md-9" style="padding-top: 40px">
-                    <p style="font-size: 18px">Portfolio</p>
-                    <p style="font-size: 14px">
-                        This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.
-                    </p>
-                    <a href="#" style="right: 0px;position: absolute;padding: 10px;">Read more</a>
-                </div>
-            </div>
+            @endforeach
             <br><br>
             <div class="row">
                 <div class="col-md-2 col-md-offset-5">

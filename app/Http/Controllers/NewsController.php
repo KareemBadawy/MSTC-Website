@@ -41,8 +41,25 @@ class NewsController extends Controller
 	}
 
 	public function update(CreateNewsRequest $request, $id)
-	{
+	{   $news = News::where('id', '=', $id)->first();
+		$new_filename = $request->input('title') . '-new-' . $news['id']. '.jpg';
+		$old_filename = $news['title'] . '-new-' . $news['id'] . '.jpg';
 		News::findOrFail($id)->update($request->all());
+		if (File::exists($request->file('image'))) {
+			$file =Image::make( $request->file('image'));
+			$file->save('image/News/'.$new_filename) ;
+		}
+		if (!File::exists($request->file('image'))) {
+			if (File::exists('image/News/'.$old_filename)){
+				$file = Image::make('image/News/'.$old_filename);
+				$file->save('image/News/' . $new_filename);
+			}
+		}
+		if($request->input('title')!=$news['title'])
+		{
+			if(File::exists('image/News/'.$old_filename))
+				File::delete('image/News/'.$old_filename);
+		}
 		return redirect('news');
 	}
 
@@ -62,7 +79,10 @@ class NewsController extends Controller
 	
 
 	public function destroy($id)
-    {
+    {$news = News::where('id', '=', $id)->first();
+		$filename = $news['title'] . '-new-' . $news['id'] . '.jpg';
+		if(File::exists('image/News/'.$filename))
+			File::delete('image/News/'.$filename);
         News::findOrfail($id)->delete();
         return redirect('news');
     }

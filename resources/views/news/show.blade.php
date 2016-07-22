@@ -91,6 +91,12 @@
         <h3>{{ $new->body }}</h3>
 
         {{ $new->published_at }}
+            @if(Auth::check())
+                @if(Auth::user()->roles[0]->id==1)
+            <p><a href="#" class="btn btn-default" role="button">Publish</a></p>
+            <p><a href="{{ url('/news', $new->id.'/edit') }}" class="btn btn-primary" role="button">Edit Event</a>  <a href="{{ url('/news', $new->id.'/destroy') }}" class="btn btn-danger" role="button">Delete Event</a></p>
+             @endif
+                @endif
     </div>
 </div>
 <footer>

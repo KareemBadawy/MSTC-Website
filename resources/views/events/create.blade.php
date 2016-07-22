@@ -11,6 +11,9 @@
 
     {!! Form::open(['url'=>'events','files' => true]) !!}
         @include('events/_form',['submitButton'=>'Add New Event'])
+    <div class = "form-group">
+        {!! Form::submit('Update Event', ['class' => 'btn btn-primary form-control']) !!}
+    </div>
     {!! Form::close() !!}
 
     @include('errors.list')
