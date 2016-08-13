@@ -27,14 +27,29 @@ class PostsController extends Controller
         $currentverticals = Auth::user()->verticals;  
         return view('posts.index',compact('currentverticals'));
     }
+    /**
+     *send posts related to the vertical
+     * 
+     * 
+     *@return \Illuminate\Http\Response
+     */
 
-    public function post_vertical($vertical_id)
+    public function post_vertical($vertical_id,Request $request)
     {
         $vertical = Vertical::findOrfail($vertical_id);
-        $posts = Vertical::findOrfail($vertical_id)->posts;
+        $posts = Post::where('vertical_id','=',$vertical_id)->latest()->paginate('8');
+
+        //if there is ajax call it send response with the  posts  and the new page of posts
+        if($request->ajax())
+        {
+            return['posts'=>view('endless-pagination')->with(compact('posts'))->render(),
+                'next_page'=>$posts->nextPageUrl()
+            ];
+        }
+
+
         return view('posts.Postsforeachvertical',compact('posts', 'vertical'));
     }
-
     /**
      * Show the form for creating a new resource.
      *

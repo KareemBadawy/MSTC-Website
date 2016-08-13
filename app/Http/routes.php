@@ -66,9 +66,20 @@ Route::group(['middleware' => 'auth'], function(){
 // All Routes with Member Access or Higher
 	Route::group([],function(){
 	// Dashboard Route
-		Route::get('dashboard', function(){
-			$posts = \App\Post::whereIn('vertical_id',Auth::User()->Verticals()->lists('id'))->get();
-			$tasks = \App\Post::whereIn('vertical_id',Auth::User()->Verticals()->lists('id'))->get();
+		Route::get('dashboard', function(\Illuminate\Http\Request $request){
+
+            $posts = \App\Post::whereIn('vertical_id',Auth::User()->Verticals()->lists('id'))->latest()->paginate('8');
+            $tasks=Auth::User()->tasks->take(3);
+
+                //if there is ajax call it send the  posts and the new page of posts
+                if($request->ajax())
+                {
+                    return['posts'=>view('endless-pagination')->with(compact('posts'))->render(),
+                        'next_page'=>$posts->nextPageUrl()
+                    ];
+                }
+
+
 			return view('dashboard',['posts'=>$posts],['tasks'=>$tasks]);
 		});
 /*----------------------------------------------------------------------------------*/
