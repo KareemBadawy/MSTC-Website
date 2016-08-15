@@ -288,7 +288,7 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner supreme-container" role="listbox">
         <!-- check if there exist any announcements -->
-        @if(!emptyArray($announcements))
+        @if(count($announcements))
             <!-- fill the active item in the slider with tha data of the first announcement -->
         <div class="item active">
                 <div class="filll" style="background-color: black; opacity: 0.6"></div>
@@ -342,7 +342,7 @@
         @else
               <!-- if there is no announcement in database show a dummy data -->
             <div class="item active">
-                <div class="fill" style="background-image:url('http://placehold.it/1200x400/333?text=Image Here');"></div>
+                <div class="fill" style="background-image:url('http://placehold.it/1200x400/333?text=There is no announcements');"></div>
                 <div class="carousel-caption">
                     <h3>Title Here</h3>
                     <p>The announcement's Body Here</p>
