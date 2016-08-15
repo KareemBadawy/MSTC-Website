@@ -27,10 +27,10 @@ Route::group(['middleware' => 'auth'], function(){
 		Route::get('events/{id}/destroy', 'EventsController@destroy');
 		Route::get('events/{id}/images/{name}/destroy', 'EventsController@delete_agallery_photo');
 		Route::get('events/{id}/images/{name}/cover', 'EventsController@change_cover');
-		/*----------------------------------------------------------------------------------*/
-     // announcment Routes
-		//Route::resource('announcment', 'AnnouncmentController');
-		//Route::get('announcment/{id}/destroy', 'AnnouncmentController@destroy');
+/*----------------------------------------------------------------------------------*/
+		// announcement Routes
+		Route::resource('announcements', 'AnnouncementsController');
+		Route::get('announcements/{id}/destroy', 'AnnouncementsController@destroy');
 /*----------------------------------------------------------------------------------*/
 	//Tasks Routes
 		Route::get('tasks/finish','TasksController@finished');
@@ -117,14 +117,17 @@ Route::group([],function(){
 // Homepage Route
 	Route::get('/', function () {
 		$News=News::orderBy('created_at','desc')->get()->take(2);
-		//Event::where('ended_at', '<', Carbon\Carbon::now())->where('status', '!=',2)->update(['status' => 2]);
 		$events=Event::orderby('status','desc')->orderby('created_at','desc')->where('ended_at', '>=', Carbon\Carbon::now());
-		return view('homepage',['events'=>$events],['News'=>$News]);
+        $announcements=\App\Announcement::orderby('created_at','desc')->get();
+        return view('homepage',['events'=>$events],['News'=>$News])->with(['announcements'=>$announcements]);
 	});
 /*----------------------------------------------------------------------------------*/
 // News Routes
 	Route::get('news', 'NewsController@index');
 	Route::get('news/{news}', 'NewsController@show');
+/*----------------------------------------------------------------------------------*/
+// Announcements Routes
+    Route::get('announcements/{announcements}', 'AnnouncementsController@show');
 /*----------------------------------------------------------------------------------*/
 // Events Routes
 	Route::get('events', 'EventsController@index');

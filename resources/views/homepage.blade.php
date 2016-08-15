@@ -274,76 +274,92 @@
 </div>
 
 <!--Slider-->
-<header id="myCarousel supreme-container" class="carousel slide" data-ride="carousel">
+<header id="myCarousel-supreme-container" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators supreme-container">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-        <li data-target="#myCarousel" data-slide-to="3"></li>
+        <!-- create a one active indicator for the first announcement-->
+        <li data-target="#myCarousel-supreme-container" data-slide-to="0" class="active"></li>
+        <!-- create indicators for the rest of the announcements   -->
+    @for($count=1 ;$count<count($announcements);$count++)
+            <li data-target="#myCarousel-supreme-container" data-slide-to="{{$count}}"></li>
+        @endfor
     </ol>
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner supreme-container" role="listbox">
+        <!-- check if there exist any announcements -->
+        @if(!emptyArray($announcements))
+            <!-- fill the active item in the slider with tha data of the first announcement -->
         <div class="item active">
-            <div class="filll" style="background-color: black; opacity: 0.6"></div>
-            <div class="fill" style="background-image:url('{{ asset('image/slider/1.jpg') }}');"></div>
-            <div class="carousel-caption">
-                <h1>End of summer courses</h1>
-                <h4>Web development , character design and windows phone.</h4>
-                <br>
-                <a href="#" class="btn btn-primary" role="button" style="color: white">Learn More</a>
-                <br>  <br>  <br>
-            </div>
-        </div>
-        <div class="item">
-            <div class="filll" style="background-color: black; opacity: 0.6"></div>
-            <div class="fill" style="background-image:url('{{ asset('image/slider/9.jpg') }}');"></div>
-            <div class="carousel-caption">
-                <h1>End of summer courses</h1>
-                <h4>Web development , character design and windows phone.</h4>
-                <br>
-                <a href="#" class="btn btn-primary" role="button" style="color: white">Learn More</a>
-                <br>  <br>  <br>
-            </div>
-        </div>
+                <div class="filll" style="background-color: black; opacity: 0.6"></div>
+                <!-- check if the announcement has a cover image if not set the image to the default image -->
+            @if(File::exists('image/announcements/'.$announcements[0]->title . '-announcement-' .$announcements[0]->id. '.jpg'))
+                <div class="fill" style="background-image:url('{{ asset('image/announcements/'.$announcements[0]->title . '-announcement-' .$announcements[0]->id. '.jpg' ) }}');"></div>
+            @else
+                <div class="fill" style="background-image:url('{{ asset('image/slider/19 - Copy.jpg') }}');"></div>
+            @endif
+                <div class="carousel-caption">
+                    <h1>{{$announcements[0]->title}}</h1>
+                    <h4>{{$announcements[0]->body}}</h4>
+                    <br>
+                 <a href="{{ url('/announcements', $announcements[0]->id) }}" class="btn btn-primary" role="button" style="color: white">Learn More</a>
 
-        <div class="item">
-            <div class="filll" style="background-color: black; opacity: 0.6"></div>
-            <div class="fill" style="background-image:url('{{ asset('image/slider/19.jpg') }}');"></div>
-            <div class="carousel-caption">
-                <h1>End of summer courses</h1>
-                <h4>Web development , character design and windows phone.</h4>
-                <br>
-                <a href="#" class="btn btn-primary" role="button" style="color: white">Learn More</a>
-                <br>  <br>  <br>
-            </div>
-        </div>
+                @if(Auth::check())
+                        @if(Auth::user()->hasRole('Vice Head'))
+                            <a href="{{ url('/announcements', $announcements[0]->id."/edit") }}" class="btn btn-default" role="button" style="color: black">&nbsp;&nbsp;Edit&nbsp;&nbsp;</a>
+                            <a href="{{ url('/announcements', $announcements[0]->id.'/destroy') }}" class="btn btn-danger" role="button" style="color: white">Delete</a>
+                        @endif
+                 @endif
 
-        <div class="item">
-            <div class="filll" style="background-color: black; opacity: 0.6"></div>
-            <div class="fill" style="background-image:url('{{ asset('image/slider/36.jpg') }}');"></div>
-            <div class="carousel-caption">
-                <h1>End of summer courses</h1>
-                <h4>Web development , character design and windows phone.</h4>
-                <br>
-                <a href="#" class="btn btn-primary" role="button" style="color: white">Learn More</a>
-                <br>  <br>  <br>
+                    <br>  <br>  <br>
+                </div>
             </div>
-        </div>
+            <!-- make new item for the rest of the announcement -->
+            @for($count=1 ;$count<count($announcements);$count++)
+                <div class="item">
+                    <div class="filll" style="background-color: black; opacity: 0.6"></div>
+                    <!-- check if the announcement has a cover image if not set the image to the default image -->
+                @if(File::exists('image/announcements/'.$announcements[$count]->title . '-announcement-' .$announcements[$count]->id. '.jpg'))
+                        <div class="fill" style="background-image:url('{{ asset('image/announcements/'.$announcements[$count]->title . '-announcement-' .$announcements[$count]->id. '.jpg' ) }}');"></div>
+                    @else
+                        <div class="fill" style="background-image:url('{{ asset('image/slider/19 - Copy.jpg') }}');"></div>
+                    @endif
+                    <div class="carousel-caption">
+                        <h1>{{$announcements[$count]->title}}</h1>
+                        <h4>{{$announcements[$count]->body}}</h4>
+                        <br>
+                        <a href="{{ url('/announcements', $announcements[$count]->id) }}" class="btn btn-primary" role="button" style="color: white">Learn More</a>
+                        @if(Auth::check())
+                            @if(Auth::user()->hasRole('Vice Head'))
+                                <a href="{{ url('/announcements', $announcements[$count]->id."/edit") }}" class="btn btn-default" role="button" style="color: black">&nbsp;&nbsp;Edit&nbsp;&nbsp;</a>
+                                <a href="{{ url('/announcements', $announcements[$count]->id.'/destroy') }}" class="btn btn-danger" role="button" style="color: white">Delete</a>
+                            @endif
+                        @endif
+                     <br>  <br>  <br>
+                    </div>
+                </div>
+            @endfor
+        @else
+              <!-- if there is no announcement in database show a dummy data -->
+            <div class="item active">
+                <div class="fill" style="background-image:url('http://placehold.it/1200x400/333?text=Image Here');"></div>
+                <div class="carousel-caption">
+                    <h3>Title Here</h3>
+                    <p>The announcement's Body Here</p>
+                </div>
+            </div>
+        @endif
     </div>
-
     <!-- Left and right controls -->
-    <a class="left carousel-control supreme-container" href="#myCarousel" role="button" data-slide="prev">
+    <a class="left carousel-control supreme-container" href="#myCarousel-supreme-container" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
     </a>
-    <a class="right carousel-control supreme-container" href="#myCarousel" role="button" data-slide="next">
+    <a class="right carousel-control supreme-container" href="#myCarousel-supreme-container" role="button" data-slide="next">
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </a>
 </header>
-
 <!--projects-->
 <div id="projects" class="container-fluid fill supreme-container" style="background-color: white">
     <div class="container">
