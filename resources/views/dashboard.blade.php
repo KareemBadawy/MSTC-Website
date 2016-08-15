@@ -36,7 +36,21 @@
                 <h2>You have no Tasks</h2>
             @endif
         </div>
-        </div>
+            <div class="row">
+                        @if($video_info)
+                            <h4>Password:AwesomeMSPTCAlex</h4>
+                            <div class="embed-responsive embed-responsive-4by3" id="embed">
+                                <iframe src='{{"https://player.vimeo.com/video/".substr($video_info["uri"],8)."?badge=0&autopause=0&player_id=0"}}'
+                                        frameborder="0" title="{{$video_info["name"]}}"
+                                        webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                            </div>
+                        @else
+                            { <label class="label-danger">There is a Problem in vimeo server we can't load our weekly update at this time </label>
+                            }
+                        @endif
+             </div>
+    </div>
+
 
     <script>
 

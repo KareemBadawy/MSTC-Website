@@ -147,6 +147,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Vinkla\Vimeo\VimeoServiceProvider::class,
 
     ],
 
@@ -199,6 +200,7 @@ return [
         'Form'      => Illuminate\Html\FormFacade::class,
         'Html'      => Illuminate\Html\HtmlFacade::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'Vimeo' => Vinkla\Vimeo\Facades\Vimeo::class,
 
     ],
 

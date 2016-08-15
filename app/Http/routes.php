@@ -67,7 +67,6 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::group([],function(){
 	// Dashboard Route
 		Route::get('dashboard', function(\Illuminate\Http\Request $request){
-
             $posts = \App\Post::whereIn('vertical_id',Auth::User()->Verticals()->lists('id'))->latest()->paginate('8');
             $tasks=Auth::User()->tasks->take(3);
 
@@ -78,9 +77,18 @@ Route::group(['middleware' => 'auth'], function(){
                         'next_page'=>$posts->nextPageUrl()
                     ];
                 }
+			try {
+				// request with vimeo api to get the videos of our account on vimeo
+				$response = Vimeo::request('/users/mstcalex/videos', ['per_page' => 10], 'GET');
+				//get the last video sent by the request
+				$video_info = $response['body']['data']["0"];
+			}
+			catch (\Vimeo\Exceptions\VimeoRequestException $e )
+			{
+				$video_info=null;
+			}
 
-
-			return view('dashboard',['posts'=>$posts],['tasks'=>$tasks]);
+			return view('dashboard')->with(['posts'=>$posts])->with(['tasks'=>$tasks])->with(['video_info'=>$video_info]);
 		});
 /*----------------------------------------------------------------------------------*/
 	//User Routes
