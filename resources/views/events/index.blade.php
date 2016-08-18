@@ -96,12 +96,6 @@
                             <a href="{{ url('/events', $event->id) }}">{{ $event->title }}</a>
                         </h2>
                         <div class="body"><h4>{{ $event->body }}</h4></div>
-                            @if(Auth::check())
-                                @if(Auth::user()->hasRole('President'))
-                            <p><a href="#" class="btn btn-default" role="button">Publish</a></p>
-                            <p><a href="{{ url('/events', $event->id.'/edit') }}" class="btn btn-primary" role="button">Edit Event</a>  <a href="{{ url('/events', $event->id.'/destroy') }}" class="btn btn-danger" role="button">Delete Event</a></p>
-                          @endif
-                           @endif
                         </div>
                 </div>
             </div>

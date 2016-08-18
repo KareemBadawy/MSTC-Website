@@ -223,7 +223,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                            
                             <!-- Controls -->
                             <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
                                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -366,77 +366,76 @@
         <div class="container-fluid" style="padding-bottom: 40px">
 
             <ul class="nav nav-tabs nav-justified">
-                <li class="active"><a data-toggle="tab" href="#home">Upcomming</a></li>
+                <li class="active"><a data-toggle="tab" href="#home">Upcoming</a></li>
                 <li><a data-toggle="tab" href="#menu1">Present</a></li>
                 <li><a data-toggle="tab" href="#menu2">Past</a></li>
             </ul>
             <div class="tab-content">
-                <!--upcomming-->
+                <!--upcoming-->
                 <div class="row tab-pane fade in active" id="home">
 
-                    @foreach ($events->take(3)->get() as $event)
-                   @if($event['status']==1)
-                    <div class="col-md-4 " style="padding-top: 40px" >
-                        @if(File::exists('image/Events/'.$event->title . '-' . $event->id . '.jpg'))
-                            <img src="{{ asset( 'image/Events/'.$event->title . '-' .$event->id. '.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="200" height="200"style="display : block; margin : auto;">
-                        @else
-                            <img src="{{ asset('image/slider/19 - Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="200" height="200"style="display : block; margin : auto;">
-                        @endif
-                    <p style="font-size: 18px;padding-top: 40px;text-align: center">{{$event->title}}</p>
-                    <p style="font-size: 14px;padding: 40px;text-align: center">
-                        {{$event->body}}
-                    </p>
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg" style="display : block; margin : auto;background-color: #9a9c9f;color:white">Read More</button>
-                    </div>
-                        @endif
+                    @foreach ($upcoming_events as $event)
+                        <div class="col-md-4 " style="padding-top: 40px" >
+                            @if(File::exists('image/Events/'.$event->title . '-' . $event->id . '.jpg'))
+                                <img src="{{ asset( 'image/Events/'.$event->title . '-' .$event->id. '.jpg') }}" class="img-circle" alt="Cinque Terre"  width="200" height="200"style="  border: 1px solid #ddd; background-color: #FFF; padding: 4px; display : block; margin : auto;">
+                            @else
+                                <img src="{{ asset('image/slider/19 - Copy.jpg') }}" class="img-thumbnail img-circle"  width="200" height="200"style="display : block; margin : auto;">
+                            @endif
+                            <p style="font-size: 18px;padding-top: 40px;text-align: center">{{$event->title}}</p>
+                            <p style="font-size: 14px;padding: 40px;text-align: center">
+                                {{$event->body}}
+                            </p>
+                            <button type="button" onclick='func("{{$event->body}}","{{$event->title}}","{{$event->id}}","{{File::exists('image/Events/'.$event->title . '-' . $event->id . '.jpg')}}",{{ json_encode(File::files('image/Events/' .$event->id))}} )'  class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg" style="display : block; margin : auto;background-color: #9a9c9f;color:white">Read More</button>
+                        </div>
                     @endforeach
                     <div class="row">
                         <div class="col-md-2 col-md-offset-5">
-                            <a style="color: white;display: block;margin: auto" class="btn btn-primary" href="{{ url('/','upcomming') }}">See More Events</a>
+                            <a style="color: white;display: block;margin: auto" class="btn btn-primary" href="{{ url('events','upcoming')}}">See More Events</a>
                         </div>
                     </div>
-            </div>
+                </div>
                 <!--present-->
                 <div class="row tab-pane fade" id="menu1">
-                    @foreach ($events->where('status','==',0)->take(3)->get() as $event)
-                    <div class="col-md-4" style="padding-top: 40px" >
-                        @if(File::exists('image/Events/'.$event->title . '-' . $event->id . '.jpg'))
-                    <img src="{{ asset( 'image/Events/'.$event->title . '-' .$event->id. '.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="200" height="200"style="display : block; margin : auto;">
-                        @else
-                            <img src="{{ asset('image/slider/19 - Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="200" height="200"style="display : block; margin : auto;">
-                        @endif
+                    @foreach ($present_events as $event)
+                        <div class="col-md-4" style="padding-top: 40px" >
+                            @if(File::exists('image/Events/'.$event->title . '-' . $event->id . '.jpg'))
+                                <img src="{{ asset( 'image/Events/'.$event->title . '-' .$event->id. '.jpg') }}"class="img-circle"   width="200" height="200"style="  border: 1px solid #ddd; background-color: #FFF; padding: 4px; display : block; margin : auto;">
+                            @else
+                                <img src="{{ asset('image/slider/19 - Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="200" height="200"style="display : block; margin : auto;">
+                            @endif
                             <p style="font-size: 18px;padding-top: 40px;text-align: center">{{$event->title}}</p>
-                    <p style="font-size: 14px;padding: 40px;text-align: center">
-                        {{$event->body}}</p>
-                    <button type="button" class="btn btn-default" style="display : block; margin : auto;background-color: #9a9c9f;color:white">Read More</button>
-                    </div>
+                            <p style="font-size: 14px;padding: 40px;text-align: center">
+                                {{$event->body}}</p>
+                            <button type="button" onclick='func("{{$event->body}}","{{$event->title}}","{{$event->id}}","{{File::exists('image/Events/'.$event->title . '-' . $event->id . '.jpg')}}" ,{{ json_encode(File::files('image/Events/' .$event->id))}})'  class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg" style="display : block; margin : auto;background-color: #9a9c9f;color:white">Read More</button>
+                        </div>
                     @endforeach
                     <div class="row">
                         <div class="col-md-2 col-md-offset-5">
-                            <a style="color: white;display: block;margin: auto" class="btn btn-primary" href="{{ url('/','present') }}">See More Events</a>
+                            <a style="color: white;display: block;margin: auto" class="btn btn-primary" href="{{ url('events','present') }}">See More Events</a>
                         </div>
                     </div>
-            </div>
+                </div>
                 <!--past-->
                 <div class="row tab-pane fade" id="menu2">
 
-                    @foreach (App\Event::orderBy('ended_at','desc')->where('ended_at', '<', Carbon\Carbon::now())->take(3)->get() as $event)
-                    <div class="col-md-4 " style="padding-top: 40px" >
-                        @if(File::exists('image/Events/'.$event->title . '-' . $event->id . '.jpg'))
-                            <img src="{{ asset( 'image/Events/'.$event->title . '-' .$event->id. '.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="200" height="200"style="display : block; margin : auto;">
-                        @else
-                            <img src="{{ asset('image/slider/19 - Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre" width="200" height="200"style="display : block; margin : auto;">
-                        @endif
+                    @foreach ($past_events as $event)
+                        <div class="col-md-4 " style="padding-top: 40px" >
+                            @if(File::exists('image/Events/'.$event->title . '-' . $event->id . '.jpg'))
+                                <img src="{{ asset( 'image/Events/'.$event->title . '-' .$event->id. '.jpg') }}" class="img-circle"   width="200" height="200"style="  border: 1px solid #ddd; background-color: #FFF; padding: 4px; display : block; margin : auto;">
+                            @else
+                                <img src="{{ asset('image/slider/19 - Copy.jpg') }}" class="img-thumbnail img-circle" alt="Cinque Terre"  width="200" height="200"style=" display : block; margin : auto;">
+                            @endif
                             <p style="font-size: 18px;padding-top: 40px;text-align: center">{{$event->title}}</p>
-                        <p style="font-size: 14px;padding: 40px;text-align: center">
-                            {{$event->body}}
-                        </p>
-                        <button type="button" class="btn btn-default" style="display : block; margin : auto;background-color: #9a9c9f;color:white">Read More</button>
-                    </div>
+                            <p style="font-size: 14px;padding: 40px;text-align: center">
+                                {{$event->body}}
+                            </p>
+                            <button type="button" onclick='func("{{$event->body}}","{{$event->title}}","{{$event->id}}","{{File::exists('image/Events/'.$event->title . '-' . $event->id . '.jpg')}}",{{ json_encode(File::files('image/Events/' .$event->id))}} )'  class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg" style="display : block; margin : auto;background-color: #9a9c9f;color:white">Read More</button>
+                        </div>
+
                     @endforeach
                     <div class="row">
                         <div class="col-md-2 col-md-offset-5">
-                            <a style="color: white;display: block;margin: auto" class="btn btn-primary"  href="{{ url('/','past') }}">See More Events</a>
+                            <a style="color: white;display: block;margin: auto" class="btn btn-primary"  href="{{ url('events','past') }}">See More Events</a>
                         </div>
                     </div>
                 </div>

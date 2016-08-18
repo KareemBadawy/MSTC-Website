@@ -23,8 +23,12 @@ Route::group(['middleware' => 'auth'], function(){
 		Route::get('news/{id}/destroy', 'NewsController@destroy');
 /*----------------------------------------------------------------------------------*/
 	// Events Routes
+        Route::get('events/present', 'EventsController@index_present');
+        Route::get('events/past', 'EventsController@index_past');
+        Route::get('events/upcoming', 'EventsController@index_upcoming');
 		Route::resource('events', 'EventsController');
 		Route::get('events/{id}/destroy', 'EventsController@destroy');
+		Route::get('events/{id}/publish', 'EventsController@publish');
 		Route::get('events/{id}/images/{name}/destroy', 'EventsController@delete_agallery_photo');
 		Route::get('events/{id}/images/{name}/cover', 'EventsController@change_cover');
 /*----------------------------------------------------------------------------------*/
@@ -117,9 +121,11 @@ Route::group([],function(){
 // Homepage Route
 	Route::get('/', function () {
 		$News=News::orderBy('created_at','desc')->get()->take(2);
-		$events=Event::orderby('status','desc')->orderby('created_at','desc')->where('ended_at', '>=', Carbon\Carbon::now());
-        $announcements=\App\Announcement::orderby('created_at','desc')->get();
-        return view('homepage',['events'=>$events],['News'=>$News])->with(['announcements'=>$announcements]);
+		$upcoming_events=Event::where('status','=',1)->orderby('started_at','desc')->where('ended_at', '>=', Carbon\Carbon::now())->take(3)->get();
+		$present_events=Event::where('status','=',0)->orderby('started_at','desc')->where('ended_at', '>=', Carbon\Carbon::now())->take(3)->get();
+		$past_events=Event::where('status','<=',1)->where('ended_at', '<', Carbon\Carbon::now())->orderBy('ended_at','desc')->take(3)->get() ;
+		$announcements=\App\Announcement::orderby('created_at','desc')->get();
+		return view('homepage')->with(['upcoming_events'=>$upcoming_events])->with(['present_events'=>$present_events])->with(['past_events'=>$past_events])->with(['News'=>$News])->with(['announcements'=>$announcements]);
 	});
 /*----------------------------------------------------------------------------------*/
 // News Routes
@@ -130,8 +136,10 @@ Route::group([],function(){
     Route::get('announcements/{announcements}', 'AnnouncementsController@show');
 /*----------------------------------------------------------------------------------*/
 // Events Routes
+    Route::get('events/present', 'EventsController@index_present');
+    Route::get('events/past', 'EventsController@index_past');
+    Route::get('events/upcoming', 'EventsController@index_upcoming');
 	Route::get('events', 'EventsController@index');
-	Route::get('{state}', 'EventsController@index_state');
 	Route::get('events/{events}', 'EventsController@show');
 	//Route::get('events/{id}/images', 'EventsController@show_images');
 	/*----------------------------------------------------------------------------------*/

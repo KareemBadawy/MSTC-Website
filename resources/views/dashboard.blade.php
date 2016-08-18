@@ -45,8 +45,8 @@
                                         webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                             </div>
                         @else
-                            { <label class="label label-danger">There is a Problem in vimeo server we can't load our weekly update at this time </label>
-                            }
+                             <label class="label label-danger">There is a Problem in vimeo server we can't load our weekly update at this time </label>
+
                         @endif
              </div>
     </div>

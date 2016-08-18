@@ -10,13 +10,15 @@ use App\Http\Controllers\Controller;
 use Image;
 use File;
 use Crypt;
+use App;
+use Auth;
 use Carbon\Carbon;
 class EventsController extends Controller
 {
 
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index','show','index_state']]);
+        $this->middleware('auth', ['except' => ['index','show','index_upcoming','index_present','index_past']]);
     }
 
 
@@ -25,24 +27,66 @@ class EventsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
-        $events=Event::orderby('created_at','desc')->get();
-        return view('events.index', compact('events'));
-    }
-    public function index_state($state)
-    {    if($state=='upcomming')
-    {$events=Event::orderby('created_at','desc')->where('status','=','1')->where('ended_at', '>=',Carbon::now())->get();}
-    else if($state=='present')
-    {$events=Event::orderby('created_at','desc')->where('status','=','0')->where('ended_at', '>=',Carbon::now())->get();}
-    else if($state=='past')
-    {$events=Event::orderby('ended_at','desc')->where('ended_at', '<',Carbon::now())->get();}
-    else {$events=Event::orderby('created_at','desc')->get();}
+        if(Auth::check()&&Auth::user()->hasRole('Vice Head'))
+            $events=Event::orderby('created_at','desc')->get();
+        else{
+            $events=Event::orderby('created_at','desc')->where('status','=','0')->orwhere('status','=','1')->orwhere('ended_at', '<=',Carbon::now())->where('status','=','0')->orwhere('status','=','1')->get();
+        }
 
         return view('events.index', compact('events'));
     }
+    
+    /**
+     * Display a listing of the present events.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    
+    public function index_present()
+    {    if(Auth::check()&&Auth::user()->hasRole('Vice Head'))
+        $events=Event::orderby('created_at','desc')->where('ended_at', '>=',Carbon::now())->where('status','=','0')->orwhere('status','=','2')->where('ended_at', '>=',Carbon::now())->get();
+         else{
+        $events=Event::orderby('created_at','desc')->where('status','=','0')->where('ended_at', '>=',Carbon::now())->get();
+         }
+        return view('events.index', compact('events'));
+    }
 
 
+    
+    /**
+     * Display a listing of the past events.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    
+    public function index_past()
+    {
+        if(Auth::check()&&Auth::user()->hasRole('Vice Head'))
+            $events=Event::orderby('ended_at','desc')->where('ended_at', '<',Carbon::now())->get();
+        else{
+            $events=Event::orderby('ended_at','desc')->where('status','!=','2')->where('status','!=','3')->where('ended_at', '<',Carbon::now())->get();
+        }        return view('events.index', compact('events'));
+    }
+    
+    /**
+     * Display a listing of the upcoming events.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    
+    public function index_upcoming()
+    {
+        if(Auth::check()&&Auth::user()->hasRole('Vice Head'))
+            $events=Event::orderby('created_at','desc')->where('status','=','1')->where('ended_at', '>=',Carbon::now())->orwhere('status','=','3')->where('ended_at', '>=',Carbon::now())->get();
+        else{
+            $events=Event::orderby('created_at','desc')->where('ended_at', '>=',Carbon::now())->where('status','=','1')->get();
+        }
+        return view('events.index', compact('events'));
+    }
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -79,6 +123,9 @@ class EventsController extends Controller
     public function show($id)
     {
         $event = Event::findOrFail($id);
+        if(($event->status==2||$event->status==3)&&!(Auth::check()&&Auth::user()->hasRole('Vice Head')))
+        //generate 404 error if the event is hidden
+            App::abort(404);
         return view('events.show', compact('event'));
     }
 
@@ -206,6 +253,37 @@ class EventsController extends Controller
         }
 
         return redirect('events');
+    }
+    /**
+     * publish and hide the event.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function publish( $event_id)
+    {
+
+        $event = Event::find($event_id);
+
+        if (!$event) {
+            return null;
+        }
+        if ($event) {
+            if($event->status==0)
+                //hide state for present event
+                $event->status=2;
+            else if($event->status==1)
+                //hide state for upcoming event
+                $event->status=3;
+            else if($event->status==2)
+                // publish state for present event
+                $event->status=0;
+            else if($event->status==3)
+                // publish state for upcoming event
+                $event->status=1;
+        }
+        $event->update();
+        return null;
     }
 
     /**
