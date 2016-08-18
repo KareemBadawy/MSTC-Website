@@ -202,28 +202,19 @@
                     <div class="col-md-4">
                         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                             <!-- Indicators -->
-                            <ol class="carousel-indicators">
-                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                            <ol class="carousel-indicators" id="modal_carousel-indicators">
                             </ol>
 
                             <!-- Wrapper for slides -->
-                            <div class="carousel-inner" role="listbox">
+                            <div class="carousel-inner" role="listbox" id="Event_modal_images">
                                 <div class="item active">
                                     <img src="{{ asset('image/slider/1.jpg') }}" alt="...">
                                     <div class="carousel-caption">
                                         ...
                                     </div>
                                 </div>
-                                <div class="item">
-                                    <img src="{{ asset('image/slider/1.jpg') }}" alt="...">
-                                    <div class="carousel-caption">
-                                        ...
-                                    </div>
-                                </div>
                             </div>
-                            
+
                             <!-- Controls -->
                             <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
                                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -236,13 +227,13 @@
                         </div>
                     </div>
                     <div class="col-md-8">
-                        test
+                        <p id="Event_modal_body"></p>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <a href="#" id="Event_read_more" role="button" class="btn btn-default">  Read more</a>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -675,6 +666,41 @@
 
         });
     }(jQuery));
+</script>
+<script type="text/javascript" >
+    var changeonce='';
+    function func ($event_body,$event_title,$event_id,$cover_exist, $album) {
+        if(changeonce==$event_id)
+            return 0;
+        else {
+            document.getElementById('Event_modal_body').innerHTML = $event_body;
+            document.getElementById('gridSystemModalLabel').innerHTML = $event_title;
+            document.getElementById('Event_read_more').setAttribute('href',"{{ url('/events')}}/"+ $event_id );
+            var img = document.getElementById('Event_modal_images');
+            var carousel= document.getElementById('modal_carousel-indicators');
+            img.innerHTML='';
+            var img_source = '';
+            var Class = "<div class='item active'> ";
+            if ($cover_exist == 1)
+                img_source = '{{asset('image/Events')}}/' + $event_title + "-" + $event_id + ".jpg";
+            else
+                img_source = "{{asset('image/slider')}}/" + "19%20-%20Copy.jpg";
+            var Img_html = '<img src=' + img_source + ' alt=...>';
+            var Image_text = " <div class='carousel-caption'>.... </div> </div> ";
+            img.innerHTML = Class + Img_html + Image_text;
+            carousel.innerHTML='<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>';
+
+            for (photo in $album) {
+                if(photo==11)
+                  break;
+                Class = "<div class='item'> ";
+                img_source = $album[photo];
+                Img_html = '<img src=' + img_source + ' alt=...>';
+                img.innerHTML += Class + Img_html + Image_text;
+                carousel.innerHTML += "<li data-target=\"#carousel-example-generic\" data-slide-to=\""+(photo+1)+"\"></li>";
+            }
+        }
+    }
 </script>
 </body>
 </html>
