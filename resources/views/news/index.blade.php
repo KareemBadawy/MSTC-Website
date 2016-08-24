@@ -96,19 +96,13 @@
 							<a href="{{ url('/news', $new->id) }}">{{ $new->title }}</a>
 						</h2>
 						<div class="body"><h4>{{ $new->body }}</h4></div>
-						<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
 					</div>
 				</div>
 			</div>
 
 	@endforeach
 	</div>
-	<ul class="pagination">
-		<li class="active"><a href="#">1</a></li>
-		<li><a href="#">2</a></li>
-		<li><a href="#">3</a></li>
-		<li><a href="#">4</a></li>
-		<li><a href="#">5</a></li>
+	{!! $news->render() !!}
 	</ul>
 </div>
 <footer>

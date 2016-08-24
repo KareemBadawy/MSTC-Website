@@ -40,7 +40,7 @@ class EventsController extends Controller
                 ->orwhere('ended_at', '<=', Carbon::now())
                 ->where('status', '=', '0')
                 ->orwhere('status', '=', '1')
-                ->get();
+                ->paginate('6');
         }
 
         return view('events.index', compact('events'));
@@ -60,12 +60,12 @@ class EventsController extends Controller
                 ->where('status', '=', '0')
                 ->orwhere('status', '=', '2')
                 ->where('ended_at', '>=', Carbon::now())
-                ->get();
+                ->paginate('6');
         else {
             $events = Event::orderby('created_at', 'desc')
                 ->where('status', '=', '0')
                 ->where('ended_at', '>=', Carbon::now())
-                ->get();
+                ->paginate('6');
         }
         return view('events.index', compact('events'));
     }
@@ -82,13 +82,13 @@ class EventsController extends Controller
         if (Auth::check() && Auth::user()->hasRole('Vice Head'))
             $events = Event::orderby('ended_at', 'desc')
                 ->where('ended_at', '<', Carbon::now())
-                ->get();
+                ->paginate('6');
         else {
             $events = Event::orderby('ended_at', 'desc')
                 ->where('status', '!=', '2')
                 ->where('status', '!=', '3')
                 ->where('ended_at', '<', Carbon::now())
-                ->get();
+                ->paginate('6');
         }
         return view('events.index', compact('events'));
     }
@@ -107,12 +107,12 @@ class EventsController extends Controller
                 ->where('ended_at', '>=', Carbon::now())
                 ->orwhere('status', '=', '3')
                 ->where('ended_at', '>=', Carbon::now())
-                ->get();
+                ->paginate('6');
         else {
             $events = Event::orderby('created_at', 'desc')
                 ->where('ended_at', '>=', Carbon::now())
                 ->where('status', '=', '1')
-                ->get();
+                ->paginate('6');
         }
         return view('events.index', compact('events'));
     }
