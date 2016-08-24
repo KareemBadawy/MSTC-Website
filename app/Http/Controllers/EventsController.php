@@ -138,12 +138,32 @@ class EventsController extends Controller
 
     public function store(EventRequest $request)
     {
-        Event::create($request->all());
+        $count_id = 0;
+        //create new Event and get it's id
+        $event_id = Event::create($request->all())->id;
+        //Check if there is uploaded image
         if (File::exists($request->file('image'))) {
-            $event = Event::where('title', '=', $request->input('title'))->first();
-            $filename = $request->input('title') . '-' . $event->id . '.jpg';
-            $file = Image::make($request->file('image'));
-            $file->save('image/Events/' . $filename);
+            $image = Image::make($request->file('image'));
+            //image name should be unique to avoid overwrite
+            $image_name = $request->input('title') . '-' . $event_id . '.jpg';
+            $image->save('image/Events/' . $image_name);
+        }
+
+        foreach ($request->file('gallery') as $image) {
+            if (File::exists($image)) {
+                //check if directory exist
+                if (!File::isDirectory('image/Events/' . $event_id))
+                    File::makeDirectory('image/Events/' . $event_id, 0775);
+
+                $file = Image::make($image);
+
+                if (!File::exists('image/Events/' . $event_id . '/' . ($count_id) . '-' . $event_id . '.jpg')) {
+                    $file->save('image/Events/' . $event_id . '/' . ($count_id) . '-' . $event_id . '.jpg');
+
+                }
+
+            }
+            $count_id++;
         }
         return redirect('events');
     }
@@ -192,50 +212,74 @@ class EventsController extends Controller
 
     public function update(EventRequest $request, $id)
     {
-        $event = Event::where('id', '=', $id)->first();
-        $new_filename = $request->input('title') . '-' . $event['id'] . '.jpg';
-        $old_filename = $event['title'] . '-' . $event['id'] . '.jpg';
-        $found = false; // to avoid deleting image if it is exist by same name
-        Event::findOrfail($id)->update($request->all());
-        $uploadedfiles_count = count($request->file('gallery')); // it will be used to check if there is a file can't be uploaded
-        $count = 0;
-        // gallery images
-
-        if ($uploadedfiles_count > 0) {
-            if (!File::isDirectory('image/Events/' . $id))
-                File::makeDirectory('image/Events/' . $id, 0775);
-            foreach ($request->file('gallery') as $part) {
-                if (File::exists($part)) {
-                    $file = Image::make($part);
-                    while ($found == false) {
-                        $count++;
-                        if (!File::exists('image/Events/' . $id . '/' . ($count) . '-' . $id . '.jpg')) {
-                            $file->save('image/Events/' . $id . '/' . ($count) . '-' . $id . '.jpg');
-                            break;
-                        }
-                    }
-                }
-
-            }
-        }
-
-        //should use ecnrypt()
-        //Cover Image
-
+        $image_id = 0;
+        //get the Event before update.
+        $event = Event::findOrfail($id);
+        $old_image_name = $event['title'] . '-' . $event['id'] . '.jpg';
+        //the new name for the image in case the title changed.
+        $new_image_name = $request->input('title') . '-' . $event['id'] . '.jpg';
+        //check if the user uploaded cover image
         if (File::exists($request->file('image'))) {
             $file = Image::make($request->file('image'));
-            $file->save('image/Events/' . $new_filename);
+            //save the image with the new image name
+            $file->save('image/Events/' . $new_image_name);
+            //check if  the title changed
+            if ($request->input('title') != $event['title']) {
+                //if there exist file with the old image name delete it
+                if (File::exists('image/Events/' . $old_image_name))
+                    File::delete('image/Events/' . $old_image_name);
+            }
+
         }
-        if (!File::exists($request->file('image'))) {
-            if (File::exists('image/Events/' . $old_filename)) {
-                $file = Image::make('image/Events/' . $old_filename);
-                $file->save('image/Events/' . $new_filename);
+        //check if the title changed and the user didn't upload new image
+        if (!File::exists($request->file('image')) && $request->input('title') != $event['title']) {
+            // if there exist  image with old title name
+            //// save image with the new title name
+            // delete the image with old title name
+            if (File::exists('image/Events/' . $old_image_name)) {
+                $file = Image::make('image/Events/' . $old_image_name);
+                $file->save('image/Events/' . $new_image_name);
+                File::delete('image/Events/' . $old_image_name);
             }
         }
-        if ($request->input('title') != $event['title']) {
-            if (File::exists('image/Events/' . $old_filename))
-                File::delete('image/Events/' . $old_filename);
+        if ($request->file('gallery')) {
+            //check if there is images in the the event gallery
+            if (File::isDirectory('image/Events/' . $id)) {
+                //get the images in event gallery
+                $files = File::files('image/Events/' . $id . '/');
+                // get the id of the last image in gallery
+                foreach ($files as $image) {
+                    //get the name of image
+                    $image_name = basename($image);
+                    //  get  id of the image
+                    $count_id = substr($image_name, 0, strpos($image_name, '-'));
+                    // get the latest uploaded image id
+                    if ($count_id > $image_id)
+                        $image_id = $count_id;
+                }
+                $image_id++;
+            }
+
+            foreach ($request->file('gallery') as $image) {
+                if (File::exists($image)) {
+                    //check if directory exist
+                    if (!File::isDirectory('image/Events/' . $id))
+                        File::makeDirectory('image/Events/' . $id, 0775);
+
+                    $file = Image::make($image);
+
+                    if (!File::exists('image/Events/' . $id . '/' . ($image_id) . '-' . $id . '.jpg')) {
+                        $file->save('image/Events/' . $id . '/' . ($image_id) . '-' . $id . '.jpg');
+
+                    }
+
+                }
+                $image_id++;
+            }
         }
+        //update the Event.
+        $event->update($request->all());
+
         return redirect('events');
     }
 
@@ -282,25 +326,39 @@ class EventsController extends Controller
      */
 
 
-    public function update_images(Request $request, $id){
+    public function update_images(Request $request, $id)
+    {
+        $image_id = 0;
         if ($request->file('file')) {
-            //get the files in the event gallery
-            $files=File::files('image/Events/'.$id.'/');
-            //get the name of the last image and get it's id
-            $count_id=  substr( basename($files[count($files)-1]),0,1)+1;
-             //check if directory exist
+            //check if there is images in the the event gallery
+            if (File::isDirectory('image/Events/' . $id)) {
+                //get the images in event gallery
+                $files = File::Files('image/Events/' . $id . '/');
+                foreach ($files as $image) {
+                    //get the name of image
+                    $image_name = basename($image);
+                    //  get  id of the image
+                    $count_id = substr($image_name, 0, strpos($image_name, '-'));
+                    // get the latest uploaded image id
+                    if ($count_id > $image_id)
+                        $image_id = $count_id;
+                }
+                $image_id++;
+
+            }
+            //check if directory exist
             if (!File::isDirectory('image/Events/' . $id))
                 File::makeDirectory('image/Events/' . $id, 0775);
 
             $file = Image::make($request->file('file'));
 
-                if (!File::exists('image/Events/' . $id . '/' . ($count_id) . '-' . $id . '.jpg')) {
-                    $file->save('image/Events/' . $id . '/' . ($count_id) . '-' . $id . '.jpg');
+            if (!File::exists('image/Events/' . $id . '/' . ($image_id) . '-' . $id . '.jpg')) {
+                $file->save('image/Events/' . $id . '/' . ($image_id) . '-' . $id . '.jpg');
 
-                }
-
-            return response($count_id . '-' . $id . '.jpg');
             }
+
+            return response($image_id . '-' . $id . '.jpg');
+        }
 
     }
 
@@ -333,10 +391,10 @@ class EventsController extends Controller
 
 
     public function delete_agallery_photo($id, $name)
-    {   // check if the image is a gallery image
+    {         // check if the image is a gallery image
         if (File::exists('image/Events/' . $id . '/' . $name)) {
             File::delete('image/Events/' . $id . '/' . $name);
-// delete the gallery directory if the deleted image is the last image in the directory
+            // delete the gallery directory if the deleted image is the last image in the directory
             if (count(File::files('image/Events/' . $id)) == 0)
                 File::deleteDirectory('image/Events/' . $id);
 
@@ -358,6 +416,7 @@ class EventsController extends Controller
 
     public function change_cover($id, $name)
     {
+        $image_id = 0;
         $event = Event::findOrfail($id);
         $cover_image_name = $event['title'] . '-' . $event['id'] . '.jpg';
         if (File::exists('image/Events/' . $cover_image_name)) {
@@ -365,23 +424,32 @@ class EventsController extends Controller
             $file = Image::make('image/Events/' . $cover_image_name);
             //delete the old cover image
             File::delete('image/Events/' . $cover_image_name);
-        }
-        //get the files in the event gallery
-        $files=File::files('image/Events/'.$id.'/');
-        //get the name of the last image and get it's id
-        $count_id=  substr( basename($files[count($files)-1]),0,1)+1;
+            //get the files in the event gallery
+            $files = File::files('image/Events/' . $id . '/');
+            //get the name of the last image and get it's id
+            foreach ($files as $image) {
+                //get the name of image
+                $image_name = basename($image);
+                //  get  id of the image
+                $count_id = substr($image_name, 0, strpos($image_name, '-'));
+                // get the latest uploaded image id
+                if ($count_id > $image_id)
+                    $image_id = $count_id;
+            }
+            $image_id++;
 
-        if (!File::exists('image/Events/' . $id . '/' . ($count_id) . '-' . $id . '.jpg')) {
-            $file->save('image/Events/' . $id . '/' . ($count_id) . '-' . $id . '.jpg');
+            if (!File::exists('image/Events/' . $id . '/' . ($image_id) . '-' . $id . '.jpg')) {
+                $file->save('image/Events/' . $id . '/' . ($image_id) . '-' . $id . '.jpg');
 
+            }
         }
-         
+
         if (File::exists('image/Events/' . $id . '/' . $name)) {
             $file = Image::make('image/Events/' . $id . '/' . $name);
             $file->save('image/Events/' . $cover_image_name);
             File::delete('image/Events/' . $id . '/' . $name);
         }
-
+return response($image_id);
     }
 
 
