@@ -1,7 +1,10 @@
 @extends('app')
 
-@section('content')
+@section('title')
     <title>New Announcement</title>
+@stop
+
+@section('content')
 
     <h1>Write a New Announcement</h1>
     <hr/>

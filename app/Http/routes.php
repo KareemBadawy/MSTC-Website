@@ -72,7 +72,11 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::group([],function(){
 	// Dashboard Route
 		Route::get('dashboard', function(\Illuminate\Http\Request $request){
-            $posts = \App\Post::whereIn('vertical_id',Auth::User()->Verticals()->lists('id'))->latest()->paginate('8');
+            $posts = \App\Post::whereIn('vertical_id',Auth::User()
+				->Verticals()
+				->lists('id'))
+				->latest()
+				->paginate('8');
             $tasks=Auth::User()->tasks->take(3);
 
                 //if there is ajax call it send the  posts and the new page of posts
@@ -93,7 +97,10 @@ Route::group(['middleware' => 'auth'], function(){
 				$video_info=null;
 			}
 
-			return view('dashboard')->with(['posts'=>$posts])->with(['tasks'=>$tasks])->with(['video_info'=>$video_info]);
+			return view('dashboard')
+				->with(['posts'=>$posts])
+				->with(['tasks'=>$tasks])
+				->with(['video_info'=>$video_info]);
 		});
 /*----------------------------------------------------------------------------------*/
 	//User Routes
@@ -122,11 +129,28 @@ Route::group([],function(){
 // Homepage Route
 	Route::get('/', function () {
 		$News=News::orderBy('created_at','desc')->get()->take(2);
-		$upcoming_events=Event::where('status','=',1)->orderby('started_at','desc')->where('ended_at', '>=', Carbon\Carbon::now())->take(3)->get();
-		$present_events=Event::where('status','=',0)->orderby('started_at','desc')->where('ended_at', '>=', Carbon\Carbon::now())->take(3)->get();
-		$past_events=Event::where('status','<=',1)->where('ended_at', '<', Carbon\Carbon::now())->orderBy('ended_at','desc')->take(3)->get() ;
+		$upcoming_events=Event::where('status','=',1)
+			->orderby('started_at','desc')
+			->where('ended_at', '>=', Carbon\Carbon::now())
+			->take(3)
+			->get();
+		$present_events=Event::where('status','=',0)
+			->orderby('started_at','desc')
+			->where('ended_at', '>=', Carbon\Carbon::now())
+			->take(3)
+			->get();
+		$past_events=Event::where('status','<=',1)
+			->where('ended_at', '<', Carbon\Carbon::now())
+			->orderBy('ended_at','desc')
+			->take(3)
+			->get() ;
 		$announcements=\App\Announcement::orderby('created_at','desc')->get();
-		return view('homepage')->with(['upcoming_events'=>$upcoming_events])->with(['present_events'=>$present_events])->with(['past_events'=>$past_events])->with(['News'=>$News])->with(['announcements'=>$announcements]);
+		return view('homepage')
+			->with(['upcoming_events'=>$upcoming_events])
+			->with(['present_events'=>$present_events])
+			->with(['past_events'=>$past_events])
+			->with(['News'=>$News])
+			->with(['announcements'=>$announcements]);
 	});
 /*----------------------------------------------------------------------------------*/
 // News Routes

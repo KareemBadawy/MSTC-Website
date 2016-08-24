@@ -1,11 +1,7 @@
 @extends('app')
 
 @section('header')
-    <li><h5>Events</h5></li>
-@stop
-
-@section('side')
-    
+    <li><h5>Announcements</h5></li>
 @stop
 
 @section('content')

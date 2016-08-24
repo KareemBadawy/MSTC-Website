@@ -32,7 +32,7 @@ class EventsController extends Controller
     public function index()
     {
         if (Auth::check() && Auth::user()->hasRole('Vice Head'))
-            $events = Event::orderby('created_at', 'desc')->get();
+            $events = Event::orderby('created_at', 'desc')->paginate('6');
         else {
             $events = Event::orderby('created_at', 'desc')
                 ->where('status', '=', '0')
