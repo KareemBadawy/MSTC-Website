@@ -81,40 +81,8 @@
         </div>
     </div>
 </nav>
-<div class="container">
-    <div class="row">
-        @if(File::exists('image/Events/'.$event->title . '-' . $event->id . '.jpg'))
-            <div style=" width: 100%; height: 10em;overflow: hidden;">
-                <img src="{{ asset( 'image/Events/'.$event->title . '-' .$event->id. '.jpg') }}" width="400px" style=" min-width: 100%;
-  min-height: 100%;" alt="...">
-            </div>
-        @else
-            <div style=" width: 100%;height: 30em;overflow: hidden;"><img
-                        src="{{ asset('image/slider/19 - Copy.jpg') }}" width="400px" style=" min-width: 100%;
-  min-height: 100%;" alt="..."></div>
-        @endif
-        <h1>{{ $event->title }}</h1>
-
-        <h3>{{ $event->body }}</h3>
-
-        @include('events.gallery')
-
-        {{ $event->started_at }}
-        {{ $event->ended_at }}
-        @if(Auth::check())
-            @if(Auth::user()->hasRole('Vice Head'))
-                <div class="row">
-                    <button class="btn btn-default is-published" data-eventid="{{$event->id}}"><span
-                                class="glyphicon glyphicon-globe"></span><i> {{$event->status==2||$event->status==3?'Publish':'Hide'}}</i>
-                    </button>
-                    <a href="{{ url('/events', $event->id.'/edit') }}" class="btn btn-primary" role="button"><span
-                                class="glyphicon glyphicon-edit "></span> <i>Edit Event</i></a>
-                    <a href="{{ url('/events', $event->id.'/destroy') }}" class="btn btn-danger" role="button"><span
-                                class="glyphicon glyphicon-erase"></span> <i>Delete Event</i></a>
-                </div>
-            @endif
-        @endif
-    </div>
+<div class="container" style="margin-top:60px ">
+    @include('events.gallery')
 </div>
 <footer>
     <!--footer-->
@@ -215,30 +183,5 @@
     </div>
 
 </footer>
-
 </body>
-<script>
-    $(document).ready(function () {
-        var eventId = 0;
-        $('.is-published').on('click', function (event) {
-            event.preventDefault();
-            eventId = $('.is-published')[0].dataset['eventid'];
-            $.ajax({
-                        method: 'get',
-                        url: '/events/' + eventId + '/publish'
-
-                    })
-                    .done(function () {
-                        var is_published = $('i')[0].firstChild.textContent;
-                        if (is_published == ' Publish') {
-                            $('i')[0].firstChild.textContent = " Hide";
-                        } else {
-                            $('i')[0].firstChild.textContent = " Publish";
-                        }
-                    });
-
-        });
-    });
-</script>
 </html>
-

@@ -5,17 +5,15 @@
 @stop
 
 @section('side')
-    
+
 @stop
 
 @section('content')
     <h1>Edit : {!! $event-> title !!}</h1>
     {!! Form::model($event,['method'=>'PATCH', 'action'=>['EventsController@update',$event->id],'files'=> true]) !!}
-      @include('events._form')
-      @include('events.gallery')
-    <div class = "form-group">
-        {!! Form::submit('Update Event', ['class' => 'btn btn-primary form-control']) !!}
-    </div>
-     {!! Form::close() !!}
-     @include('errors.list');
- @stop
+
+    @include('events/_form',['submitButton'=>'Update Event'])
+
+    {!! Form::close() !!}
+    @include('errors.list');
+@stop

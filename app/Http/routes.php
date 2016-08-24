@@ -27,9 +27,10 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('events/past', 'EventsController@index_past');
         Route::get('events/upcoming', 'EventsController@index_upcoming');
 		Route::resource('events', 'EventsController');
-		Route::get('events/{id}/destroy', 'EventsController@destroy');
+        Route::get('events/{id}/destroy', 'EventsController@destroy');
 		Route::get('events/{id}/publish', 'EventsController@publish');
-		Route::get('events/{id}/images/{name}/destroy', 'EventsController@delete_agallery_photo');
+        Route::post('events/{id}/images/update', 'EventsController@update_images');
+        Route::get('events/{id}/images/{name}/destroy', 'EventsController@delete_agallery_photo');
 		Route::get('events/{id}/images/{name}/cover', 'EventsController@change_cover');
 /*----------------------------------------------------------------------------------*/
 		// announcement Routes
@@ -141,7 +142,7 @@ Route::group([],function(){
     Route::get('events/upcoming', 'EventsController@index_upcoming');
 	Route::get('events', 'EventsController@index');
 	Route::get('events/{events}', 'EventsController@show');
-	//Route::get('events/{id}/images', 'EventsController@show_images');
+    Route::get('events/{id}/images', 'EventsController@show_images');
 	/*----------------------------------------------------------------------------------*/
 // Submit Subscribtions Routes
 	Route::post('subscribe', 'SubscribtionsController@store');

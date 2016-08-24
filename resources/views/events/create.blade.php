@@ -1,19 +1,18 @@
 @extends('app')
 
-@section('content')
+@section('title')
     <title>New Event</title>
+@stop
 
-
-
+@section('content')
 
     <h1>Write a New Event</h1>
     <hr/>
 
     {!! Form::open(['url'=>'events','files' => true]) !!}
-        @include('events/_form',['submitButton'=>'Add New Event'])
-    <div class = "form-group">
-        {!! Form::submit('Update Event', ['class' => 'btn btn-primary form-control']) !!}
-    </div>
+
+    @include('events/_form',['submitButton'=>'Add New Event'])
+
     {!! Form::close() !!}
 
     @include('errors.list')

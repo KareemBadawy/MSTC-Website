@@ -1,0 +1,21 @@
+
+#myimage{
+    min-height: 100%;
+
+}
+.thumbnail{
+    height: 206px;
+    width: 206px;
+    min-width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.6s;
+    border: 5px solid #f5f5f5;
+
+}
+.thumbnail:hover {
+    border: 1px solid #99929c;
+    opacity: 0.5;
+}
+
