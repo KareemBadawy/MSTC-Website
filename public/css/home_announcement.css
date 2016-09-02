@@ -1,0 +1,41 @@
+/*
+    make slider responsive to changes
+*/
+.full-screen {
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+/*
+    make images inside slider responsive to changes
+*/
+.fill{
+    min-height: 100%;
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+/*
+    make overlay layer black with opacity 60%
+*/
+.carousel-item .overlay{
+    background-color: rgba(0,0,0,0.6);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.carousel-item{
+    position: relative;
+}
+/*
+    fix overlap of button and indicators
+*/
+.carousel-item button{
+    margin-bottom: 20px;
+}

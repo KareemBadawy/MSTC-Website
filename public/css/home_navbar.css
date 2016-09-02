@@ -1,0 +1,32 @@
+
+/*
+    make first navbar have transparent background
+*/
+.transparent {
+    background: transparent;
+    border-width: 0;
+    position: absolute;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+/*
+    make sign in button down for design seek
+*/
+nav .sign-btn{
+    margin-top: 10px;
+}
+/*
+    nav bar in small screens
+*/
+@media screen and (max-width: 992px) {
+    /* fix toggle button problem*/
+    .nav-first-item {
+        margin-top: 50px;
+    }
+    /* center button in small screens */
+    .pull-xs-center{
+        text-align: center;
+    }
+}

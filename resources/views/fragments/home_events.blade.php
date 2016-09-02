@@ -1,0 +1,3 @@
+<section id="events">
+
+</section>
