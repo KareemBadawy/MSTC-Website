@@ -8,10 +8,10 @@
     <title>MSP Tech Club - Alexandria University</title>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css" integrity="sha384-MIwDKRSSImVFAZCVLtU0LMDdON6KVCrZHyVQQj6e8wIEJkW4tvwqXrbMIya1vriY" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
 
     <!-- Font Awesome css file -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
+    <link rel="stylesheet" href="{{ asset('bower_components/font-awesome/css/font-awesome.min.css') }}">
 
     <!-- Include all css files (below) -->
     <link href="{{ asset('css/homePage.css') }}" rel="stylesheet">
@@ -48,13 +48,13 @@
     </footer>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
     <!-- Bootstrap -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.4/js/tether.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/js/bootstrap.min.js" integrity="sha384-ux8v3A6CPtOTqOzMKiuo3d/DomGaaClxFYdCu2HPMBEkf6x2xiDyJ7gkXU0MWwaD" crossorigin="anonymous"></script>
+    <script src="{{ asset('bower_components/tether/dist/js/tether.min.js') }}"></script>
+    <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
+    <script src="{{ asset('bower_components/jquery.nicescroll/dist/jquery.nicescroll.min.js') }}"></script>
     <script src="{{ asset('js/homePage.js') }}"></script>
     <script src="{{ asset('js/home_announcement.js') }}"></script>
     <script src="{{ asset('js/home_navbar.js') }}"></script>

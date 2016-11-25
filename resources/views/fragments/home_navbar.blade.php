@@ -8,7 +8,7 @@
              alt="logo">
     </a>
     <!-- Nav bar -  sign in -->
-    <form class="form-inline pull-xs-center pull-sm-right">
+    <form class="form-inline float-xs-center float-sm-right">
         <button class="btn btn-outline-primary btn-lg sign-btn" type="submit">Sign in</button>
     </form>
 
@@ -22,7 +22,7 @@
     </a>
 
     <!-- Nav bar - hamburger button -->
-    <button class="navbar-toggler hidden-lg-up pull-xs-right" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler hidden-lg-up float-xs-right" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label="Toggle navigation">
         &#9776;
     </button>
 
@@ -49,7 +49,7 @@
             </li>
         </ul>
         <!-- Nav bar -  sign in -->
-        <form class="form-inline pull-xs-left pull-lg-right">
+        <form class="form-inline float-xs-left float-lg-right">
             <button class="btn btn-outline-primary" type="submit">Sign in</button>
         </form>
     </div>
