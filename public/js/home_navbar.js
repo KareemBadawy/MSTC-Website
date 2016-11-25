@@ -24,6 +24,13 @@ $(function() {
            scrollTop: ($('#' + $(this).data('value')).offset().top)-60
        }, 1000);
     });
+
+    // Nav-bar scroll items
+    $('.scroll-down a').click(function () {
+        $('html, body').animate({
+            scrollTop: ($('#' + $(this).data('value')).offset().top)-60
+        }, 1000);
+    });
     
 });
 
