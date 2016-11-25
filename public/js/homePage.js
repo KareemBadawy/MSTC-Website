@@ -11,4 +11,13 @@ $(function() {
 
     });
 
+    // makes carousel responsive
+    var $item = $('.full-screen');
+    var $wHeight = $(window).height();
+    $item.height($wHeight);
+    $(window).on('resize', function (){
+        $wHeight = $(window).height();
+        $item.height($wHeight);
+    });
+
 });
