@@ -2,15 +2,14 @@
 <nav class="navbar transparent navbar-light bg-faded container">
     <!-- Nav bar - logo -->
     <a href="#announcement">
-        <img style="max-width: 300px"
-             class="navbar-brand"
+        <img class="navbar-brand brand-first-navbar"
              src="{{ asset('image/logo-white.png') }}"
              alt="logo">
     </a>
     <!-- Nav bar -  sign in -->
-    <form class="form-inline float-xs-center float-sm-right">
+    <div class="float-xs-center float-sm-right">
         <button class="btn btn-outline-primary btn-lg sign-btn" type="submit">Sign in</button>
-    </form>
+    </div>
 
 </nav>
 
@@ -18,7 +17,9 @@
 <nav class="navbar navbar-fixed-top navbar-light bg-faded">
     <!-- Nav bar - logo -->
     <a href="#announcement">
-        <img style="max-width: 150px" class="navbar-brand" src="{{ asset('image/logo.png') }}" alt="logo">
+        <img class="navbar-brand brand-second-navbar"
+             src="{{ asset('image/logo.png') }}"
+             alt="logo">
     </a>
 
     <!-- Nav bar - hamburger button -->

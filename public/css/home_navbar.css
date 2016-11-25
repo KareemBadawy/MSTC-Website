@@ -1,4 +1,10 @@
+.brand-first-navbar{
+    max-width: 300px;
+}
 
+.brand-second-navbar{
+    max-width: 150px;
+}
 /*
     make first navbar have transparent background
 */
@@ -26,7 +32,7 @@ nav .sign-btn{
         margin-top: 50px;
     }
     /* center button in small screens */
-    .pull-xs-center{
+    .float-xs-center{
         text-align: center;
     }
 }
