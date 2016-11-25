@@ -1,5 +1,6 @@
 <!-- first navbar -->
 <nav class="navbar transparent navbar-light bg-faded container">
+
     <!-- Nav bar - logo -->
     <a href="#announcement">
         <img class="navbar-brand brand-first-navbar"
@@ -8,7 +9,10 @@
     </a>
     <!-- Nav bar -  sign in -->
     <div class="float-xs-center float-sm-right">
-        <button class="btn btn-outline-primary btn-lg sign-btn" type="submit">Sign in</button>
+        <button class="btn btn-outline-primary btn-lg sign-btn"
+                type="submit"
+                data-toggle="modal"
+                data-target="#signInModal">Sign in</button>
     </div>
 
 </nav>
@@ -54,5 +58,7 @@
             <button class="btn btn-outline-primary" type="submit">Sign in</button>
         </form>
     </div>
-
 </nav>
+
+<!--Sign in Moadal-->
+@include('fragments.partials.home_signin_modal')
