@@ -17,6 +17,7 @@
     <link href="{{ asset('css/homePage.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home_announcement.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home_navbar.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/home_events.css') }}" rel="stylesheet">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
