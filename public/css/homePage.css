@@ -1,3 +1,7 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
 .modal-dialog {
     display: inline-block;
     vertical-align: middle;
